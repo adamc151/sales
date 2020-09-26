@@ -1,0 +1,26 @@
+.graphsWrapper {
+  margin: auto;
+  height: calc(100% - 70px);
+  margin-top: 70px;
+}
+
+.graphWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.graphWrapper2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.total {
+  position: absolute;
+  font-size: 42px;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,3541 @@
+
+  {
+    "value": 102,
+    "dateTime": { "$date":  "2020-07-01T01:57:30.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105752,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 80,
+    "dateTime": { "$date":  "2020-07-01T02:28:25.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102514,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 105,
+    "dateTime": { "$date":  "2020-07-01T03:13:06.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101612,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 19,
+    "dateTime": { "$date":  "2020-07-01T10:56:32.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108120,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 72,
+    "dateTime": { "$date":  "2020-07-01T15:47:59.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109835,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 22,
+    "dateTime": { "$date":  "2020-07-01T20:38:18.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100055,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 134,
+    "dateTime": { "$date":  "2020-07-01T21:21:04.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100953,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 38,
+    "dateTime": { "$date":  "2020-07-02T00:14:06.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100463,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 149,
+    "dateTime": { "$date":  "2020-07-02T01:18:50.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100569,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 84,
+    "dateTime": { "$date":  "2020-07-02T01:46:57.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105785,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 18,
+    "dateTime": { "$date":  "2020-07-02T05:44:50.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107360,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 39,
+    "dateTime": { "$date":  "2020-07-02T06:24:42.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108292,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 88,
+    "dateTime": { "$date":  "2020-07-02T06:53:47.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100239,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 66,
+    "dateTime": { "$date":  "2020-07-02T07:23:29.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106812,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 150,
+    "dateTime": { "$date":  "2020-07-02T12:45:04.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109101,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 79,
+    "dateTime": { "$date":  "2020-07-02T14:43:26.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106009,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 83,
+    "dateTime": { "$date":  "2020-07-02T14:48:02.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104163,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 10,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-02T15:33:48.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 36,
+    "dateTime": { "$date":  "2020-07-02T16:20:23.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108817,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 14,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-02T19:47:02.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 42,
+    "dateTime": { "$date":  "2020-07-02T20:06:18.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109446,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 9,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-02T21:22:26.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 80,
+    "dateTime": { "$date":  "2020-07-03T00:00:43.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107250,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 110,
+    "dateTime": { "$date":  "2020-07-03T02:12:13.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106602,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 112,
+    "dateTime": { "$date":  "2020-07-03T03:36:26.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107519,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-03T05:03:37.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 116,
+    "dateTime": { "$date":  "2020-07-03T05:55:40.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103204,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 22,
+    "dateTime": { "$date":  "2020-07-03T06:15:13.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107734,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 86,
+    "dateTime": { "$date":  "2020-07-03T11:06:19.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104141,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 48,
+    "dateTime": { "$date":  "2020-07-03T12:19:04.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104140,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-07-03T13:08:48.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103733,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 137,
+    "dateTime": { "$date":  "2020-07-03T13:51:06.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105924,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 2,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-03T16:17:40.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 118,
+    "dateTime": { "$date":  "2020-07-03T17:30:33.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104499,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 67,
+    "dateTime": { "$date":  "2020-07-03T17:45:48.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105458,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 61,
+    "dateTime": { "$date":  "2020-07-03T19:33:30.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103217,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 144,
+    "dateTime": { "$date":  "2020-07-06T03:28:40.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103165,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 131,
+    "dateTime": { "$date":  "2020-07-06T07:11:27.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108251,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 62,
+    "dateTime": { "$date":  "2020-07-06T10:47:20.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101695,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 101,
+    "dateTime": { "$date":  "2020-07-06T11:17:38.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101577,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 159,
+    "dateTime": { "$date":  "2020-07-06T12:13:42.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103538,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 102,
+    "dateTime": { "$date":  "2020-07-06T14:05:51.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103177,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 70,
+    "dateTime": { "$date":  "2020-07-06T16:07:25.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104509,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 47,
+    "dateTime": { "$date":  "2020-07-06T18:14:42.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103472,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 65,
+    "dateTime": { "$date":  "2020-07-06T20:57:11.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100940,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 95,
+    "dateTime": { "$date":  "2020-07-07T02:31:30.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105110,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 20,
+    "dateTime": { "$date":  "2020-07-07T06:44:37.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108792,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 10,
+    "dateTime": { "$date":  "2020-07-07T06:46:43.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106286,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 103,
+    "dateTime": { "$date":  "2020-07-07T07:35:39.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105129,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 8,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-07T09:48:55.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 62,
+    "dateTime": { "$date":  "2020-07-07T11:09:25.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106277,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 131,
+    "dateTime": { "$date":  "2020-07-07T11:46:53.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109627,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 141,
+    "dateTime": { "$date":  "2020-07-07T12:42:01.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100939,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 76,
+    "dateTime": { "$date":  "2020-07-07T13:14:55.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104893,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 113,
+    "dateTime": { "$date":  "2020-07-07T19:36:45.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101909,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 45,
+    "dateTime": { "$date":  "2020-07-07T20:47:48.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104393,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 56,
+    "dateTime": { "$date":  "2020-07-07T23:25:50.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104869,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 153,
+    "dateTime": { "$date":  "2020-07-08T00:12:38.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105392,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 68,
+    "dateTime": { "$date":  "2020-07-08T01:06:00.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102220,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 84,
+    "dateTime": { "$date":  "2020-07-08T04:12:35.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100140,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 53,
+    "dateTime": { "$date":  "2020-07-08T07:56:43.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100699,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 47,
+    "dateTime": { "$date":  "2020-07-08T13:48:04.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104557,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 104,
+    "dateTime": { "$date":  "2020-07-08T14:38:59.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106969,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 33,
+    "dateTime": { "$date":  "2020-07-08T14:51:19.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105609,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 125,
+    "dateTime": { "$date":  "2020-07-08T16:45:21.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107213,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 100,
+    "dateTime": { "$date":  "2020-07-08T19:54:35.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106402,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 131,
+    "dateTime": { "$date":  "2020-07-08T20:09:06.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100797,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 159,
+    "dateTime": { "$date":  "2020-07-08T20:11:09.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105073,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 42,
+    "dateTime": { "$date":  "2020-07-08T23:42:01.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101181,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 35,
+    "dateTime": { "$date":  "2020-07-09T03:25:58.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100533,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 49,
+    "dateTime": { "$date":  "2020-07-09T03:52:26.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102420,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 145,
+    "dateTime": { "$date":  "2020-07-09T05:22:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106949,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 105,
+    "dateTime": { "$date":  "2020-07-09T05:36:51.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103017,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 37,
+    "dateTime": { "$date":  "2020-07-09T07:51:49.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102896,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 102,
+    "dateTime": { "$date":  "2020-07-09T08:41:36.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108331,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 18,
+    "dateTime": { "$date":  "2020-07-09T11:02:21.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107277,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 69,
+    "dateTime": { "$date":  "2020-07-09T11:53:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106369,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 117,
+    "dateTime": { "$date":  "2020-07-09T14:05:54.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105884,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 112,
+    "dateTime": { "$date":  "2020-07-09T15:11:21.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103605,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 82,
+    "dateTime": { "$date":  "2020-07-09T15:48:40.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104495,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 87,
+    "dateTime": { "$date":  "2020-07-09T16:18:34.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101527,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 13,
+    "dateTime": { "$date":  "2020-07-09T16:40:35.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109769,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 93,
+    "dateTime": { "$date":  "2020-07-09T18:52:33.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106898,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 117,
+    "dateTime": { "$date":  "2020-07-09T19:35:05.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109226,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 159,
+    "dateTime": { "$date":  "2020-07-09T22:41:28.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106852,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 106,
+    "dateTime": { "$date":  "2020-07-09T22:43:36.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105056,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 45,
+    "dateTime": { "$date":  "2020-07-10T01:42:58.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107390,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 42,
+    "dateTime": { "$date":  "2020-07-10T02:11:07.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106274,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 22,
+    "dateTime": { "$date":  "2020-07-10T03:25:03.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103718,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 66,
+    "dateTime": { "$date":  "2020-07-10T03:42:52.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107836,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 101,
+    "dateTime": { "$date":  "2020-07-10T04:26:41.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100032,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 33,
+    "dateTime": { "$date":  "2020-07-10T05:00:56.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109233,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 28,
+    "dateTime": { "$date":  "2020-07-10T07:11:43.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106212,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 27,
+    "dateTime": { "$date":  "2020-07-10T09:40:34.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109597,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 48,
+    "dateTime": { "$date":  "2020-07-10T10:06:46.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108639,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 68,
+    "dateTime": { "$date":  "2020-07-10T11:37:02.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107286,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 66,
+    "dateTime": { "$date":  "2020-07-10T11:52:42.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104691,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 122,
+    "dateTime": { "$date":  "2020-07-10T12:29:01.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109523,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 104,
+    "dateTime": { "$date":  "2020-07-10T18:44:22.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108902,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 0,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-10T20:56:17.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 73,
+    "dateTime": { "$date":  "2020-07-13T02:48:23.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100075,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 26,
+    "dateTime": { "$date":  "2020-07-13T03:11:54.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105445,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 89,
+    "dateTime": { "$date":  "2020-07-13T03:51:27.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106701,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 109,
+    "dateTime": { "$date":  "2020-07-13T04:04:18.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102749,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 102,
+    "dateTime": { "$date":  "2020-07-13T05:34:15.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103564,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 111,
+    "dateTime": { "$date":  "2020-07-13T12:31:38.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108093,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 39,
+    "dateTime": { "$date":  "2020-07-13T15:11:51.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106389,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-07-13T15:26:24.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107198,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 30,
+    "dateTime": { "$date":  "2020-07-13T16:02:58.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100023,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 69,
+    "dateTime": { "$date":  "2020-07-13T21:25:38.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103763,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 15,
+    "dateTime": { "$date":  "2020-07-13T22:40:53.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101704,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-07-13T23:01:40.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104280,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 159,
+    "dateTime": { "$date":  "2020-07-13T23:53:59.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108242,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 4,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-14T06:41:24.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 82,
+    "dateTime": { "$date":  "2020-07-14T08:39:12.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100956,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 126,
+    "dateTime": { "$date":  "2020-07-14T10:46:06.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107125,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 138,
+    "dateTime": { "$date":  "2020-07-14T11:16:50.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105209,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 107,
+    "dateTime": { "$date":  "2020-07-14T12:45:45.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101999,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 71,
+    "dateTime": { "$date":  "2020-07-14T18:47:11.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106637,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 75,
+    "dateTime": { "$date":  "2020-07-14T21:17:06.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107777,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 74,
+    "dateTime": { "$date":  "2020-07-15T00:54:16.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100618,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 33,
+    "dateTime": { "$date":  "2020-07-15T02:00:36.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107917,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 15,
+    "dateTime": { "$date":  "2020-07-15T12:11:02.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102977,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-07-15T16:25:14.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105238,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 121,
+    "dateTime": { "$date":  "2020-07-15T16:42:41.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103763,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 50,
+    "dateTime": { "$date":  "2020-07-15T16:52:49.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107076,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 84,
+    "dateTime": { "$date":  "2020-07-15T22:35:39.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105157,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 96,
+    "dateTime": { "$date":  "2020-07-15T23:03:44.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105569,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 42,
+    "dateTime": { "$date":  "2020-07-16T01:37:35.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108279,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 99,
+    "dateTime": { "$date":  "2020-07-16T02:05:43.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104753,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 15,
+    "dateTime": { "$date":  "2020-07-16T02:12:47.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108572,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 104,
+    "dateTime": { "$date":  "2020-07-16T06:56:37.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105229,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 158,
+    "dateTime": { "$date":  "2020-07-16T07:19:10.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105311,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 112,
+    "dateTime": { "$date":  "2020-07-16T08:10:19.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101933,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 150,
+    "dateTime": { "$date":  "2020-07-16T09:15:44.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108943,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 14,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-16T15:11:12.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 72,
+    "dateTime": { "$date":  "2020-07-16T19:25:13.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107356,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 99,
+    "dateTime": { "$date":  "2020-07-16T21:16:57.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104224,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 84,
+    "dateTime": { "$date":  "2020-07-16T22:56:22.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109106,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 158,
+    "dateTime": { "$date":  "2020-07-16T23:53:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106273,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 11,
+    "dateTime": { "$date":  "2020-07-17T02:30:20.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108426,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-07-17T03:34:32.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106869,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 55,
+    "dateTime": { "$date":  "2020-07-17T07:11:53.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105419,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 138,
+    "dateTime": { "$date":  "2020-07-17T09:25:17.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102250,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 21,
+    "dateTime": { "$date":  "2020-07-17T14:18:02.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104520,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 44,
+    "dateTime": { "$date":  "2020-07-17T18:39:27.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101107,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-07-19T23:40:05.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109220,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 121,
+    "dateTime": { "$date":  "2020-07-20T00:53:04.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107535,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 70,
+    "dateTime": { "$date":  "2020-07-20T00:59:30.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100475,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 129,
+    "dateTime": { "$date":  "2020-07-20T05:59:58.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103714,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 30,
+    "dateTime": { "$date":  "2020-07-20T07:48:25.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106331,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-07-20T11:46:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103960,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 43,
+    "dateTime": { "$date":  "2020-07-20T13:34:43.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107539,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 122,
+    "dateTime": { "$date":  "2020-07-20T16:04:51.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102005,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 131,
+    "dateTime": { "$date":  "2020-07-20T16:08:29.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104090,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 76,
+    "dateTime": { "$date":  "2020-07-20T22:25:23.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106384,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 70,
+    "dateTime": { "$date":  "2020-07-21T09:01:34.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104767,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 27,
+    "dateTime": { "$date":  "2020-07-21T16:56:01.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102820,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 64,
+    "dateTime": { "$date":  "2020-07-21T18:12:10.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105399,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 87,
+    "dateTime": { "$date":  "2020-07-21T18:32:21.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100281,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 50,
+    "dateTime": { "$date":  "2020-07-21T19:39:02.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104088,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 97,
+    "dateTime": { "$date":  "2020-07-21T21:34:30.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106394,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 107,
+    "dateTime": { "$date":  "2020-07-22T02:31:19.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103633,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 49,
+    "dateTime": { "$date":  "2020-07-22T06:08:44.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108330,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 122,
+    "dateTime": { "$date":  "2020-07-22T06:47:23.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106506,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 73,
+    "dateTime": { "$date":  "2020-07-22T09:36:22.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102187,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 63,
+    "dateTime": { "$date":  "2020-07-23T00:14:32.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105643,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 159,
+    "dateTime": { "$date":  "2020-07-23T01:44:23.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104154,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "dateTime": { "$date":  "2020-07-23T01:51:39.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106624,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 155,
+    "dateTime": { "$date":  "2020-07-23T03:37:43.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105146,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-07-23T03:46:15.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100022,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 128,
+    "dateTime": { "$date":  "2020-07-23T04:01:33.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106871,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 74,
+    "dateTime": { "$date":  "2020-07-23T11:38:55.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106828,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-07-23T15:12:05.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107980,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 37,
+    "dateTime": { "$date":  "2020-07-23T15:12:43.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102107,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 65,
+    "dateTime": { "$date":  "2020-07-23T17:30:36.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104857,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-07-24T00:54:42.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104180,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 157,
+    "dateTime": { "$date":  "2020-07-24T02:12:53.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109724,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 51,
+    "dateTime": { "$date":  "2020-07-24T04:34:07.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108581,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 114,
+    "dateTime": { "$date":  "2020-07-24T06:23:01.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105045,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 107,
+    "dateTime": { "$date":  "2020-07-24T07:30:22.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109901,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 148,
+    "dateTime": { "$date":  "2020-07-24T09:29:53.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107082,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 32,
+    "dateTime": { "$date":  "2020-07-24T15:25:23.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105128,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "dateTime": { "$date":  "2020-07-24T18:45:26.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105551,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-07-27T01:20:12.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106967,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 141,
+    "dateTime": { "$date":  "2020-07-27T02:29:06.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106176,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 79,
+    "dateTime": { "$date":  "2020-07-27T07:53:15.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106605,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 46,
+    "dateTime": { "$date":  "2020-07-27T11:10:11.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105290,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-07-27T15:05:49.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109794,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 80,
+    "dateTime": { "$date":  "2020-07-27T17:52:01.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105383,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 114,
+    "dateTime": { "$date":  "2020-07-28T00:44:48.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107272,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 118,
+    "dateTime": { "$date":  "2020-07-28T01:26:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100186,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 11,
+    "dateTime": { "$date":  "2020-07-28T01:51:03.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108452,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 24,
+    "dateTime": { "$date":  "2020-07-28T04:46:51.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102889,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 25,
+    "dateTime": { "$date":  "2020-07-28T05:50:53.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100315,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 139,
+    "dateTime": { "$date":  "2020-07-28T06:02:48.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109795,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 30,
+    "dateTime": { "$date":  "2020-07-28T08:24:04.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105525,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 71,
+    "dateTime": { "$date":  "2020-07-28T08:43:12.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103278,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 92,
+    "dateTime": { "$date":  "2020-07-28T08:58:24.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107922,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 61,
+    "dateTime": { "$date":  "2020-07-28T09:02:38.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106522,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 13,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-28T09:37:57.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 4,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-28T13:13:36.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 65,
+    "dateTime": { "$date":  "2020-07-28T14:56:40.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100195,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 96,
+    "dateTime": { "$date":  "2020-07-28T16:17:20.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108585,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 145,
+    "dateTime": { "$date":  "2020-07-28T19:32:13.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108284,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-07-28T21:28:46.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108293,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-28T23:29:08.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-07-28T23:42:55.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101770,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 146,
+    "dateTime": { "$date":  "2020-07-29T00:35:49.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100797,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 38,
+    "dateTime": { "$date":  "2020-07-29T00:53:28.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103235,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 152,
+    "dateTime": { "$date":  "2020-07-29T02:51:42.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100037,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 141,
+    "dateTime": { "$date":  "2020-07-29T05:20:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106438,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 42,
+    "dateTime": { "$date":  "2020-07-29T06:02:36.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107453,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 110,
+    "dateTime": { "$date":  "2020-07-29T06:10:17.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101921,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 45,
+    "dateTime": { "$date":  "2020-07-29T06:10:39.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101169,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-07-29T06:25:12.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106012,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 158,
+    "dateTime": { "$date":  "2020-07-29T07:57:28.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109459,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 69,
+    "dateTime": { "$date":  "2020-07-29T12:13:05.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100157,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 41,
+    "dateTime": { "$date":  "2020-07-29T15:33:04.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103980,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 83,
+    "dateTime": { "$date":  "2020-07-29T21:13:38.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102079,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 82,
+    "dateTime": { "$date":  "2020-07-29T21:30:28.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106405,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 0,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-07-29T23:02:45.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 60,
+    "dateTime": { "$date":  "2020-07-30T01:46:58.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103803,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 15,
+    "dateTime": { "$date":  "2020-07-30T02:17:39.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100747,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 83,
+    "dateTime": { "$date":  "2020-07-30T05:10:25.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103310,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 16,
+    "dateTime": { "$date":  "2020-07-30T07:28:19.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102798,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 149,
+    "dateTime": { "$date":  "2020-07-30T08:31:42.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104141,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 73,
+    "dateTime": { "$date":  "2020-07-30T15:34:17.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104623,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-07-30T17:19:54.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101180,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 82,
+    "dateTime": { "$date":  "2020-07-30T17:39:45.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103849,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 149,
+    "dateTime": { "$date":  "2020-07-30T17:45:17.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108911,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 22,
+    "dateTime": { "$date":  "2020-07-30T18:13:01.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109074,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 136,
+    "dateTime": { "$date":  "2020-07-30T20:55:44.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106386,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 50,
+    "dateTime": { "$date":  "2020-07-31T02:02:52.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107401,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 19,
+    "dateTime": { "$date":  "2020-07-31T03:10:28.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102726,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 120,
+    "dateTime": { "$date":  "2020-07-31T06:49:26.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105143,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 36,
+    "dateTime": { "$date":  "2020-07-31T08:08:11.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106077,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 17,
+    "dateTime": { "$date":  "2020-07-31T12:00:37.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108159,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 81,
+    "dateTime": { "$date":  "2020-07-31T17:23:03.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103980,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 45,
+    "dateTime": { "$date":  "2020-07-31T18:01:39.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103523,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-08-03T00:53:54.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100271,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 57,
+    "dateTime": { "$date":  "2020-08-03T01:53:23.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103453,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 110,
+    "dateTime": { "$date":  "2020-08-03T03:05:29.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107450,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 46,
+    "dateTime": { "$date":  "2020-08-03T08:19:40.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101428,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 47,
+    "dateTime": { "$date":  "2020-08-03T08:58:19.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101237,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-08-03T10:01:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105411,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 94,
+    "dateTime": { "$date":  "2020-08-03T15:25:53.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108907,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 38,
+    "dateTime": { "$date":  "2020-08-03T16:47:24.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103683,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 26,
+    "dateTime": { "$date":  "2020-08-03T18:14:15.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103058,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 113,
+    "dateTime": { "$date":  "2020-08-04T00:45:00.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102687,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 4,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-04T13:47:13.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 45,
+    "dateTime": { "$date":  "2020-08-04T17:27:55.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103801,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 64,
+    "dateTime": { "$date":  "2020-08-04T18:23:18.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106417,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 56,
+    "dateTime": { "$date":  "2020-08-04T19:13:48.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100190,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 23,
+    "dateTime": { "$date":  "2020-08-05T01:00:47.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103135,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 58,
+    "dateTime": { "$date":  "2020-08-05T02:18:07.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105416,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 13,
+    "dateTime": { "$date":  "2020-08-05T02:19:31.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104056,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 19,
+    "dateTime": { "$date":  "2020-08-05T02:59:48.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106696,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 44,
+    "dateTime": { "$date":  "2020-08-05T03:32:24.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105665,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 21,
+    "dateTime": { "$date":  "2020-08-05T07:19:51.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103722,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 101,
+    "dateTime": { "$date":  "2020-08-05T12:47:42.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107913,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 141,
+    "dateTime": { "$date":  "2020-08-05T15:35:22.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107572,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 45,
+    "dateTime": { "$date":  "2020-08-05T17:04:25.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102384,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 137,
+    "dateTime": { "$date":  "2020-08-05T19:58:08.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102052,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 46,
+    "dateTime": { "$date":  "2020-08-06T00:17:25.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100404,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 9,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-06T02:20:27.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 8,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-06T03:35:44.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 88,
+    "dateTime": { "$date":  "2020-08-06T03:43:29.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107873,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 138,
+    "dateTime": { "$date":  "2020-08-06T04:39:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109964,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 108,
+    "dateTime": { "$date":  "2020-08-06T06:16:42.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108419,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 10,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-06T08:24:25.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 128,
+    "dateTime": { "$date":  "2020-08-06T09:16:06.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105976,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 137,
+    "dateTime": { "$date":  "2020-08-06T14:50:08.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107763,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 21,
+    "dateTime": { "$date":  "2020-08-06T16:50:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105371,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 14,
+    "dateTime": { "$date":  "2020-08-06T17:06:12.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100443,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 28,
+    "dateTime": { "$date":  "2020-08-06T17:13:21.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105070,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 118,
+    "dateTime": { "$date":  "2020-08-06T17:18:30.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107602,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 124,
+    "dateTime": { "$date":  "2020-08-06T23:05:21.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106496,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-06T23:10:54.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 5,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-07T03:03:18.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 48,
+    "dateTime": { "$date":  "2020-08-07T05:52:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108049,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-08-07T06:33:34.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108943,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 157,
+    "dateTime": { "$date":  "2020-08-07T13:08:08.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102345,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-08-07T13:43:18.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101829,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-08-07T15:13:58.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103796,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 130,
+    "dateTime": { "$date":  "2020-08-07T15:17:05.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101180,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-08-07T15:19:28.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108732,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 67,
+    "dateTime": { "$date":  "2020-08-07T15:26:32.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107127,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 136,
+    "dateTime": { "$date":  "2020-08-07T16:20:57.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109399,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 35,
+    "dateTime": { "$date":  "2020-08-07T18:28:20.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100711,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 150,
+    "dateTime": { "$date":  "2020-08-07T20:10:09.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106575,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 11,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-10T00:16:37.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 142,
+    "dateTime": { "$date":  "2020-08-10T00:46:58.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104548,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 74,
+    "dateTime": { "$date":  "2020-08-10T02:15:35.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107294,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 124,
+    "dateTime": { "$date":  "2020-08-10T11:16:22.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104642,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 120,
+    "dateTime": { "$date":  "2020-08-10T11:16:42.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100702,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 41,
+    "dateTime": { "$date":  "2020-08-10T16:14:17.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109292,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 122,
+    "dateTime": { "$date":  "2020-08-10T17:30:06.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108460,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 117,
+    "dateTime": { "$date":  "2020-08-10T19:22:04.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104289,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 104,
+    "dateTime": { "$date":  "2020-08-11T00:42:16.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108940,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 66,
+    "dateTime": { "$date":  "2020-08-11T02:33:23.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108276,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 60,
+    "dateTime": { "$date":  "2020-08-11T03:04:56.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104671,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 137,
+    "dateTime": { "$date":  "2020-08-11T05:49:09.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102709,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-08-11T06:11:13.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107269,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 24,
+    "dateTime": { "$date":  "2020-08-11T11:42:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103551,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 156,
+    "dateTime": { "$date":  "2020-08-11T12:48:54.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105189,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 108,
+    "dateTime": { "$date":  "2020-08-11T13:16:54.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104870,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 102,
+    "dateTime": { "$date":  "2020-08-11T14:24:11.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102273,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 152,
+    "dateTime": { "$date":  "2020-08-11T17:06:27.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105611,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 71,
+    "dateTime": { "$date":  "2020-08-11T18:46:55.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109381,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 79,
+    "dateTime": { "$date":  "2020-08-11T19:36:44.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102009,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 57,
+    "dateTime": { "$date":  "2020-08-11T23:27:01.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101452,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 114,
+    "dateTime": { "$date":  "2020-08-12T00:50:21.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106606,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 5,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-12T04:30:44.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 29,
+    "dateTime": { "$date":  "2020-08-12T05:08:53.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109903,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 96,
+    "dateTime": { "$date":  "2020-08-12T05:12:35.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102577,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 61,
+    "dateTime": { "$date":  "2020-08-12T10:53:27.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101797,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 92,
+    "dateTime": { "$date":  "2020-08-12T13:26:56.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103867,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 62,
+    "dateTime": { "$date":  "2020-08-12T13:32:27.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105907,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 85,
+    "dateTime": { "$date":  "2020-08-12T17:39:12.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109828,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 59,
+    "dateTime": { "$date":  "2020-08-12T19:07:30.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100221,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 71,
+    "dateTime": { "$date":  "2020-08-12T19:42:28.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100172,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 147,
+    "dateTime": { "$date":  "2020-08-12T21:51:10.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103910,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 79,
+    "dateTime": { "$date":  "2020-08-13T01:29:58.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109615,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 24,
+    "dateTime": { "$date":  "2020-08-13T02:55:14.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106730,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 139,
+    "dateTime": { "$date":  "2020-08-13T04:00:57.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108633,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-08-13T04:59:51.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103569,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 110,
+    "dateTime": { "$date":  "2020-08-13T06:58:39.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109885,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 100,
+    "dateTime": { "$date":  "2020-08-13T11:50:53.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107824,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 58,
+    "dateTime": { "$date":  "2020-08-13T18:51:00.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102626,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-08-14T00:57:45.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104379,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 66,
+    "dateTime": { "$date":  "2020-08-14T02:03:37.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102262,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 0,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-14T02:37:43.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 121,
+    "dateTime": { "$date":  "2020-08-14T06:10:16.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108194,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 41,
+    "dateTime": { "$date":  "2020-08-14T09:53:36.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106973,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 118,
+    "dateTime": { "$date":  "2020-08-14T16:32:32.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100079,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 103,
+    "dateTime": { "$date":  "2020-08-14T19:11:55.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103248,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 137,
+    "dateTime": { "$date":  "2020-08-14T19:25:45.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100848,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 55,
+    "dateTime": { "$date":  "2020-08-14T21:52:28.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108471,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 67,
+    "dateTime": { "$date":  "2020-08-14T22:15:52.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106839,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 57,
+    "dateTime": { "$date":  "2020-08-17T00:58:06.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101074,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 74,
+    "dateTime": { "$date":  "2020-08-17T02:45:49.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102745,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 118,
+    "dateTime": { "$date":  "2020-08-17T05:20:48.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101830,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 41,
+    "dateTime": { "$date":  "2020-08-17T10:12:36.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101901,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 87,
+    "dateTime": { "$date":  "2020-08-17T12:33:33.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101205,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 48,
+    "dateTime": { "$date":  "2020-08-17T14:15:09.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108547,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 25,
+    "dateTime": { "$date":  "2020-08-17T17:11:46.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104039,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 2,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-17T19:22:44.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 40,
+    "dateTime": { "$date":  "2020-08-17T21:17:34.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106879,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 116,
+    "dateTime": { "$date":  "2020-08-17T21:50:44.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108022,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 64,
+    "dateTime": { "$date":  "2020-08-17T22:31:34.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107841,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 120,
+    "dateTime": { "$date":  "2020-08-18T00:43:00.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108059,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 71,
+    "dateTime": { "$date":  "2020-08-18T03:20:07.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107033,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 69,
+    "dateTime": { "$date":  "2020-08-18T03:54:18.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101825,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 80,
+    "dateTime": { "$date":  "2020-08-18T10:16:58.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105187,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 155,
+    "dateTime": { "$date":  "2020-08-18T11:03:11.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102594,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 148,
+    "dateTime": { "$date":  "2020-08-18T23:16:19.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102561,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 97,
+    "dateTime": { "$date":  "2020-08-19T02:20:36.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102345,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 158,
+    "dateTime": { "$date":  "2020-08-19T06:28:47.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108030,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 88,
+    "dateTime": { "$date":  "2020-08-19T07:03:19.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102208,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 52,
+    "dateTime": { "$date":  "2020-08-19T07:46:27.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106543,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 105,
+    "dateTime": { "$date":  "2020-08-19T08:34:38.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100959,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 29,
+    "dateTime": { "$date":  "2020-08-19T09:14:00.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107007,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "dateTime": { "$date":  "2020-08-19T18:50:02.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102900,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 113,
+    "dateTime": { "$date":  "2020-08-19T19:19:00.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106825,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 146,
+    "dateTime": { "$date":  "2020-08-19T19:26:09.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102412,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-08-19T19:42:19.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109063,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 33,
+    "dateTime": { "$date":  "2020-08-19T19:45:48.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101121,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 7,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-19T22:14:18.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 128,
+    "dateTime": { "$date":  "2020-08-19T23:08:32.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 108783,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 120,
+    "dateTime": { "$date":  "2020-08-19T23:17:02.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102659,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 6,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-19T23:38:38.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 155,
+    "dateTime": { "$date":  "2020-08-20T00:59:43.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107151,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 33,
+    "dateTime": { "$date":  "2020-08-20T03:19:53.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108843,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 132,
+    "dateTime": { "$date":  "2020-08-20T05:02:16.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105605,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 56,
+    "dateTime": { "$date":  "2020-08-20T07:21:10.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106594,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 117,
+    "dateTime": { "$date":  "2020-08-20T08:04:57.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106022,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 124,
+    "dateTime": { "$date":  "2020-08-20T08:30:03.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104088,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-08-20T09:13:21.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101900,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 1,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-20T09:38:26.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 13,
+    "dateTime": { "$date":  "2020-08-20T11:23:35.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105265,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 7,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-20T12:11:11.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 53,
+    "dateTime": { "$date":  "2020-08-20T14:13:51.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104319,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 16,
+    "dateTime": { "$date":  "2020-08-21T00:32:37.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105943,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 115,
+    "dateTime": { "$date":  "2020-08-21T08:51:46.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105404,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 118,
+    "dateTime": { "$date":  "2020-08-21T18:28:39.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107779,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 93,
+    "dateTime": { "$date":  "2020-08-21T18:41:31.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109597,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 10,
+    "dateTime": { "$date":  "2020-08-21T19:24:38.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100855,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 113,
+    "dateTime": { "$date":  "2020-08-21T22:05:24.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105343,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 148,
+    "dateTime": { "$date":  "2020-08-21T22:18:39.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101142,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 37,
+    "dateTime": { "$date":  "2020-08-23T23:56:18.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102562,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 22,
+    "dateTime": { "$date":  "2020-08-24T02:25:57.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105626,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 69,
+    "dateTime": { "$date":  "2020-08-24T05:02:46.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107489,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 90,
+    "dateTime": { "$date":  "2020-08-24T10:33:32.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100091,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 26,
+    "dateTime": { "$date":  "2020-08-24T11:43:39.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107283,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 51,
+    "dateTime": { "$date":  "2020-08-24T13:41:32.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106452,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 3,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-24T15:46:01.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 39,
+    "dateTime": { "$date":  "2020-08-24T16:38:56.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103580,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 122,
+    "dateTime": { "$date":  "2020-08-24T18:17:20.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104487,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 111,
+    "dateTime": { "$date":  "2020-08-24T21:31:20.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105962,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 114,
+    "dateTime": { "$date":  "2020-08-24T22:14:48.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108090,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 35,
+    "dateTime": { "$date":  "2020-08-24T22:53:54.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107304,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 19,
+    "dateTime": { "$date":  "2020-08-25T02:26:07.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100085,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 20,
+    "dateTime": { "$date":  "2020-08-25T08:31:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109166,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 84,
+    "dateTime": { "$date":  "2020-08-25T10:36:30.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106046,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 11,
+    "dateTime": { "$date":  "2020-08-25T12:14:52.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104162,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 49,
+    "dateTime": { "$date":  "2020-08-25T12:46:51.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101780,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 90,
+    "dateTime": { "$date":  "2020-08-25T14:06:02.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105144,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 46,
+    "dateTime": { "$date":  "2020-08-25T15:01:01.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107500,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-25T16:48:23.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 128,
+    "dateTime": { "$date":  "2020-08-25T17:32:07.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100028,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 89,
+    "dateTime": { "$date":  "2020-08-25T18:21:46.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109981,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-25T19:10:07.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 115,
+    "dateTime": { "$date":  "2020-08-25T21:01:09.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107596,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-08-25T22:27:25.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104860,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 14,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-25T22:36:21.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 32,
+    "dateTime": { "$date":  "2020-08-26T03:20:39.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106316,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 125,
+    "dateTime": { "$date":  "2020-08-26T04:51:16.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103863,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 134,
+    "dateTime": { "$date":  "2020-08-26T06:07:46.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102867,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 131,
+    "dateTime": { "$date":  "2020-08-26T09:18:07.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 107302,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 137,
+    "dateTime": { "$date":  "2020-08-26T09:37:51.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105316,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 13,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-26T11:37:28.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 134,
+    "dateTime": { "$date":  "2020-08-26T15:14:26.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105685,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 11,
+    "dateTime": { "$date":  "2020-08-26T15:58:13.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 103517,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 35,
+    "dateTime": { "$date":  "2020-08-26T16:30:35.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107394,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 127,
+    "dateTime": { "$date":  "2020-08-26T17:07:04.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109841,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 41,
+    "dateTime": { "$date":  "2020-08-27T01:12:44.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103064,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 121,
+    "dateTime": { "$date":  "2020-08-27T04:06:04.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102865,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 70,
+    "dateTime": { "$date":  "2020-08-27T04:21:35.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109846,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 51,
+    "dateTime": { "$date":  "2020-08-27T05:34:31.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106231,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 6,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-27T08:30:49.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 18,
+    "dateTime": { "$date":  "2020-08-27T08:47:44.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103175,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 113,
+    "dateTime": { "$date":  "2020-08-27T08:57:04.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101477,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 149,
+    "dateTime": { "$date":  "2020-08-27T13:42:50.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109556,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 26,
+    "dateTime": { "$date":  "2020-08-27T14:09:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100335,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 76,
+    "dateTime": { "$date":  "2020-08-27T18:04:49.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100194,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 71,
+    "dateTime": { "$date":  "2020-08-27T20:42:35.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 108879,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-08-28T01:01:31.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105619,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 10,
+    "dateTime": { "$date":  "2020-08-28T01:15:38.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109441,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 138,
+    "dateTime": { "$date":  "2020-08-28T03:57:57.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 106862,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 68,
+    "dateTime": { "$date":  "2020-08-28T04:11:44.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 106468,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 0,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-28T04:51:59.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 117,
+    "dateTime": { "$date":  "2020-08-28T08:37:09.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101902,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 29,
+    "dateTime": { "$date":  "2020-08-28T10:10:18.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104614,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 63,
+    "dateTime": { "$date":  "2020-08-28T10:56:16.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102553,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 138,
+    "dateTime": { "$date":  "2020-08-28T13:26:10.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101568,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 10,
+    "dateTime": { "$date":  "2020-08-28T15:01:20.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102465,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 53,
+    "dateTime": { "$date":  "2020-08-28T15:24:33.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107734,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 26,
+    "dateTime": { "$date":  "2020-08-28T17:19:45.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100496,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 143,
+    "dateTime": { "$date":  "2020-08-28T22:39:48.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103457,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 32,
+    "dateTime": { "$date":  "2020-08-30T23:16:49.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105152,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 99,
+    "dateTime": { "$date":  "2020-08-31T01:12:01.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 103384,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 141,
+    "dateTime": { "$date":  "2020-08-31T02:36:06.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105705,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 13,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-08-31T02:53:56.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 83,
+    "dateTime": { "$date":  "2020-08-31T09:47:56.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101978,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 93,
+    "dateTime": { "$date":  "2020-08-31T12:28:14.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101235,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 48,
+    "dateTime": { "$date":  "2020-08-31T12:58:15.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106133,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 65,
+    "dateTime": { "$date":  "2020-08-31T18:47:34.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107169,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 134,
+    "dateTime": { "$date":  "2020-09-01T00:49:14.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100847,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 25,
+    "dateTime": { "$date":  "2020-09-01T01:35:34.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104723,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 15,
+    "dateTime": { "$date":  "2020-09-01T01:54:53.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108080,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 140,
+    "dateTime": { "$date":  "2020-09-01T02:04:21.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101537,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-09-01T03:46:46.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 105461,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 20,
+    "dateTime": { "$date":  "2020-09-01T05:26:31.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 101299,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 42,
+    "dateTime": { "$date":  "2020-09-01T09:33:10.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102409,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-09-01T10:42:12.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104645,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 12,
+    "dateTime": { "$date":  "2020-09-01T10:51:15.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100048,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 104,
+    "dateTime": { "$date":  "2020-09-01T12:39:13.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109965,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 74,
+    "dateTime": { "$date":  "2020-09-01T13:01:42.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100857,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 68,
+    "dateTime": { "$date":  "2020-09-01T13:06:25.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104399,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 92,
+    "dateTime": { "$date":  "2020-09-01T13:28:03.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 109620,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 23,
+    "dateTime": { "$date":  "2020-09-01T16:16:02.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100212,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 134,
+    "dateTime": { "$date":  "2020-09-01T23:15:18.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 103757,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 5,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-09-02T06:49:57.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 3,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-09-02T08:44:42.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 40,
+    "dateTime": { "$date":  "2020-09-02T10:15:14.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 104489,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 108,
+    "dateTime": { "$date":  "2020-09-02T11:37:28.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 109448,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 126,
+    "dateTime": { "$date":  "2020-09-02T12:54:36.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 100988,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 136,
+    "dateTime": { "$date":  "2020-09-02T12:57:51.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101650,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 142,
+    "dateTime": { "$date":  "2020-09-02T16:36:45.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109092,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 147,
+    "dateTime": { "$date":  "2020-09-02T22:20:21.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 104304,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 98,
+    "dateTime": { "$date":  "2020-09-03T00:12:25.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 102039,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 4,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-09-03T00:29:21.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 44,
+    "dateTime": { "$date":  "2020-09-03T01:05:11.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102713,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 104,
+    "dateTime": { "$date":  "2020-09-03T03:43:29.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 107491,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 20,
+    "dateTime": { "$date":  "2020-09-03T05:17:16.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 109578,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 6,
+    "isExpense": true,
+    "dateTime": { "$date":  "2020-09-03T15:58:42.000Z" },
+    "paymentMethod": null,
+    "productID": null,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 112,
+    "dateTime": { "$date":  "2020-09-03T20:37:44.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 101422,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 117,
+    "dateTime": { "$date":  "2020-09-03T21:20:54.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105386,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 21,
+    "dateTime": { "$date":  "2020-09-03T21:48:13.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 107438,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 31,
+    "dateTime": { "$date":  "2020-09-03T22:36:12.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 100072,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 36,
+    "dateTime": { "$date":  "2020-09-04T03:56:09.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 101842,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 102,
+    "dateTime": { "$date":  "2020-09-04T04:46:09.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 100490,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 123,
+    "dateTime": { "$date":  "2020-09-04T05:24:37.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 102370,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 124,
+    "dateTime": { "$date":  "2020-09-04T08:47:07.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 106121,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 46,
+    "dateTime": { "$date":  "2020-09-04T10:46:41.000Z" },
+    "paymentMethod": "CASH",
+    "productID": 105620,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 65,
+    "dateTime": { "$date":  "2020-09-04T17:39:46.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 102351,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 23,
+    "dateTime": { "$date":  "2020-09-04T18:16:08.000Z" },
+    "paymentMethod": "CARD",
+    "productID": 105594,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 80,
+    "dateTime": { "$date":  "2020-09-04T18:30:30.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 108611,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  {
+    "value": 122,
+    "dateTime": { "$date":  "2020-09-04T18:56:27.000Z" },
+    "paymentMethod": "AMEX",
+    "productID": 104422,
+    "productDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+

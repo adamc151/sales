@@ -1,0 +1,87 @@
+.wrapper {
+  text-align: left;
+}
+
+.title {
+  border-top: 1px solid lightgrey;
+  width: 50%;
+  padding-top: 8px;
+  margin-left: 5%;
+}
+
+.card {
+  outline: none;
+}
+
+.cardInner {
+  padding: 16px;
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  background-color: white;
+  /* box-shadow: 0 2px 10px rgba(15, 15, 28, 0.203); */
+  box-shadow: 0 -9px 11px rgba(15, 15, 28, 0.103);
+  border-left: 4px solid #004990;
+}
+
+.breakdownWrapper {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 18px;
+}
+
+.total {
+  width: 60px;
+}
+
+.percentage {
+  margin-left: 16px;
+  color: grey;
+}
+
+.cardTitle {
+  margin: 8px;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.cardDate {
+  font-size: 18px;
+  color: white;
+  margin-left: 8px;
+}
+
+.cardTotal {
+  font-size: 30px;
+  margin: 8px;
+}
+
+.carouselWrapper {
+  width: 100%;
+  margin: auto;
+}
+
+.previousArrowWrapper {
+  position: absolute;
+  left: -25px;
+  top: 12px;
+  color: #004990;
+}
+
+.nextArrowWrapper {
+  position: absolute;
+  right: -25px;
+  top: 12px;
+  color: #004990;
+}
+
+.nextArrowDisabled {
+  color: #ebf3ff;
+}
+
+.previousArrowDisabled {
+  color: #ebf3ff;
+}
