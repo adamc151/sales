@@ -47,6 +47,24 @@ const reducer = (state = initialState, action) => {
       return { ...state, addItemLoading: false, error: true };
     case "ADD_ITEM_SUCCESS":
       return { ...state, addItemLoading: false };
+
+    case "GET_TILLFLOAT_REQUEST":
+      return { ...state, getTillFloatLoading: true, error: false };
+    case "GET_TILLFLOAT_FAILED":
+      return { ...state, getTillFloatLoading: false, error: true };
+    case "GET_TILLFLOAT_SUCCESS":
+      console.log("yooo action.payload", action.payload);
+      return {
+        ...state,
+        getTillFloatLoading: false,
+        tillFloat: action.payload[0].value,
+      };
+    case "ADD_TILLFLOAT_REQUEST":
+      return { ...state, addTillFloatLoading: true, error: false };
+    case "ADD_TILLFLOAT_FAILED":
+      return { ...state, addTillFloatLoading: false, error: true };
+    case "ADD_TILLFLOAT_SUCCESS":
+      return { ...state, addTillFloatLoading: false };
     default:
       return state;
   }

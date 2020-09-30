@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useContext,
-  useCallback,
-} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./AddItem.module.css";
 import moment from "moment";
 import DatePicker from "react-datepicker";
@@ -20,7 +14,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { Redirect, withRouter } from "react-router";
-import { AuthContext } from "../../Auth";
+import Swal from "sweetalert2";
+import { Button } from "../UI/Button";
 
 const paymentMethodIcons = {
   CASH: <FaMoneyBillAlt color={"#53a957"} size={"28px"} />,
@@ -52,15 +47,15 @@ function usePrevious(value) {
 }
 
 const AddItem = (props) => {
-  const { token } = useContext(AuthContext);
-
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState(new Date());
   const [price1, setPrice1] = useState(0);
   const [price2, setPrice2] = useState(0);
   const [price3, setPrice3] = useState(0);
+  const [details, setDetails] = useState("");
   const [paymentType, setPaymentType] = useState("CARD");
   const [redirect, setRedirect] = useState(false);
+  const [addButtonActive, setAddButtonActive] = useState(true);
 
   const prevLoading = usePrevious(props.data.addItemLoading);
 
@@ -83,7 +78,20 @@ const AddItem = (props) => {
 
     if (prevLoading && !props.data.addItemLoading) {
       if (!props.data.error) {
-        setRedirect(true);
+        const item = props.data.items[props.data.items.length - 1];
+        Swal.fire({
+          icon: "success",
+          title: `£${item.value}`,
+          text: "Item added successfully",
+          timer: 2000,
+          showConfirmButton: false,
+          allowOutsideClick: false,
+        });
+        setTimeout(() => {
+          setRedirect(true);
+        }, 2000);
+      } else {
+        setAddButtonActive(true);
       }
     }
   }, [props.data.addItemLoading]);
@@ -91,18 +99,6 @@ const AddItem = (props) => {
   const buttonText = () => {
     return `Add £${(price1 + price2 + price3).toFixed(2)}`;
   };
-
-  // const handleSubmit = useCallback(async (e) => {
-  //   // e.preventDefault();
-  //   try {
-  //     props.setTitle(`Hit return`);
-  //     e.currentTarget.blur();
-  //     // await app.auth().signInWithEmailAndPassword(username, password);
-  //     // history.push("/today");
-  //   } catch (error) {
-  //     // alert(error);
-  //   }
-  // }, []);
 
   if (redirect) {
     return <Redirect to={"/today"} />;
@@ -177,8 +173,14 @@ const AddItem = (props) => {
         </div>
       </div>
       <div>
-        <div className={styles.sectionText}>Product</div>
-        <input className={styles.longInput} type="text" />
+        <div className={styles.sectionText}>Details</div>
+        <input
+          className={styles.longInput}
+          type="text"
+          onChange={(e) => {
+            setDetails(e.target.value);
+          }}
+        />
       </div>
       <div className={styles.sectionText}>Payment Method</div>
 
@@ -223,21 +225,22 @@ const AddItem = (props) => {
 
       {false && paymentType === "OTHER" && <div>Other Options</div>}
 
-      <button
-        className={styles.confirm}
+      <Button
+        isLoading={props.data.addItemLoading}
         onClick={async () => {
-          await props.actions.postItem(
-            {
+          if (addButtonActive) {
+            setAddButtonActive(false);
+            await props.actions.postItem({
               dateTime: date.toISOString(),
               value: (price1 + price2 + price3).toFixed(2),
               paymentMethod: paymentType,
-            },
-            token
-          );
+              details,
+            });
+          }
         }}
       >
         {buttonText()}
-      </button>
+      </Button>
     </div>
   );
 };

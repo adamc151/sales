@@ -8,15 +8,6 @@
   }
 }
 
-/* .Toastify__toast {
-  background: #4bb543 !important;
-  color: white !important;
-} */
-
-/* body {
-  overflow: hidden;
-} */
-
 body::-webkit-scrollbar {
   display: none;
 }

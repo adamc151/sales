@@ -1,10 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import app from "./firebase.js";
 import Loading from "./components/Loading/Loading";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "./state/actions/authActions";
 
 export const AuthContext = React.createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(({ children, actions }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
   const [isOwner, setOwner] = useState(false);
@@ -24,6 +30,7 @@ export const AuthProvider = ({ children }) => {
           //set current User AFTER token and isOwner
           setCurrentUser(user);
           setPending(false);
+          actions.updateAuth({ isOwner: payload["owner"], token });
         });
       } else {
         setCurrentUser(user);
@@ -47,4 +54,14 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+});
+
+function mapStateToProps(state) {
+  return state;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}

@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { Redirect, withRouter } from "react-router";
-import { AuthContext } from "../../Auth";
+import Swal from "sweetalert2";
+import { Button } from "../UI/Button";
 
 const MyDatePicker = ({ date, setDate }) => {
   return (
@@ -33,12 +34,11 @@ function usePrevious(value) {
 }
 
 const AddExpense = (props) => {
-  const { token } = useContext(AuthContext);
-
   const [price1, setPrice1] = useState(0);
   const [redirect, setRedirect] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [details, setDetails] = useState("");
   const prevLoading = usePrevious(props.data.addItemLoading);
 
   useEffect(() => {
@@ -47,7 +47,18 @@ const AddExpense = (props) => {
 
     if (prevLoading && !props.data.addItemLoading) {
       if (!props.data.error) {
-        setRedirect(true);
+        const item = props.data.items[props.data.items.length - 1];
+        Swal.fire({
+          icon: "success",
+          title: `- £${item.value}`,
+          text: "Item added successfully",
+          timer: 2000,
+          showConfirmButton: false,
+          allowOutsideClick: false,
+        });
+        setTimeout(() => {
+          setRedirect(true);
+        }, 2000);
       }
     }
   }, [props.data.addItemLoading]);
@@ -55,6 +66,11 @@ const AddExpense = (props) => {
   if (redirect) {
     return <Redirect to={"/today"} />;
   }
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    e.target.querySelector("input").blur();
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -75,36 +91,44 @@ const AddExpense = (props) => {
       <div>
         <div className={styles.sectionText}>Expense (£)</div>
         <div className={styles.priceWrapper}>
-          <input
-            className={`${styles.longInput} ${styles.longInputPrice}`}
-            type="number"
-            placeholder="0.00"
-            onChange={(e) => {
-              setPrice1(Number(e.target.value));
-            }}
-          />
+          <form style={{ width: "100%" }} onSubmit={handleSumbit}>
+            <input
+              className={`${styles.longInput} ${styles.longInputPrice}`}
+              type="number"
+              placeholder="0.00"
+              onChange={(e) => {
+                setPrice1(Number(e.target.value));
+              }}
+            />
+          </form>
         </div>
       </div>
 
       <div>
-        <div className={styles.sectionText}>Description</div>
-        <input className={styles.longInput} type="text" />
+        <div className={styles.sectionText}>Details</div>
+        <form style={{ width: "100%" }} onSubmit={handleSumbit}>
+          <input
+            className={styles.longInput}
+            type="text"
+            onChange={(e) => {
+              setDetails(e.target.value);
+            }}
+          />
+        </form>
       </div>
-      <button
-        className={styles.confirm}
+      <Button
+        isLoading={props.data.addItemLoading}
         onClick={async () => {
-          await props.actions.postItem(
-            {
-              dateTime: date.toISOString(),
-              value: price1.toFixed(2),
-              isExpense: true,
-            },
-            token
-          );
+          await props.actions.postItem({
+            dateTime: date.toISOString(),
+            value: price1.toFixed(2),
+            isExpense: true,
+            details,
+          });
         }}
       >
         Add £{price1.toFixed(2)}
-      </button>
+      </Button>
     </div>
   );
 };

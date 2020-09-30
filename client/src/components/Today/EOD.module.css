@@ -37,17 +37,20 @@
   border: 1px solid green;
 }
 
+.inputIncorrect {
+  border: 1px solid red;
+  background-color: #fecec6;
+}
+
 .errorMessage {
   text-align: left;
   height: 32px;
   display: flex;
   align-items: center;
-  background-color: #fecec6;
-  border: red solid 1px;
   padding-left: 8px;
   border-radius: 5px;
-  margin-top: 8px;
-  text-transform: uppercase;
+  position: absolute;
+  right: 32px;
 }
 
 .priceWrapper {
@@ -64,16 +67,18 @@
   margin: 16px 0px 8px 0px;
 }
 
-.confirm {
+.allSettled {
   width: 50%;
   height: 40px;
   font-size: 18px;
   border: none;
   position: relative;
   margin: auto;
-  background-color: #004990;
-  color: white;
+  color: #004990;
   margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tillFloatWrapper {
@@ -88,8 +93,12 @@
   height: 32px;
 }
 
-.changeTillFloat {
-  text-decoration: underline;
-  color: grey;
-  font-size: 14px;
+.addSale {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

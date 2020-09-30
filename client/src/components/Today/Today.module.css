@@ -4,18 +4,6 @@
   margin-top: 80px;
 }
 
-.confirm {
-  width: 50%;
-  height: 40px;
-  font-size: 18px;
-  border: none;
-  position: relative;
-  margin: auto;
-  background-color: #004990;
-  color: white;
-  margin-top: 16px;
-}
-
 .eod {
   width: 50%;
   height: 40px;
@@ -39,15 +27,6 @@
   -webkit-appearance: none;
   outline: none;
   padding-left: 8px;
-}
-
-.sectionText {
-  color: gray;
-  font-size: 14px;
-  width: 100%;
-  margin: auto;
-  text-align: left;
-  margin: 16px 0px 8px 0px;
 }
 
 .greeting {
@@ -78,4 +57,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
 }

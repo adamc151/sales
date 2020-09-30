@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Sales.module.css";
 import {
   FaCcAmex,
@@ -6,15 +6,14 @@ import {
   FaCreditCard,
   FaPlus,
   FaCalendarAlt,
-  FaAngleLeft,
 } from "react-icons/fa";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import Loading from "../Loading/Loading";
-import { withRouter, Redirect } from "react-router";
-import { AuthContext } from "../../Auth";
+import { withRouter } from "react-router";
 import moment from "moment";
+import Swal from "sweetalert2";
 
 const paymentMethodIcons = {
   CASH: <FaMoneyBillAlt color={"#53a957"} />,
@@ -24,7 +23,7 @@ const paymentMethodIcons = {
 
 const ListItem = ({
   isExpense,
-  productDescription,
+  details,
   paymentMethod,
   value,
   isActive,
@@ -44,7 +43,7 @@ const ListItem = ({
               className={styles.productDescriptionText}
               style={{ marginTop: "8px" }}
             >
-              {productDescription}
+              {details}
             </div>
           </div>
         ) : (
@@ -52,8 +51,8 @@ const ListItem = ({
             <span>{moment(dateTime).format("LT")}</span>
             <span className={styles.productDescriptionText}>
               {" "}
-              {productDescription ? "- " : ""}
-              {productDescription}
+              {details ? "- " : ""}
+              {details}
             </span>
           </div>
         )}
@@ -98,15 +97,16 @@ const TopRight = (props) => {
 
 const Sales = (props) => {
   const [activeItem, setActiveItem] = useState(null);
-  const { token, isOwner } = useContext(AuthContext);
 
   useEffect(() => {
     window.scroll(0, 0);
     props.setTitle("Sales");
-    props.setRightComponent(<TopRight {...props} isOwner={isOwner} />);
+    props.setRightComponent(
+      <TopRight {...props} isOwner={props.auth.isOwner} />
+    );
     props.setLeftComponent(null);
 
-    props.actions.loadItems(token);
+    props.actions.loadItems();
   }, []);
 
   if (props.data.salesLoading) {
@@ -114,11 +114,35 @@ const Sales = (props) => {
   }
 
   const deleteItem = async (id) => {
-    if (window.confirm("Are you sure you want to delete this?")) {
-      await props.actions.deleteItem(id, token);
-      props.actions.loadItems(token);
-      setActiveItem(null);
-    }
+    Swal.queue([
+      {
+        icon: "warning",
+        text: "Are you sure you want to delete this?",
+        showCancelButton: true,
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+          return props.actions
+            .deleteItem(id)
+            .then(() => {
+              setActiveItem(null);
+              props.actions.loadItems();
+              Swal.insertQueueStep({
+                icon: "success",
+                text: "Item successfully deleted",
+                timer: 2000,
+                showConfirmButton: false,
+                showClass: {
+                  popup: "",
+                },
+                allowOutsideClick: false,
+              });
+            })
+            .catch(() => {
+              Swal.showValidationMessage(`Something went wrong`);
+            });
+        },
+      },
+    ]);
   };
 
   return (

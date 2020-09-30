@@ -1,6 +1,44 @@
-let ItemModel = require("../models/item.model");
+let ItemModel = require("../models/item.model").items;
+let TillFloatModel = require("../models/item.model").tillFloat;
 let express = require("express");
 let router = express.Router();
+
+router.get("/validate", (req, res) => {
+  res.status(200);
+});
+
+router.get("/tillfloat", (req, res) => {
+  TillFloatModel.find()
+    .then((doc) => {
+      res.json(doc);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
+router.post("/tillfloat", async (req, res) => {
+  if (!req.body) {
+    return res.status(400).send("Request body is missing");
+  }
+
+  try {
+    const tillFloat = await TillFloatModel.findOne();
+
+    if (tillFloat) {
+      tillFloat.value = req.body.value;
+      await tillFloat.save();
+    } else {
+      let model = new TillFloatModel(req.body);
+      await model.save();
+    }
+
+    const doc = await TillFloatModel.find();
+    return res.status(201).send(doc);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get("/items", (req, res) => {
   console.log("yooo req", req);

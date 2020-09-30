@@ -52,10 +52,6 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.get("/mockData", (req, res) => {
-  res.send(mockData);
-});
-
 app.use(itemRoute);
 
 app.use(express.static("public"));

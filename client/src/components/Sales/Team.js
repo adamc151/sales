@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
-import { AuthContext } from "../../Auth";
 import { FaUser, FaAngleLeft } from "react-icons/fa";
 
 const teamMembers = [
@@ -27,7 +26,6 @@ const ListItem = ({ name, icon, onClick }) => (
 
 const Team = (props) => {
   const [activeItem, setActiveItem] = useState(null);
-  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     window.scroll(0, 0);

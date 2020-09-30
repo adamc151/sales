@@ -20,41 +20,61 @@ console.log(url);
 
 mongoose.connect(url);
 
-let itemSchema = new mongoose.Schema({
-  value: {
-    type: Number,
-    require: false,
-  },
-  paymentMethod: {
-    type: String,
-    require: false,
-  },
-  isExpense: {
-    type: Boolean,
-    require: false,
-  },
-  breakdown: {
-    lenses: {
+let itemSchema = new mongoose.Schema(
+  {
+    value: {
       type: Number,
       require: false,
     },
-    accessories: {
-      type: Number,
+    paymentMethod: {
+      type: String,
       require: false,
     },
-    fees: {
-      type: Number,
+    isExpense: {
+      type: Boolean,
+      require: false,
+    },
+    breakdown: {
+      lenses: {
+        type: Number,
+        require: false,
+      },
+      accessories: {
+        type: Number,
+        require: false,
+      },
+      fees: {
+        type: Number,
+        require: false,
+      },
+    },
+    details: {
+      type: String,
+      require: false,
+    },
+    dateTime: {
+      type: Date,
       require: false,
     },
   },
-  info: {
-    type: String,
-    require: false,
-  },
-  dateTime: {
-    type: Date,
-    require: false,
-  },
-});
+  { collection: "items" }
+);
 
-module.exports = mongoose.model("Item", itemSchema);
+let tillFloatSchema = new mongoose.Schema(
+  {
+    value: {
+      type: Number,
+      require: false,
+    },
+    name: {
+      type: String,
+      require: false,
+    },
+  },
+  { collection: "tillFloat" }
+);
+
+module.exports = {
+  items: mongoose.model("Item", itemSchema),
+  tillFloat: mongoose.model("TillFloat", tillFloatSchema),
+};

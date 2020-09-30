@@ -4,18 +4,6 @@
   margin-top: 80px;
 }
 
-.confirm {
-  width: 50%;
-  height: 40px;
-  font-size: 18px;
-  border: none;
-  position: relative;
-  margin: auto;
-  background-color: #004990;
-  color: white;
-  margin-top: 50px;
-}
-
 .longInput {
   width: 100%;
   border: 1px solid lightgrey;

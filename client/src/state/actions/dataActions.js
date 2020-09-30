@@ -1,5 +1,5 @@
 import moment from "moment";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const getDates = (items, unit) => {
   const temp = [];
@@ -114,10 +114,10 @@ const generate1 = (items, date, interval = "day") => {
   return { data: tempData, breakdowns: accBreakdowns };
 };
 
-export function parseData(date, interval, token) {
+export function parseData(date, interval) {
   return async (dispatch, getState) => {
     if (!getState().data.items) {
-      await dispatch(loadItems(token));
+      await dispatch(loadItems());
     }
     const items = getState().data.items;
     const myDates = getDates(items, interval);
@@ -138,14 +138,14 @@ export function parseData(date, interval, token) {
   };
 }
 
-export const loadItems = (token) => {
+export const loadItems = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_ITEMS_REQUEST", payload: null });
 
     try {
       const response = await fetch("/api/items", {
         headers: {
-          "X-Firebase-ID-Token": token,
+          "X-Firebase-ID-Token": getState().auth.token,
         },
       });
 
@@ -162,7 +162,7 @@ export const loadItems = (token) => {
   };
 };
 
-export function postItem(item, token) {
+export function postItem(item) {
   return async (dispatch, getState) => {
     dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
 
@@ -170,30 +170,38 @@ export function postItem(item, token) {
       const response = await fetch("/api/additem", {
         method: "POST",
         headers: {
-          "X-Firebase-ID-Token": token,
+          "X-Firebase-ID-Token": getState().auth.token,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(item),
       });
       console.log("yooo response", response);
       if (response.ok) {
-        await dispatch(loadItems(token));
-
-        toast.success("Item added successfully");
+        await dispatch(loadItems());
         dispatch({ type: "ADD_ITEM_SUCCESS", payload: null });
       } else {
-        toast.warn("Failed");
+        Swal.fire({
+          icon: "error",
+          text: "Something went wrong!",
+          timer: 1000,
+          showConfirmButton: false,
+        });
         dispatch({ type: "ADD_ITEM_FAILED", payload: null });
       }
       return response.ok;
     } catch (e) {
-      toast.warn("An error occurred. Please try again.");
+      Swal.fire({
+        icon: "error",
+        text: "Something went wrong!",
+        timer: 1000,
+        showConfirmButton: false,
+      });
       dispatch({ type: "ADD_ITEM_FAILED", payload: null });
     }
   };
 }
 
-export function deleteItem(itemId, token) {
+export function deleteItem(itemId) {
   return async (dispatch, getState) => {
     dispatch({ type: "DELETE_ITEM_REQUEST", payload: null });
 
@@ -201,7 +209,7 @@ export function deleteItem(itemId, token) {
       const response = await fetch(`/api/removeitem?id=${itemId}`, {
         method: "DELETE",
         headers: {
-          "X-Firebase-ID-Token": token,
+          "X-Firebase-ID-Token": getState().auth.token,
           "Content-Type": "application/json",
         },
       });
@@ -210,9 +218,62 @@ export function deleteItem(itemId, token) {
         dispatch({ type: "DELETE_ITEM_SUCCESS", payload: null });
       } else {
         dispatch({ type: "DELETE_ITEM_FAILED", payload: null });
+        throw new Error("DELETE_ITEM_FAILED");
       }
     } catch (e) {
       dispatch({ type: "DELETE_ITEM_FAILED", payload: null });
+      throw new Error("DELETE_ITEM_FAILED");
+    }
+  };
+}
+
+export const getTillFloat = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "GET_TILLFLOAT_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/tillfloat", {
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "GET_TILLFLOAT_SUCCESS", payload: json });
+        return json;
+      } else {
+        dispatch({ type: "GET_TILLFLOAT_FAILED", payload: null });
+      }
+    } catch (e) {
+      dispatch({ type: "GET_TILLFLOAT_FAILED", payload: null });
+    }
+  };
+};
+
+export function postTillFloat(value) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "ADD_TILLFLOAT_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/tillfloat", {
+        method: "POST",
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ value, name: "tillfloat" }),
+      });
+      if (response.ok) {
+        await dispatch(getTillFloat());
+        dispatch({ type: "ADD_TILLFLOAT_SUCCESS", payload: null });
+      } else {
+        dispatch({ type: "ADD_TILLFLOAT_FAILED", payload: null });
+        throw new Error("ADD_TILLFLOAT_FAILED");
+      }
+    } catch (e) {
+      dispatch({ type: "ADD_TILLFLOAT_FAILED", payload: null });
+      throw new Error("ADD_TILLFLOAT_FAILED");
     }
   };
 }

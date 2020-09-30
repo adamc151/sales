@@ -21,8 +21,8 @@ import { HiMenuAlt1 } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import app from "../../firebase";
 import { AuthContext } from "../../Auth";
-import { ToastContainer, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, Slide } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
   const { isOwner } = useContext(AuthContext);
@@ -50,10 +50,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
           {isOwner ? (
             <MenuItem icon={<GoGraph />}>
               All
-              <Link
-                to="/dashboard"
-                onClick={() => handleToggleSidebar(false)}
-              />
+              <Link to="/all" onClick={() => handleToggleSidebar(false)} />
             </MenuItem>
           ) : (
             <></>
@@ -96,7 +93,7 @@ const Main = ({ handleToggleSidebar, children }) => {
         {rightComponent}
       </div>
       {children(setTitle, setRightComponent, setLeftComponent)}
-      <ToastContainer
+      {/* <ToastContainer
         autoClose={2000}
         position={"bottom-center"}
         hideProgressBar={true}
@@ -104,7 +101,7 @@ const Main = ({ handleToggleSidebar, children }) => {
         draggable={true}
         progress={undefined}
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };

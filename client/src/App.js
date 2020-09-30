@@ -10,6 +10,7 @@ import Team from "./components/Sales/Team";
 import AddItem from "./components/Sales/AddItem";
 import AddExpense from "./components/Expenses/AddExpense";
 import EOD from "./components/Today/EOD";
+import { Redirect } from "react-router";
 
 import { AuthProvider } from "./Auth";
 import { AuthContext } from "./Auth";
@@ -40,10 +41,11 @@ const PrivateRoutes = () => {
               path="/add-expense"
               render={() => <AddExpense {...props} />}
             />
+            <Route exact path="/" render={() => <Redirect to={"/today"} />} />
             {isOwner && (
               <Route
                 exact
-                path="/dashboard"
+                path="/all"
                 render={() => <Dashboard {...props} />}
               />
             )}

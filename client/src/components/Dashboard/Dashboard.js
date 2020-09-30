@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import moment from "moment";
 import Breakdowns from "./Breakdowns";
-import { AuthContext } from "../../Auth";
 import Graph from "../Graph/Graph";
 
 const ChangeInterval = ({ parseData, date }) => (
@@ -31,11 +30,9 @@ const ChangeInterval = ({ parseData, date }) => (
 );
 
 const Dashboard = (props) => {
-  const chartRef = useRef(null);
-  const { token } = useContext(AuthContext);
   useEffect(() => {
     window.scroll(0, 0);
-    props.actions.parseData(null, "day", token);
+    props.actions.parseData(null, "day");
     props.setTitle("Metrics");
     props.setRightComponent(
       <ChangeInterval
@@ -43,7 +40,7 @@ const Dashboard = (props) => {
         date={props.data.date}
       />
     );
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     switch (props.data.intervalUnit) {

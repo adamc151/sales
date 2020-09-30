@@ -1,17 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Team.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
-import { AuthContext } from "../../Auth";
-import {
-  FaPlus,
-  FaMinus,
-  FaAngleLeft,
-  FaGlasses,
-  FaCashRegister,
-} from "react-icons/fa";
+import { FaAngleLeft, FaGlasses, FaCashRegister } from "react-icons/fa";
 
 const itemTypes = [
   {
@@ -33,7 +26,6 @@ const ListItem = ({ name, icon, onClick }) => (
 
 const ChooseItem = (props) => {
   const [activeItem, setActiveItem] = useState(null);
-  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     window.scroll(0, 0);

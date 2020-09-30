@@ -1,27 +1,72 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 import styles from "./EOD.module.css";
-import { AuthContext } from "../../Auth";
-import { FaPlus, FaCashRegister, FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft, FaCashRegister } from "react-icons/fa";
+import { Button } from "../UI/Button";
+
+const tillFloatPopup = (value, action) => {
+  Swal.queue([
+    {
+      text: "Please enter till float amount (£):",
+      input: "text",
+      inputValue: value,
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (tillFloat) => {
+        return action(Number(tillFloat))
+          .then((data) => {
+            Swal.insertQueueStep({
+              icon: "success",
+              title: `£${tillFloat}`,
+              text: "Till float updated successfully",
+              timer: 2000,
+              showConfirmButton: false,
+              showClass: {
+                popup: "",
+              },
+              allowOutsideClick: false,
+            });
+          })
+          .catch(() => {
+            Swal.showValidationMessage(`Something went wrong`);
+          });
+      },
+    },
+  ]);
+};
+
+const TopRight = (props) => {
+  return (
+    <>
+      <div
+        className={styles.addSale}
+        onClick={async () => {
+          tillFloatPopup(props.data.tillFloat, props.actions.postTillFloat);
+        }}
+      >
+        <FaCashRegister size={"25px"} />
+      </div>
+    </>
+  );
+};
 
 const EOD = (props) => {
-  const { token } = useContext(AuthContext);
-
   const [button, setButton] = useState("Submit");
-  const [tillEqual, setTillEqual] = useState(null);
-  const [cardMachineEqual, setCardMachineEqual] = useState(null);
+  const [tillDiff, setTillDiff] = useState(null);
+  const [cardMachineDiff, setCardMachineDiff] = useState(null);
+  const [allSettled, setAllSettled] = useState(false);
 
   const [price1, setPrice1] = useState(0);
   const [price2, setPrice2] = useState(0);
-
-  const [tillFloat, setTillFloat] = useState(200);
-
-  const [editTillFloat, setEditTillFloat] = useState(false);
 
   useEffect(() => {
     props.setTitle("END OF DAY");
@@ -35,121 +80,114 @@ const EOD = (props) => {
         <FaAngleLeft size={"32px"} />
       </div>
     ));
-    props.setRightComponent(null);
-    props.actions.parseData(null, "day", token);
+    props.setRightComponent(<TopRight {...props} />);
+    props.actions.parseData(null, "day");
+    props.actions.getTillFloat();
   }, []);
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    e.target.querySelector("input").blur();
+  };
+
   return (
     <div className={styles.wrapper}>
       <div>
         <div className={styles.sectionText}>Till Float (£)</div>
         <div className={styles.tillFloatOuter}>
-          {editTillFloat ? (
-            <div className={styles.priceWrapper}>
-              <input
-                className={`${styles.longInput} ${
-                  tillEqual ? styles.inputCorrect : ""
-                }`}
-                type="number"
-                placeholder="0.00"
-                onChange={(e) => {
-                  setTillFloat(Number(e.target.value));
-                }}
-                value={tillFloat}
-              />
-            </div>
-          ) : (
-            <div className={styles.tillFloatWrapper}>
-              <span>£{tillFloat}</span>
-            </div>
-          )}
-          <span
-            className={styles.changeTillFloat}
-            onClick={() => setEditTillFloat(!editTillFloat)}
-          >
-            {editTillFloat ? "Done" : "Change"}
-          </span>
+          <div className={styles.tillFloatWrapper}>
+            <span>£{props.data.tillFloat}</span>
+          </div>
         </div>
-
-        {/* <div className={styles.priceWrapper}>
-          <input
-            className={`${styles.longInput} ${
-              tillEqual ? styles.inputCorrect : ""
-            }`}
-            type="number"
-            placeholder="0.00"
-            onChange={(e) => {
-              setPrice1(Number(e.target.value));
-            }}
-          />
-        </div> */}
       </div>
       <div>
         <div className={styles.sectionText}>Till Total (£)</div>
         <div className={styles.priceWrapper}>
-          <input
-            className={`${styles.longInput} ${
-              tillEqual ? styles.inputCorrect : ""
-            }`}
-            type="number"
-            placeholder="0.00"
-            onChange={(e) => {
-              setPrice1(Number(e.target.value));
-            }}
-          />
+          <form style={{ width: "100%" }} onSubmit={handleSumbit}>
+            <input
+              className={`${styles.longInput} ${
+                tillDiff === 0 ? styles.inputCorrect : ""
+              } ${
+                tillDiff !== null && tillDiff !== 0 ? styles.inputIncorrect : ""
+              }`}
+              type="number"
+              placeholder="0.00"
+              onChange={(e) => {
+                setPrice1(Number(e.target.value));
+              }}
+            />
+          </form>
+          {tillDiff !== null && tillDiff !== 0 && (
+            <div className={styles.errorMessage}>
+              {tillDiff < 0
+                ? `under by £${Math.abs(tillDiff)}`
+                : `over by £${tillDiff}`}
+            </div>
+          )}
         </div>
-        {tillEqual === false && (
-          <div className={styles.errorMessage}>not equal</div>
-        )}
       </div>
       <div>
         <div className={styles.sectionText}>Card Machine Total (£)</div>
         <div className={styles.priceWrapper}>
-          <input
-            className={`${styles.longInput} ${
-              cardMachineEqual ? styles.inputCorrect : ""
-            }`}
-            type="number"
-            placeholder="0.00"
-            onChange={(e) => {
-              setPrice2(Number(e.target.value));
-            }}
-          />
+          <form style={{ width: "100%" }} onSubmit={handleSumbit}>
+            <input
+              className={`${styles.longInput} ${
+                cardMachineDiff === 0 ? styles.inputCorrect : ""
+              } ${
+                cardMachineDiff !== null && cardMachineDiff !== 0
+                  ? styles.inputIncorrect
+                  : ""
+              }`}
+              type="number"
+              placeholder="0.00"
+              onChange={(e) => {
+                setPrice2(Number(e.target.value));
+              }}
+            />
+          </form>
+          {cardMachineDiff !== null && cardMachineDiff !== 0 && (
+            <div className={styles.errorMessage}>
+              {cardMachineDiff < 0
+                ? `under by £${Math.abs(cardMachineDiff)}`
+                : `over by £${cardMachineDiff}`}
+            </div>
+          )}
         </div>
-        {cardMachineEqual === false && (
-          <div className={styles.errorMessage}>not equal</div>
-        )}
       </div>
-      <button
-        className={styles.confirm}
-        onClick={async () => {
-          console.log("yooo props", props);
+      {false ? (
+        <div className={styles.allSettled}>All Settled</div>
+      ) : (
+        <Button
+          onClick={async () => {
+            if (allSettled) {
+              props.history.goBack();
+            } else {
+              const { CASH, CARD, AMEX } = props.data.breakdowns;
+              const tillDiff = price1 - (CASH.total + props.data.tillFloat);
+              const cardMachineDiff = price2 - (CARD.total + AMEX.total);
 
-          const { CASH, CARD, AMEX } = props.data.breakdowns;
+              setTillDiff(tillDiff);
+              setCardMachineDiff(cardMachineDiff);
 
-          const isTillEqual = price1 === CASH.total;
-          const isCardMachineEqual = price2 === CARD.total + AMEX.total;
-
-          setCardMachineEqual(isCardMachineEqual);
-          setTillEqual(isTillEqual);
-
-          if (isTillEqual && isCardMachineEqual) {
-            toast.success("All settled up!");
-            setButton("All Settled");
-          } else {
-            toast.warn("Oops ...something went wrong");
-            setButton("Try Again");
-          }
-
-          //   if (window.confirm("Are you sure you want to submit?")) {
-
-          //     await props.actions.deleteItem(id, token);
-          //     props.actions.loadItems(token);
-          //     setActiveItem(null);
-          //   }
-        }}
-      >
-        {button}
-      </button>
+              if (tillDiff === 0 && cardMachineDiff === 0) {
+                Swal.fire({
+                  icon: "success",
+                  text: "All settled up!",
+                  timer: 2000,
+                  showConfirmButton: false,
+                });
+                setButton("Go Back");
+                setAllSettled(true);
+              } else {
+                // toast.warn("Oops ...something went wrong");
+                setButton("Try Again");
+              }
+            }
+          }}
+        >
+          {button}
+        </Button>
+      )}
     </div>
   );
 };

@@ -1,41 +1,82 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect } from "react";
 import styles from "./Today.module.css";
 import { withRouter } from "react-router";
 import Graph from "../Graph/Graph";
 import MyPieChart from "../Graph/PieChart";
 import moment from "moment";
+import Swal from "sweetalert2";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
-import { AuthContext } from "../../Auth";
-import { FaPlus, FaCashRegister } from "react-icons/fa";
+import { FaCashRegister } from "react-icons/fa";
+import { Button } from "../UI/Button";
+
+const tillFloatPopup = (value, action) => {
+  Swal.queue([
+    {
+      text: "Please enter till float amount (£):",
+      input: "text",
+      inputValue: value,
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (tillFloat) => {
+        return action(Number(tillFloat))
+          .then((data) => {
+            Swal.insertQueueStep({
+              icon: "success",
+              title: `£${tillFloat}`,
+              text: "Till float updated successfully",
+              timer: 2000,
+              showConfirmButton: false,
+              showClass: {
+                popup: "",
+              },
+              allowOutsideClick: false,
+            });
+          })
+          .catch(() => {
+            Swal.showValidationMessage(`Something went wrong`);
+          });
+      },
+    },
+  ]);
+};
 
 const TopRight = (props) => {
   return (
     <>
       <div
         className={styles.addSale}
-        onClick={() => {
-          props.history.push("/choose");
+        onClick={async () => {
+          tillFloatPopup(props.data.tillFloat, props.actions.postTillFloat);
         }}
       >
-        <FaPlus size={"28px"} />
+        <FaCashRegister size={"25px"} />
       </div>
     </>
   );
 };
 
 const Today = (props) => {
-  const { token } = useContext(AuthContext);
-  const [tillFloat, setTillFloat] = useState(null);
-
   useEffect(() => {
     props.setTitle("Today");
     props.setLeftComponent(null);
-    props.setRightComponent(null);
-    props.actions.parseData(null, "day", token);
+    props.setRightComponent(() => {
+      return props.data.tillFloat ? <TopRight {...props} /> : null;
+    });
+    props.actions.parseData(null, "day");
+    props.actions.getTillFloat();
   }, []);
+
+  useEffect(() => {
+    props.setRightComponent(() => {
+      return props.data.tillFloat ? <TopRight {...props} /> : null;
+    });
+  }, [props.data.tillFloat]);
 
   if (!props.data.data) {
     return null;
@@ -51,48 +92,61 @@ const Today = (props) => {
   }
   return (
     <div className={styles.wrapper}>
-      {tillFloat && (
+      {false && (
         <div className={styles.floatWrapper}>
           <FaCashRegister size={"25px"} />
-          <div style={{ marginLeft: "8px" }}>£{tillFloat}</div>
+          <div style={{ marginLeft: "8px" }}>£{"tillFloat"}</div>
         </div>
       )}
       {isToday ? (
         <div>
           <Graph {...props} />
-          <button
-            style={{ marginTop: "32px" }}
-            className={styles.confirm}
-            onClick={() => {
-              props.history.push("/choose");
-            }}
-          >
-            Add Item
-          </button>
-          <div
-            className={styles.eod}
-            onClick={() => {
-              props.history.push("/eod");
-            }}
-          >
-            End of Day
+          <div className={styles.buttons}>
+            <Button
+              style={{ marginTop: "32px" }}
+              onClick={() => {
+                props.history.push("/choose");
+              }}
+            >
+              Add Item
+            </Button>
+            {!props.data.tillFloat && (
+              <Button
+                onClick={async () => {
+                  tillFloatPopup(
+                    props.data.tillFloat,
+                    props.actions.postTillFloat
+                  );
+                }}
+              >
+                Add Till Float
+              </Button>
+            )}
+            <div
+              className={styles.eod}
+              onClick={() => {
+                props.history.push("/eod");
+              }}
+            >
+              End of Day
+            </div>
           </div>
         </div>
       ) : (
-        <Empty {...props} setTillFloat={setTillFloat} />
+        <Empty {...props} />
       )}
     </div>
   );
 };
 
-const Empty = (props) => {
+const getGreeting = () => {
   var hr = new Date().getHours();
   let greeting = "";
   var data = [
     [0, 4, "Good Morning"],
     [5, 11, "Good Morning"],
     [12, 17, "Good Afternoon"],
-    [18, 24, "Good Night"],
+    [18, 24, "Good Evening"],
   ];
 
   for (var i = 0; i < data.length; i++) {
@@ -101,30 +155,34 @@ const Empty = (props) => {
     }
   }
 
+  return greeting;
+};
+
+const Empty = (props) => {
   return (
     <div>
-      <div className={styles.greeting}>{greeting}</div>
+      <div className={styles.greeting}>{getGreeting()}</div>
       <div className={styles.message}>
         There are no sales recorded for today yet
       </div>
 
       <div className={styles.buttonsWrapper}>
-        <button
-          className={styles.confirm}
+        <Button
           onClick={() => {
             props.history.push("/choose");
           }}
         >
           Add Item
-        </button>
-        <button
-          className={styles.confirm}
-          onClick={() => {
-            // props.setTillFloat(240);
-          }}
-        >
-          Add Till Float
-        </button>
+        </Button>
+        {!props.data.tillFloat && (
+          <Button
+            onClick={async () => {
+              tillFloatPopup(props.data.tillFloat, props.actions.postTillFloat);
+            }}
+          >
+            Add Till Float
+          </Button>
+        )}
       </div>
     </div>
   );
