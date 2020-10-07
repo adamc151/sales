@@ -70,7 +70,7 @@ const ListItem = ({
           >
             Delete
           </span>
-          <span>Edit</span>
+          {/* <span>Edit</span> */}
         </div>
       )}
     </div>
@@ -117,7 +117,7 @@ const Sales = (props) => {
     Swal.queue([
       {
         icon: "warning",
-        text: "Are you sure you want to delete this?",
+        text: "Are you sure you want to delete this item?",
         showCancelButton: true,
         showLoaderOnConfirm: true,
         preConfirm: () => {
@@ -145,15 +145,25 @@ const Sales = (props) => {
     ]);
   };
 
+  const reversedItems = props.data.items && props.data.items.slice(0).reverse();
+
   return (
     <div className={styles.listDesktopWrapper}>
       <div className={styles.listWrapper}>
-        {props.data.items &&
-          props.data.items
-            .slice(0)
-            .reverse()
-            .map((item, i) => {
-              return (
+        {reversedItems &&
+          reversedItems.map((item, i) => {
+            const current = new Date(item.dateTime);
+            const prev = i > 0 && new Date(reversedItems[i - 1].dateTime);
+            const isSame = i > 0 && moment(prev).isSame(moment(current), "day");
+            const date = item.dateTime;
+
+            return (
+              <>
+                {!isSame && date && props.auth.isOwner && (
+                  <div className={styles.dateHeader}>
+                    {moment(date).format("dddd D MMM")}
+                  </div>
+                )}
                 <ListItem
                   {...item}
                   onDelete={deleteItem}
@@ -162,8 +172,9 @@ const Sales = (props) => {
                   }
                   isActive={i === activeItem}
                 />
-              );
-            })}
+              </>
+            );
+          })}
       </div>
     </div>
   );

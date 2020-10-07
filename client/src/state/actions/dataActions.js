@@ -27,6 +27,7 @@ const getDates = (items, unit) => {
     }
 
     previous = item.dateTime;
+    return;
   });
   return temp;
 };
@@ -213,7 +214,6 @@ export function deleteItem(itemId) {
           "Content-Type": "application/json",
         },
       });
-      console.log("yooo response", response);
       if (response.ok) {
         dispatch({ type: "DELETE_ITEM_SUCCESS", payload: null });
       } else {
@@ -255,6 +255,9 @@ export function postTillFloat(value) {
   return async (dispatch, getState) => {
     dispatch({ type: "ADD_TILLFLOAT_REQUEST", payload: null });
 
+    const now = new Date();
+    const dateTime = now.toISOString();
+
     try {
       const response = await fetch("/api/tillfloat", {
         method: "POST",
@@ -262,7 +265,7 @@ export function postTillFloat(value) {
           "X-Firebase-ID-Token": getState().auth.token,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ value, name: "tillfloat" }),
+        body: JSON.stringify({ value, dateTime }),
       });
       if (response.ok) {
         await dispatch(getTillFloat());

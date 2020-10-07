@@ -5,12 +5,13 @@
 }
 
 .wrapper {
-  width: 100vw;
+  width: calc(100% - 40px);
+  margin: 20px;
 }
 
 @media (min-width: 769px) {
   .wrapper {
-    width: calc(100vw - 270px);
+    width: calc(100vw - 310px);
   }
 }
 

@@ -9,15 +9,10 @@ import {
   SidebarHeader,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import {
-  FaPlus,
-  FaTachometerAlt,
-  FaList,
-  FaMinus,
-  FaCalendarDay,
-} from "react-icons/fa";
+import { FaList, FaCalendarDay } from "react-icons/fa";
 import { GoGraph } from "react-icons/go";
 import { HiMenuAlt1 } from "react-icons/hi";
+import { FiUpload } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import app from "../../firebase";
 import { AuthContext } from "../../Auth";
@@ -34,7 +29,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
       breakPoint="md"
       onToggle={handleToggleSidebar}
     >
-      <SidebarHeader style={{ padding: "24px" }}>
+      <SidebarHeader style={{ padding: "21px 24px" }}>
         {isOwner ? "Owner" : "Shop"}
       </SidebarHeader>
       <SidebarContent>
@@ -51,6 +46,14 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             <MenuItem icon={<GoGraph />}>
               All
               <Link to="/all" onClick={() => handleToggleSidebar(false)} />
+            </MenuItem>
+          ) : (
+            <></>
+          )}
+          {false ? (
+            <MenuItem icon={<FiUpload />}>
+              Upload
+              <Link to="/upload" onClick={() => handleToggleSidebar(false)} />
             </MenuItem>
           ) : (
             <></>

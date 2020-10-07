@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router";
 import app from "../../firebase.js";
 import { AuthContext } from "../../Auth";
+import { Button } from "../UI/Button";
 
 const Login = ({ history }) => {
   const [username, setUsername] = useState("");

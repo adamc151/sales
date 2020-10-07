@@ -9,7 +9,7 @@ import { FaAngleLeft, FaGlasses, FaCashRegister } from "react-icons/fa";
 const itemTypes = [
   {
     name: "Sale",
-    link: "/add",
+    link: "/add-sale",
     icon: <FaGlasses />,
   },
   { name: "Petty Cash", link: "/add-expense", icon: <FaCashRegister /> },

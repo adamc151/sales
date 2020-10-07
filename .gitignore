@@ -2,4 +2,6 @@
 serviceAccountKey.json
 https-docker-compose.yaml
 docker-compose.yaml
+/mongoimport/Dockerfileexport
+/mongoimport/Dockerfileimport
 .env

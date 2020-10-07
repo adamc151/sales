@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Team.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

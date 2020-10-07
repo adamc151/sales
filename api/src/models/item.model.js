@@ -14,11 +14,13 @@ if (MONGO_PROD == "Atlas") {
 } else if (MONGO_PROD == "true") {
   url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 } else {
-  url = `mongodb://mongo:${MONGO_PORT}/${MONGO_DB}`;
+  url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongo:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 }
 console.log(url);
 
-mongoose.connect(url);
+setInterval(() => {
+  mongoose.connect(url);
+}, 10000);
 
 let itemSchema = new mongoose.Schema(
   {
@@ -66,8 +68,8 @@ let tillFloatSchema = new mongoose.Schema(
       type: Number,
       require: false,
     },
-    name: {
-      type: String,
+    dateTime: {
+      type: Date,
       require: false,
     },
   },

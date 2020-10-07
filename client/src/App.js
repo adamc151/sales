@@ -8,8 +8,9 @@ import Login from "./components/Login/Login";
 import Sales from "./components/Sales/Sales";
 import Team from "./components/Sales/Team";
 import AddItem from "./components/Sales/AddItem";
-import AddExpense from "./components/Expenses/AddExpense";
+import AddExpense from "./components/Sales/AddExpense";
 import EOD from "./components/Today/EOD";
+import Upload from "./components/Upload/Upload";
 import { Redirect } from "react-router";
 
 import { AuthProvider } from "./Auth";
@@ -35,7 +36,11 @@ const PrivateRoutes = () => {
             <Route exact path="/eod" render={() => <EOD {...props} />} />
             <Route exact path="/sales" render={() => <Sales {...props} />} />
             <Route exact path="/team" render={() => <Team {...props} />} />
-            <Route exact path="/add" render={() => <AddItem {...props} />} />
+            <Route
+              exact
+              path="/add-sale"
+              render={() => <AddItem {...props} />}
+            />
             <Route
               exact
               path="/add-expense"
@@ -47,6 +52,13 @@ const PrivateRoutes = () => {
                 exact
                 path="/all"
                 render={() => <Dashboard {...props} />}
+              />
+            )}
+            {isOwner && (
+              <Route
+                exact
+                path="/upload"
+                render={() => <Upload {...props} />}
               />
             )}
           </>

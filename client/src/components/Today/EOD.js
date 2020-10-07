@@ -158,6 +158,7 @@ const EOD = (props) => {
         <div className={styles.allSettled}>All Settled</div>
       ) : (
         <Button
+          style={{ marginTop: "32px" }}
           onClick={async () => {
             if (allSettled) {
               props.history.goBack();

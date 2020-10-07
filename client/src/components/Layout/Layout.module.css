@@ -30,6 +30,12 @@
   z-index: 100;
 }
 
+@media (min-width: 769px) {
+  .sidebarToggle {
+    display: none;
+  }
+}
+
 .title {
   display: flex;
   align-items: center;

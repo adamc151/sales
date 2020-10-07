@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { HiRefresh } from "react-icons/hi";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { AuthContext } from "./Auth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {

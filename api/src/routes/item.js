@@ -8,7 +8,9 @@ router.get("/validate", (req, res) => {
 });
 
 router.get("/tillfloat", (req, res) => {
-  TillFloatModel.find()
+  var d = new Date();
+  d.setHours(0, 0, 0, 0);
+  TillFloatModel.find({ dateTime: { $gt: d } })
     .then((doc) => {
       res.json(doc);
     })
@@ -27,6 +29,7 @@ router.post("/tillfloat", async (req, res) => {
 
     if (tillFloat) {
       tillFloat.value = req.body.value;
+      tillFloat.dateTime = req.body.dateTime;
       await tillFloat.save();
     } else {
       let model = new TillFloatModel(req.body);
@@ -41,12 +44,9 @@ router.post("/tillfloat", async (req, res) => {
 });
 
 router.get("/items", (req, res) => {
-  console.log("yooo req", req);
-
   if (!req.isOwner) {
     var d = new Date();
     d.setHours(0, 0, 0, 0);
-    console.log("yoo d", d);
     ItemModel.find({ dateTime: { $gt: d } })
       .then((doc) => {
         res.json(doc);

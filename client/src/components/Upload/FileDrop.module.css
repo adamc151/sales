@@ -1,0 +1,81 @@
+.dropzone {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.dropzoneBox {
+  /* width: 60%; */
+  height: 50vh;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: rgb(159, 159, 159);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.minimizeDropzoneBox {
+  height: 60px;
+}
+
+.dropzoneButton {
+  background-color: #16a0846c;
+}
+
+.dropzoneActive {
+  background-color: #16a0846c;
+}
+
+.inner {
+  font-size: 20px;
+}
+
+.dropzoneBox:hover {
+}
+
+.down_arrow {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 90px;
+  width: 90px;
+  opacity: 0.5;
+}
+
+.emptyLogoContainer {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  background-color: rgba(255, 0, 0, 0.9);
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 3px 3px 3px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.emptyLogo {
+  /* height: 120px;
+    width: 120px;
+    background-color: rgba(255, 0, 0, 0.788);
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding: 3px 3px 3px 3px;
+    border: 1px solid rgba(81, 203, 238, 1); */
+}
+
+.bankName {
+  margin-top: 80px;
+  width: 100%;
+  color: white;
+}
+
+.santander_logo {
+  height: 120px;
+  width: 120px;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 3px 3px 3px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.fileSelectWrapper {
+  max-width: 400px;
+  width: 90%;
+}

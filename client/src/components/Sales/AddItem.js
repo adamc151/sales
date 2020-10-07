@@ -174,13 +174,15 @@ const AddItem = (props) => {
       </div>
       <div>
         <div className={styles.sectionText}>Details</div>
-        <input
-          className={styles.longInput}
-          type="text"
-          onChange={(e) => {
-            setDetails(e.target.value);
-          }}
-        />
+        <form style={{ width: "100%" }} onSubmit={handleSumbit}>
+          <input
+            className={styles.longInput}
+            type="text"
+            onChange={(e) => {
+              setDetails(e.target.value);
+            }}
+          />
+        </form>
       </div>
       <div className={styles.sectionText}>Payment Method</div>
 

@@ -1,24 +1,16 @@
 let express = require("express");
-let jwt = require("jsonwebtoken");
 let app = express();
 let itemRoute = require("./routes/item");
 let path = require("path");
 let bodyParser = require("body-parser");
 const cors = require("cors");
-const keys = require("./keys");
-const mockData = require("./mockData.json");
 const admin = require("firebase-admin");
 
 admin.initializeApp();
 
-let jwtSecret = keys.jwtSecret;
-
 const checkAuth = async (idToken) => {
   const decoded = await admin.auth().verifyIdToken(idToken);
   return decoded.owner;
-  // if (decoded.owner !== true) {
-  //   throw new Error("User does not have the right privileges");
-  // }
 };
 
 app.use(cors());
@@ -43,8 +35,7 @@ app.use(async (req, res, next) => {
       res.status(500).json({ error: "ID token not specified" });
     }
     try {
-      const isOwner = await checkAuth(idToken);
-      req.isOwner = isOwner;
+      req.isOwner = await checkAuth(idToken);
       next();
     } catch (err) {
       res.status(500).json({ error: "Not Authorized" });
