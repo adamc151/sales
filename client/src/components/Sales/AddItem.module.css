@@ -1,111 +1,121 @@
 .wrapper {
-  width: calc(100% - 40px);
-  margin: 20px;
-  margin-top: 80px;
-}
-
-.longInput {
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 4px;
-  height: 32px;
-  background-color: white;
-  box-sizing: border-box;
-  font-size: 18px;
-  -webkit-appearance: none;
-  outline: none;
-  padding-left: 8px;
-}
-
-.sectionText {
-  color: gray;
-  font-size: 14px;
-  width: 100%;
-  margin: auto;
-  text-align: left;
-  margin: 16px 0px 8px 0px;
-}
-
-.date {
-  margin-right: 8px;
-  font-size: 16px;
-}
-
-.changeDate {
-  text-decoration: underline;
-  color: grey;
-  font-size: 14px;
-}
-
-.dateWrapper {
-  margin-top: 16px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.datePicker {
-  margin-top: 24px;
-}
-
-.priceWrapper {
-  display: flex;
-  align-items: center;
-}
-
-.total {
-  font-size: 32px;
-  text-align: left;
-}
-
-.multiselectWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.optionWrapper {
-  width: 100%;
-  height: 60px;
-  border: 1px lightgray solid;
-  margin: 8px;
-  margin-left: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-}
-
-.isSelected {
-  border: 1px black solid;
-}
-
-.teamMember {
-  font-size: 26px;
-}
-
-.addSale {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.backNavigation {
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  color: white;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 100;
-}
+    width: calc(100% - 40px);
+    margin: 20px;
+    margin-top: 70px;
+  }
+  
+  .longInput {
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    height: 32px;
+    background-color: white;
+    box-sizing: border-box;
+    font-size: 18px;
+    -webkit-appearance: none;
+    outline: none;
+    padding-left: 8px;
+  }
+  
+  .sectionText {
+    color: gray;
+    font-size: 14px;
+    width: 100%;
+    margin: auto;
+    text-align: left;
+    margin: 16px 0px 8px 0px;
+  }
+  
+  .date {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  
+  .changeDate {
+    text-decoration: underline;
+    color: grey;
+    font-size: 14px;
+  }
+  
+  .dateWrapper {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .datePicker {
+    margin-top: 24px;
+  }
+  
+  .priceWrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .total {
+    font-size: 32px;
+    text-align: left;
+  }
+  
+  .multiselectWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .optionWrapper {
+    width: 25%;
+    height: 60px;
+    border: 1px lightgray solid;
+    margin: 8px;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .isSelected {
+    border: 1px black solid;
+  }
+  
+  .teamMember {
+    font-size: 26px;
+  }
+  
+  .backNavigation {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    z-index: 100;
+  }
+  
+  .topRight {
+    position: absolute;
+    line-height: 50px;
+    height: 50px;
+    right: 16px;
+    top: 0px;
+    color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .topRightUser {
+    margin-left: 8px;
+  }
+  

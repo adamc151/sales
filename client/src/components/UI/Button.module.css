@@ -10,6 +10,7 @@
   margin-top: 16px;
   outline: unset;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .spinner {

@@ -2,15 +2,14 @@ let ItemModel = require("../models/item.model").items;
 let TillFloatModel = require("../models/item.model").tillFloat;
 let express = require("express");
 let router = express.Router();
+const keys = require("../keys");
 
 router.get("/validate", (req, res) => {
   res.status(200);
 });
 
 router.get("/tillfloat", (req, res) => {
-  var d = new Date();
-  d.setHours(0, 0, 0, 0);
-  TillFloatModel.find({ dateTime: { $gt: d } })
+  TillFloatModel.find()
     .then((doc) => {
       res.json(doc);
     })
@@ -85,6 +84,24 @@ router.post("/additem", (req, res) => {
     });
 });
 
+router.post("/additems", (req, res) => {
+  if (!req.body) {
+    return res.status(400).send("Request body is missing");
+  }
+
+  ItemModel
+    .insertMany(req.body)
+    .then((doc) => {
+      if (!doc || doc.length === 0) {
+        return res.status(500).send(doc);
+      }
+      res.status(201).send(doc);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
 router.delete("/removeitem", (req, res) => {
   if (!req.query.id) {
     return res.status(400).send("missing URL param: id");
@@ -98,6 +115,23 @@ router.delete("/removeitem", (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     });
+});
+
+
+router.get("/team", (req, res) => {
+  try {
+    const team = keys.team;
+    const myTeam = [];
+    team.split(',').map((member) => {
+      const [name, id] = member.split(':');
+      myTeam.push({
+        name, id
+      });
+    });
+    res.json(myTeam);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

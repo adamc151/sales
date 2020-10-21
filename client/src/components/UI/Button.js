@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 export const Button = (props) => {
   return (
     <button
-      className={styles.confirm}
+      className={`${styles.confirm} ${props.className}`}
       onClick={props.onClick}
       style={props.style}
     >
@@ -17,8 +17,8 @@ export const Button = (props) => {
           </div>
         </div>
       ) : (
-        props.children
-      )}
+          props.children
+        )}
     </button>
   );
 };

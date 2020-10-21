@@ -14,22 +14,21 @@ const generateAll = () => {
       const paymentMethod = paymentMethods[Math.floor(Math.random() * 3)];
 
       data.push({
-        change: temp,
+        value: temp,
+        type: 'SALE',
         dateTime: dateTime.toISOString(),
         paymentMethod,
-        productID: Math.floor(Math.random() * 10000) + 100000,
-        productDescription:
+        details:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       });
     } else {
       const temp2 = Math.floor(Math.random() * 15);
       data.push({
-        change: temp2,
-        isExpense: true,
+        value: temp2,
+        type: 'EXPENSE',
         dateTime: dateTime.toISOString(),
-        paymentMethod: null,
-        productID: null,
-        productDescription:
+        paymentMethod: 'CASH',
+        details:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       });
     }

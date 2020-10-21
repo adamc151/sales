@@ -1,25 +1,22 @@
 {
-  "short_name": "Sales App",
-  "name": "Sales App",
+  "short_name": "Sales",
+  "name": "Sales",
   "icons": [
     {
-      "src": "cashregister.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "images/manifest-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
     },
     {
-      "src": "cashregister.png",
+      "src": "images/manifest-icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "cashregister.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "maskable any"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }

@@ -17,6 +17,23 @@ export const AuthProvider = connect(
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
+    app.auth().onIdTokenChanged((user) => {
+      if (user) {
+        user.getIdToken().then((token) => {
+          setToken(token);
+          const payload = JSON.parse(atob(token.split(".")[1]));
+          setOwner(payload["owner"]);
+          //set current User AFTER token and isOwner
+          setCurrentUser(user);
+          setPending(false);
+          actions.updateAuth({ isOwner: payload["owner"], token });
+        });
+      } else {
+        setCurrentUser(user);
+        setPending(false);
+      }
+    });
+
     app.auth().onAuthStateChanged((user) => {
       // user.updateProfile({
       //   displayName: "Adam",
@@ -49,6 +66,7 @@ export const AuthProvider = connect(
         currentUser,
         token,
         isOwner,
+        pending
       }}
     >
       {children}

@@ -6,20 +6,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "DATA_REQUEST":
-      return { ...state, loading: true, data: action.payload };
-    case "DATA_SUCCESS":
-      return { ...state, loading: false, data: action.payload };
-    case "DATA_FAIL":
-      return { ...state, loading: false, error: true };
-    case "CHANGE_DATE":
-      return { ...state, date: action.payload };
-    case "CHANGE_INTERVAL":
-      return {
-        ...state,
-        intervals: action.payload.intervals,
-        intervalUnit: action.payload.intervalUnit,
-      };
     case "CHANGE_DATA":
       return {
         ...state,
@@ -30,10 +16,6 @@ const reducer = (state = initialState, action) => {
         breakdowns: action.payload.breakdowns,
         loading: false,
       };
-    case "SALES_DATA_REQUEST":
-      return { ...state, salesLoading: true, salesData: action.payload };
-    case "SALES_DATA_SUCCESS":
-      return { ...state, salesLoading: false, salesData: action.payload };
 
     case "GET_ITEMS_REQUEST":
       return { ...state, getItemsLoading: true, error: false };
@@ -57,7 +39,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         getTillFloatLoading: false,
-        tillFloat: action.payload[0].value,
+        tillFloat: action.payload,
       };
     case "ADD_TILLFLOAT_REQUEST":
       return { ...state, addTillFloatLoading: true, error: false };
@@ -65,6 +47,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, addTillFloatLoading: false, error: true };
     case "ADD_TILLFLOAT_SUCCESS":
       return { ...state, addTillFloatLoading: false };
+
+
+    case "GET_TEAM_REQUEST":
+      return { ...state, getTeamLoading: true, error: false };
+    case "GET_TEAM_FAILED":
+      return { ...state, getTeamLoading: false, error: true };
+    case "GET_TEAM_SUCCESS":
+      return { ...state, getTeamLoading: false, team: action.payload };
     default:
       return state;
   }

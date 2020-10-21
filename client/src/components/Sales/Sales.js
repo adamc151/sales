@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./Sales.module.css";
 import {
   FaCcAmex,
@@ -7,6 +7,7 @@ import {
   FaPlus,
   FaCalendarAlt,
 } from "react-icons/fa";
+import { FiDownload } from "react-icons/fi";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
@@ -14,6 +15,8 @@ import Loading from "../Loading/Loading";
 import { withRouter } from "react-router";
 import moment from "moment";
 import Swal from "sweetalert2";
+import { saveAs } from 'file-saver';
+
 
 const paymentMethodIcons = {
   CASH: <FaMoneyBillAlt color={"#53a957"} />,
@@ -22,7 +25,7 @@ const paymentMethodIcons = {
 };
 
 const ListItem = ({
-  isExpense,
+  type,
   details,
   paymentMethod,
   value,
@@ -32,61 +35,64 @@ const ListItem = ({
   _id,
   onDelete,
 }) => (
-  <div className={styles.listItemWrapper} onClick={() => setActive()}>
-    <div>{paymentMethodIcons[paymentMethod]}</div>
-    <div className={styles.detailsWrapper}>
-      <div className={styles.productInfo}>
-        {isActive ? (
-          <div className={styles.productDescriptionActive}>
-            <div>{moment(dateTime).format("LT")}</div>
-            <div
-              className={styles.productDescriptionText}
-              style={{ marginTop: "8px" }}
-            >
-              {details}
+    <div className={styles.listItemWrapper} onClick={() => setActive()}>
+      <div>{paymentMethodIcons[paymentMethod]}</div>
+      <div className={styles.detailsWrapper}>
+        <div className={styles.productInfo}>
+          {isActive ? (
+            <div className={styles.productDescriptionActive}>
+              <div>{moment(dateTime).format("LT")}</div>
+              <div
+                className={styles.productDescriptionText}
+                style={{ marginTop: "8px" }}
+              >
+                {details}
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className={styles.productDescription}>
-            <span>{moment(dateTime).format("LT")}</span>
-            <span className={styles.productDescriptionText}>
-              {" "}
-              {details ? "- " : ""}
-              {details}
-            </span>
+          ) : (
+              <div className={styles.productDescription}>
+                <span>{moment(dateTime).format("LT")}</span>
+                <span className={styles.productDescriptionText}>
+                  {" "}
+                  {details ? "- " : ""}
+                  {details}
+                </span>
+              </div>
+            )}
+        </div>
+        <div className={styles.productPrice}>
+          {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
+        </div>
+        {isActive && (
+          <div className={styles.actions}>
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(_id);
+              }}
+            >
+              Delete
+          </span>
+            {/* <span>Edit</span> */}
           </div>
         )}
       </div>
-      <div className={styles.productPrice}>
-        {isExpense ? "- " : ""}£{value}
-      </div>
-      {isActive && (
-        <div className={styles.actions}>
-          <span
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete(_id);
-            }}
-          >
-            Delete
-          </span>
-          {/* <span>Edit</span> */}
-        </div>
-      )}
     </div>
-  </div>
-);
+  );
 
 const TopRight = (props) => {
   return (
     <>
-      <div className={styles.calenderIcon}>
-        {false && <FaCalendarAlt size={"28px"} />}
-      </div>
+      {props.isOwner ? <div className={styles.calenderIcon} onClick={() => {
+        const blob = new Blob([JSON.stringify(props.data.items)], { type: 'application/json' });
+        saveAs(blob, `${new Date()}.json`);
+      }}>
+        <FiDownload size={"28px"} />
+      </div> : null}
       <div
         className={styles.addSale}
         onClick={() => {
-          props.history.push("/choose");
+          props.history.push("/home");
         }}
       >
         <FaPlus size={"28px"} />
@@ -95,8 +101,17 @@ const TopRight = (props) => {
   );
 };
 
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+
 const Sales = (props) => {
   const [activeItem, setActiveItem] = useState(null);
+  const prevLoading = usePrevious(props.data.getItemsLoading);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -109,7 +124,13 @@ const Sales = (props) => {
     props.actions.loadItems();
   }, []);
 
-  if (props.data.salesLoading) {
+  if (prevLoading && !props.data.getItemsLoading) {
+    props.setRightComponent(
+      <TopRight {...props} isOwner={props.auth.isOwner} />
+    );
+  }
+
+  if (props.data.getItemsLoading) {
     return <Loading />;
   }
 

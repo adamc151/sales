@@ -32,9 +32,9 @@ let itemSchema = new mongoose.Schema(
       type: String,
       require: false,
     },
-    isExpense: {
-      type: Boolean,
-      require: false,
+    type: {
+      type: String,
+      require: false
     },
     breakdown: {
       lenses: {
@@ -58,6 +58,10 @@ let itemSchema = new mongoose.Schema(
       type: Date,
       require: false,
     },
+    user: {
+      type: String,
+      require: false,
+    }
   },
   { collection: "items" }
 );

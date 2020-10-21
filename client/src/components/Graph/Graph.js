@@ -12,41 +12,31 @@ import {
 import styles from "./Graph.module.css";
 import moment from "moment";
 
-const CustomTooltip = ({ active, payload, label, data }) => {
+const CustomTooltip = ({ active, payload, label, data, intervalUnit }) => {
   const myLabel = active ? label : data.length - 1;
   const myPayload = [
     {
       color: "#f2f0ff",
       dataKey: "value",
       fill: "#f2f0ff",
-      formatter: undefined,
       name: "value",
-      payload: {
-        value: 135,
-        dateTime: "2020-09-04T18:16:08.000Z",
-        paymentMethod: "CASH",
-        productID: 107923,
-        productDescription:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing…mpor incididunt ut labore et dolore magna aliqua.",
-      },
       stroke: "#f2f0ff",
-      type: undefined,
-      unit: undefined,
-      value: data[data.length - 1].value,
+      value: data.length && data[data.length - 1].value,
     },
   ];
+
+  const format = intervalUnit === 'day' ? 'LLL' : 'LL';
 
   return (
     <div>
       <div
         style={{ fontSize: "42px", textAlign: "left" }}
       >{`£${data[myLabel].accumulative}`}</div>
-      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }}>{`${
-        data[myLabel].isExpense ? "-" : "+"
-      } £${active ? payload[0].value : myPayload[0].value}`}</div>
+      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }}>{`${data[myLabel].type === 'EXPENSE' || data[myLabel].type === 'REFUND' ? "-" : "+"
+        } £${active ? payload[0].value : myPayload[0].value}`}</div>
       <div
         style={{ fontSize: "14px", color: "grey", textAlign: "left" }}
-      >{`${moment(data[myLabel].dateTime).format("LLL")}`}</div>
+      >{`${moment(data[myLabel].dateTime).format(format)}`}</div>
     </div>
   );
 };
@@ -54,18 +44,20 @@ const CustomTooltip = ({ active, payload, label, data }) => {
 const Graph = (props) => {
   if (!props.data) return null;
 
+  console.log('yooo props.data', props.data);
+
   return (
     <div className={styles.graphsWrapper}>
       <div
         style={{
-          height: "50vh",
+          height: "100%",
           position: "relative",
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        {props.data.data ? (
+        {props.data.data && props.data.data.length ? (
           <div className={styles.graphWrapper}>
             <ResponsiveContainer
               width="100%"
@@ -97,17 +89,17 @@ const Graph = (props) => {
                   {props.data.data.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={!entry.isExpense ? "#f0f6ff" : "#f2f2f2"}
+                      fill={entry.type === 'EXPENSE' || entry.type === 'REFUND' ? "#f2f2f2" : "#f0f6ff"}
                     />
                   ))}
                 </Bar>
                 <YAxis dataKey="value" domain={[0, "dataMax"]} hide />
                 <Tooltip
-                  wrapperStyle={{ visibility: "visible" }}
+                  wrapperStyle={{ visibility: "visible", position: 'fixed' }}
                   content={
-                    <CustomTooltip data={props.data.data} active={true} />
+                    <CustomTooltip data={props.data.data} active={true} allowEscapeViewBox={{ x: true, y: true }} intervalUnit={props.data.intervalUnit} />
                   }
-                  position={{ x: 20, y: 20 }}
+                  position={{ x: 20, y: 80 }}
                 />
               </ComposedChart>
             </ResponsiveContainer>

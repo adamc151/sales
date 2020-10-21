@@ -1,5 +1,25 @@
 .wrapper {
-  width: calc(100% - 40px);
-  margin: 20px;
-  margin-top: 80px;
+  margin-top: 70px;
+}
+
+.listItemWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-right: 24px;
+  box-shadow: 0 2px 10px rgba(15, 15, 28, 0.203);
+  margin: 12px;
+  position: relative;
+  align-items: center;
+  font-size: 18px;
+}
+
+
+.button {
+  width: calc(100% - 24px);
+  margin: 12px;
+}
+
+.uploadComplete {
+  background-color: lightgray;
 }

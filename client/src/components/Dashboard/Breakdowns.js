@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import moment from "moment";
 
+
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -102,6 +103,7 @@ export default class Breakdowns extends Component {
               intervals.map((slide, i) => {
                 return (
                   <div className={styles.card}>
+                    <div className={styles.leftArrow}></div>
                     <div className={styles.cardInner}>
                       <div className={styles.breakdownWrapper}>
                         <span style={{ marginRight: "16px" }}>
@@ -137,6 +139,7 @@ export default class Breakdowns extends Component {
                         </span>
                       </div>
                     </div>
+                    <div className={styles.rightArrow}></div>
                   </div>
                 );
               })}

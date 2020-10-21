@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useContext } from "react";
 import styles from "./Login.module.css";
-import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router";
 import app from "../../firebase.js";
 import { AuthContext } from "../../Auth";
-import { Button } from "../UI/Button";
+import Image from "../Image/Image";
 
 const Login = ({ history }) => {
   const [username, setUsername] = useState("");
@@ -15,7 +14,7 @@ const Login = ({ history }) => {
       event.preventDefault();
       try {
         await app.auth().signInWithEmailAndPassword(username, password);
-        history.push("/today");
+        // history.push("/home");
       } catch (error) {
         alert(error);
       }
@@ -26,13 +25,15 @@ const Login = ({ history }) => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to="/today" />;
+    return <Redirect to="/home" />;
   }
 
   return (
     <div className={styles.background}>
+      <Image className={styles.mobileImage} src={"/images/splash3_1.png"} />
+      <Image className={styles.desktopImage} src={"/images/desktopsplash2.jpg"} />
       <div className={styles.wrapper}>
-        <form onSubmit={(e) => handleLogin(e, username, password)}>
+        <form onSubmit={(e) => handleLogin(e, username, password)} style={{ 'width': '100%' }}>
           <input
             className={styles.input}
             type="text"
@@ -55,21 +56,5 @@ const Login = ({ history }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     loading: state.auth.loading,
-//     error: state.auth.error,
-//     isAuthenticated: state.auth.token !== null,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   //   return {
-//   //     onAuth: (email, password) => dispatch(actions.auth(email, password)),
-//   //     onPasswordReset: (email) => dispatch(actions.resetPassword(email)),
-//   //   };
-//   return {};
-// };
 
 export default withRouter(Login);

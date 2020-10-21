@@ -4,6 +4,7 @@
 }
 
 .dropzoneBox {
+  margin: 12px;
   /* width: 60%; */
   height: 50vh;
   border-style: dashed;

@@ -11,6 +11,7 @@ import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { FaCashRegister } from "react-icons/fa";
 import { Button } from "../UI/Button";
+import Loading from "../Loading/Loading";
 
 const tillFloatPopup = (value, action) => {
   Swal.queue([
@@ -24,23 +25,28 @@ const tillFloatPopup = (value, action) => {
       showCancelButton: true,
       showLoaderOnConfirm: true,
       preConfirm: (tillFloat) => {
-        return action(Number(tillFloat))
-          .then((data) => {
-            Swal.insertQueueStep({
-              icon: "success",
-              title: `£${tillFloat}`,
-              text: "Till float updated successfully",
-              timer: 2000,
-              showConfirmButton: false,
-              showClass: {
-                popup: "",
-              },
-              allowOutsideClick: false,
+        if (Number(tillFloat) === value) {
+          Swal.close();
+        } else {
+          return action(Number(tillFloat))
+            .then((data) => {
+              Swal.insertQueueStep({
+                icon: "success",
+                title: `£${tillFloat}`,
+                text: "Till float updated successfully",
+                timer: 2000,
+                showConfirmButton: false,
+                showClass: {
+                  popup: "",
+                },
+                allowOutsideClick: false,
+              });
+            })
+            .catch(() => {
+              Swal.showValidationMessage(`Something went wrong`);
             });
-          })
-          .catch(() => {
-            Swal.showValidationMessage(`Something went wrong`);
-          });
+        }
+
       },
     },
   ]);
@@ -78,6 +84,10 @@ const Today = (props) => {
     });
   }, [props.data.tillFloat]);
 
+  if (!props.data.data && props.data.getItemsLoading) {
+    return <Loading />;
+  }
+
   if (!props.data.data) {
     return null;
   }
@@ -92,12 +102,6 @@ const Today = (props) => {
   }
   return (
     <div className={styles.wrapper}>
-      {false && (
-        <div className={styles.floatWrapper}>
-          <FaCashRegister size={"25px"} />
-          <div style={{ marginLeft: "8px" }}>£{"tillFloat"}</div>
-        </div>
-      )}
       {isToday ? (
         <div>
           <Graph {...props} />
@@ -105,7 +109,7 @@ const Today = (props) => {
             <Button
               style={{ marginTop: "32px" }}
               onClick={() => {
-                props.history.push("/choose");
+                props.history.push("/add");
               }}
             >
               Add Item
@@ -133,8 +137,8 @@ const Today = (props) => {
           </div>
         </div>
       ) : (
-        <Empty {...props} />
-      )}
+          <Empty {...props} />
+        )}
     </div>
   );
 };
@@ -165,11 +169,10 @@ const Empty = (props) => {
       <div className={styles.message}>
         There are no sales recorded for today yet
       </div>
-
       <div className={styles.buttonsWrapper}>
         <Button
           onClick={() => {
-            props.history.push("/choose");
+            props.history.push("/add");
           }}
         >
           Add Item

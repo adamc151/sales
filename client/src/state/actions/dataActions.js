@@ -1,29 +1,71 @@
 import moment from "moment";
 import Swal from "sweetalert2";
+import app from '../../firebase';
+
+const error = (error, dispatch, cbFunction, cbArgs, newToken, onError = () => { }) => {
+
+  if (error === 'Not Authorized') {
+    if (dispatch && !newToken) {
+      app.auth().currentUser.getIdToken(true).then(function (idToken) {
+        dispatch(cbFunction(cbArgs, idToken));
+      });
+    } else {
+      onError()
+      Swal.fire({
+        icon: "error",
+        text: "Your session may have expired! Refresh the page and try again",
+        showConfirmButton: true,
+        confirmButtonText: "Refresh",
+        showCancelButton: true,
+        cancelButtonText: "Close"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        } else if (result.isDenied) {
+          Swal.close();
+        }
+      });
+    }
+  } else {
+    onError();
+    Swal.fire({
+      icon: "error",
+      text: error || "Something went wrong!",
+      timer: 1000,
+      showConfirmButton: false,
+    });
+  }
+};
 
 const getDates = (items, unit) => {
   const temp = [];
   let previous = "";
   items.map((item, i) => {
-    const isSame = moment(new Date(item.dateTime)).isSame(
-      moment(new Date(previous)),
-      unit
-    );
 
     if (i === 0) {
       const momentDate1 = moment(item.dateTime);
       temp.push(
         momentDate1.startOf(unit === "week" ? "isoWeek" : unit).toISOString()
       );
-    } else if (!isSame) {
-      const momentDate2 = moment(item.dateTime);
-      if (unit === "day") {
-        temp.push(momentDate2.toISOString());
-      } else {
-        temp.push(
-          momentDate2.startOf(unit === "week" ? "isoWeek" : unit).toISOString()
-        );
+    } else {
+
+      const isSame = moment(new Date(item.dateTime)).isSame(
+        moment(new Date(previous)),
+        unit === 'week' ? 'isoWeek' : unit
+      );
+
+      if (!isSame) {
+
+        const momentDate2 = moment(item.dateTime);
+        if (unit === "day") {
+          temp.push(momentDate2.toISOString());
+        } else {
+          temp.push(
+            momentDate2.startOf(unit === "week" ? "isoWeek" : unit).toISOString()
+          );
+        }
       }
+
     }
 
     previous = item.dateTime;
@@ -52,8 +94,10 @@ const generate1 = (items, date, interval = "day") => {
       interval === "week" ? "isoWeek" : interval
     );
 
-    if (isDate && items[i].paymentMethod !== "OTHER") {
-      if (items[i].isExpense) {
+    const validPaymentMethod = items[i].paymentMethod === "CARD" || items[i].paymentMethod === "CASH" || items[i].paymentMethod === "AMEX" || !items[i].paymentMethod;
+
+    if (isDate && validPaymentMethod) {
+      if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
         accBreakdowns[items[i].paymentMethod || "CASH"].total =
           accBreakdowns[items[i].paymentMethod || "CASH"].total -
           items[i].value;
@@ -64,8 +108,8 @@ const generate1 = (items, date, interval = "day") => {
       }
     }
 
-    if (interval === "day" && isDate) {
-      if (items[i].isExpense) {
+    if (interval === "day" && isDate && validPaymentMethod) {
+      if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
         acc = acc - items[i].value;
       } else {
         acc = acc + items[i].value;
@@ -75,29 +119,36 @@ const generate1 = (items, date, interval = "day") => {
         ...items[i],
         accumulative: acc,
       });
-    } else if (interval !== "day" && isDate) {
+    } else if (interval !== "day" && isDate && validPaymentMethod) {
+
       const previous =
         tempData.length && tempData[tempData.length - 1].dateTime;
-      if (
-        tempData.length &&
-        moment(currentDate).isSame(moment(previous), "day")
-      ) {
-        if (items[i].isExpense) {
+
+      if (tempData.length && moment(currentDate).isSame(moment(previous), "day")) {
+
+        if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
           dayAcc = dayAcc - items[i].value;
           acc = acc - items[i].value;
         } else {
           dayAcc = dayAcc + items[i].value;
           acc = acc + items[i].value;
         }
+
         tempData[tempData.length - 1].value = dayAcc;
         tempData[tempData.length - 1].accumulative = acc;
+
       } else {
         tempData.push({
           dateTime: currentDate,
           value: items[i].value,
-          accumulative: items[i].value,
+          accumulative: acc + items[i].value,
         });
-        dayAcc = 0;
+        dayAcc = items[i].value;
+        if (acc === 0) {
+          acc = items[i].value;
+        } else {
+          acc = acc + items[i].value
+        }
       }
     }
   }
@@ -121,6 +172,9 @@ export function parseData(date, interval) {
       await dispatch(loadItems());
     }
     const items = getState().data.items;
+
+    if (!items) return null;
+
     const myDates = getDates(items, interval);
     const myDate = date || myDates[myDates.length - 1];
 
@@ -155,15 +209,17 @@ export const loadItems = () => {
         dispatch({ type: "GET_ITEMS_SUCCESS", payload: json });
         return json;
       } else {
+        error(json.error);
         dispatch({ type: "GET_ITEMS_FAILED", payload: null });
       }
     } catch (e) {
+      error(e);
       dispatch({ type: "GET_ITEMS_FAILED", payload: null });
     }
   };
 };
 
-export function postItem(item) {
+export function postItem(item, newToken) {
   return async (dispatch, getState) => {
     dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
 
@@ -171,32 +227,22 @@ export function postItem(item) {
       const response = await fetch("/api/additem", {
         method: "POST",
         headers: {
-          "X-Firebase-ID-Token": getState().auth.token,
+          "X-Firebase-ID-Token": newToken || getState().auth.token,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(item),
       });
-      console.log("yooo response", response);
+      const json = await response.json();
       if (response.ok) {
         await dispatch(loadItems());
         dispatch({ type: "ADD_ITEM_SUCCESS", payload: null });
       } else {
-        Swal.fire({
-          icon: "error",
-          text: "Something went wrong!",
-          timer: 1000,
-          showConfirmButton: false,
-        });
-        dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+        const onError = () => dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+        error(json.error, dispatch, postItem, item, newToken, onError)
       }
       return response.ok;
     } catch (e) {
-      Swal.fire({
-        icon: "error",
-        text: "Something went wrong!",
-        timer: 1000,
-        showConfirmButton: false,
-      });
+      error(e);
       dispatch({ type: "ADD_ITEM_FAILED", payload: null });
     }
   };
@@ -240,7 +286,12 @@ export const getTillFloat = () => {
 
       const json = await response.json();
       if (response.ok) {
-        dispatch({ type: "GET_TILLFLOAT_SUCCESS", payload: json });
+        const { value, dateTime } = json[0];
+        const isSame = moment(new Date(dateTime)).isSame(
+          moment(new Date()),
+          'isoWeek'
+        );
+        dispatch({ type: "GET_TILLFLOAT_SUCCESS", payload: isSame ? value : 0 });
         return json;
       } else {
         dispatch({ type: "GET_TILLFLOAT_FAILED", payload: null });
@@ -280,3 +331,59 @@ export function postTillFloat(value) {
     }
   };
 }
+
+
+export function postItems(items, newToken) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/additems", {
+        method: "POST",
+        headers: {
+          "X-Firebase-ID-Token": newToken || getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(items),
+      });
+      const json = await response.json();
+      if (response.ok) {
+        await dispatch(loadItems());
+        dispatch({ type: "ADD_ITEM_SUCCESS", payload: null });
+      } else {
+        const onError = () => dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+        error(json.error, dispatch, postItem, items, newToken, onError)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+    }
+  };
+}
+
+export const getTeam = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "GET_TEAM_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/team", {
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "GET_TEAM_SUCCESS", payload: json });
+        return json;
+      } else {
+        error(json.error);
+        dispatch({ type: "GET_TEAM_FAILED", payload: null });
+      }
+    } catch (e) {
+      error(e);
+      dispatch({ type: "GET_TEAM_FAILED", payload: null });
+    }
+  };
+};

@@ -1,0 +1,67 @@
+.img {
+  width: 100%;
+  opacity: 0;
+}
+
+.imgLoaded {
+  opacity: 1;
+  /* animation: fade-in 1000ms; */
+  -webkit-animation: fade-in 1000ms;
+  -moz-animation: fade-in 1000ms;
+  -ms-animation: fade-in 1000ms;
+  -o-animation: fade-in 1000ms;
+  animation: fade-in 1000ms;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.imgSkeleton {
+  height: 100%;
+  background-color: #e9e9e9;
+}
+
+.blurImageContainer {
+  position: relative;
+}
+
+.blurImage {
+  position: absolute;
+}
+
+.blurMainImage {
+  position: absolute;
+}

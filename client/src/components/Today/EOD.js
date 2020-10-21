@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
-// import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 import styles from "./EOD.module.css";
@@ -22,23 +21,27 @@ const tillFloatPopup = (value, action) => {
       showCancelButton: true,
       showLoaderOnConfirm: true,
       preConfirm: (tillFloat) => {
-        return action(Number(tillFloat))
-          .then((data) => {
-            Swal.insertQueueStep({
-              icon: "success",
-              title: `£${tillFloat}`,
-              text: "Till float updated successfully",
-              timer: 2000,
-              showConfirmButton: false,
-              showClass: {
-                popup: "",
-              },
-              allowOutsideClick: false,
+        if(Number(tillFloat) === value){
+          Swal.close();
+        } else {
+          return action(Number(tillFloat))
+            .then((data) => {
+              Swal.insertQueueStep({
+                icon: "success",
+                title: `£${tillFloat}`,
+                text: "Till float updated successfully",
+                timer: 2000,
+                showConfirmButton: false,
+                showClass: {
+                  popup: "",
+                },
+                allowOutsideClick: false,
+              });
+            })
+            .catch(() => {
+              Swal.showValidationMessage(`Something went wrong`);
             });
-          })
-          .catch(() => {
-            Swal.showValidationMessage(`Something went wrong`);
-          });
+        }
       },
     },
   ]);
@@ -84,6 +87,12 @@ const EOD = (props) => {
     props.actions.parseData(null, "day");
     props.actions.getTillFloat();
   }, []);
+
+  useEffect(() => {
+    props.setRightComponent(() => {
+      return <TopRight {...props} />;
+    });
+  }, [props.data.tillFloat]);
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -171,16 +180,52 @@ const EOD = (props) => {
               setCardMachineDiff(cardMachineDiff);
 
               if (tillDiff === 0 && cardMachineDiff === 0) {
-                Swal.fire({
-                  icon: "success",
-                  text: "All settled up!",
-                  timer: 2000,
-                  showConfirmButton: false,
-                });
+                // Swal.fire({
+                //   icon: "success",
+                //   title: "All settled up!",
+                //   showConfirmButton: true,
+                //   confirmButtonText: "Set till float £200",
+                //   showCancelButton: true,
+                //   cancelButtonText: "Close",
+                // });
+                Swal.queue([
+                  {
+                    icon: "success",
+                    title: "All settled up!",
+                    showConfirmButton: true,
+                    confirmButtonText: `Set till float £${CASH.total + props.data.tillFloat}`,
+                    showCancelButton: true,
+                    cancelButtonText: "Close",
+                    showLoaderOnConfirm: true,
+                    preConfirm: (tillFloat) => {
+                      return props.actions.postTillFloat(Number(CASH.total + props.data.tillFloat))
+                        .then((data) => {
+                          Swal.insertQueueStep({
+                            icon: "success",
+                            title: `£${CASH.total + props.data.tillFloat}`,
+                            text: "Till float updated successfully",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            showClass: {
+                              popup: "",
+                            },
+                            allowOutsideClick: false,
+                          });
+                        })
+                        .catch(() => {
+                          Swal.showValidationMessage(`Something went wrong`);
+                        });
+                    },
+                  },
+                ]);
+                
+                
+                
+                
+                
                 setButton("Go Back");
                 setAllSettled(true);
               } else {
-                // toast.warn("Oops ...something went wrong");
                 setButton("Try Again");
               }
             }

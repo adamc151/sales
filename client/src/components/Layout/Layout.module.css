@@ -16,8 +16,8 @@
 
 .sidebarToggle {
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   color: white;
   text-align: center;
   display: flex;
@@ -25,7 +25,7 @@
   justify-content: center;
   font-size: 15px;
   position: absolute;
-  top: 16px;
+  top: 10px;
   left: 16px;
   z-index: 100;
 }
@@ -47,7 +47,7 @@
 
   color: white;
   width: 100vw;
-  height: 60px;
+  height: 50px;
   z-index: 90;
   top: 0;
 }

@@ -1,5 +1,5 @@
 dev:
-	docker-compose build --force-rm && docker-compose up -d
+	docker-compose build --force-rm && docker-compose up
 
 importbackup:
 	docker build -t importbackup -f ./mongoimport/Dockerfileimport ./mongoimport

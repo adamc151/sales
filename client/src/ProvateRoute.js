@@ -7,9 +7,13 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(routeProps) =>
-        !!currentUser ? <RouteComponent {...routeProps} /> : <ForceLogin />
-      }
+      render={(routeProps) => {
+        return !!currentUser ? (
+          <RouteComponent {...routeProps} />
+        ) : (
+            <ForceLogin />
+          );
+      }}
     />
   );
 };

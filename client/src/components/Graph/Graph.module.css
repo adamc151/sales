@@ -1,8 +1,8 @@
 .graphsWrapper {
   width: 100%;
   margin: auto;
-  height: calc(100% - 70px);
-  margin-top: 70px;
+  height: 250px;
+  margin-top: 120px;
   position: relative;
 }
 
