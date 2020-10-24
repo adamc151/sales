@@ -29,17 +29,16 @@ function FileDrop(props) {
   return (
     <Fragment>
       <div
-        className={`${classes.dropzoneBox} ${
-          props.files && props.files.length ? classes.minimizeDropzoneBox : ""
-        }`}
-        {...getRootProps({ refKey: "innerRef" })}
+        className={`${classes.dropzoneBox} ${props.files && props.files.length ? classes.minimizeDropzoneBox : ""
+          }`}
+        {...getRootProps({ refKey: "innerref" })}
       >
         <input className={classes.dropzoneButton} {...getInputProps()} />
         {isDragActive ? (
           <p>Drop the file here ...</p>
         ) : (
-          <p>Drag 'n' drop CSV file here, or click to select file</p>
-        )}
+            <p>Drag 'n' drop CSV file here, or click to select file</p>
+          )}
       </div>
     </Fragment>
   );

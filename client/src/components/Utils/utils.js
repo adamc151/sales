@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export const getGreeting = () => {
   var hr = new Date().getHours();
   let greeting = "";
@@ -15,4 +17,48 @@ export const getGreeting = () => {
   }
 
   return greeting;
+};
+
+
+export const getDateTitle = (date, intervalUnit) => {
+}
+
+
+export const tillFloatPopup = (value, action) => {
+  Swal.queue([
+    {
+      text: "Please enter till float amount (£):",
+      input: "text",
+      inputValue: value,
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (tillFloat) => {
+        if (Number(tillFloat) === value) {
+          Swal.close();
+        } else {
+          return action(Number(tillFloat))
+            .then((data) => {
+              Swal.insertQueueStep({
+                icon: "success",
+                title: `£${tillFloat}`,
+                text: "Till float updated successfully",
+                timer: 2000,
+                showConfirmButton: false,
+                showClass: {
+                  popup: "",
+                },
+                allowOutsideClick: false,
+              });
+            })
+            .catch(() => {
+              Swal.showValidationMessage(`Something went wrong`);
+            });
+        }
+
+      },
+    },
+  ]);
 };

@@ -5,7 +5,6 @@ import {
   FaMoneyBillAlt,
   FaCreditCard,
   FaPlus,
-  FaCalendarAlt,
 } from "react-icons/fa";
 import { FiDownload } from "react-icons/fi";
 import { connect } from "react-redux";
@@ -16,7 +15,6 @@ import { withRouter } from "react-router";
 import moment from "moment";
 import Swal from "sweetalert2";
 import { saveAs } from 'file-saver';
-
 
 const paymentMethodIcons = {
   CASH: <FaMoneyBillAlt color={"#53a957"} />,
@@ -35,7 +33,7 @@ const ListItem = ({
   _id,
   onDelete,
 }) => (
-    <div className={styles.listItemWrapper} onClick={() => setActive()}>
+    <div className={styles.listItemWrapper} onClick={() => setActive()} >
       <div>{paymentMethodIcons[paymentMethod]}</div>
       <div className={styles.detailsWrapper}>
         <div className={styles.productInfo}>
@@ -84,8 +82,35 @@ const TopRight = (props) => {
   return (
     <>
       {props.isOwner ? <div className={styles.calenderIcon} onClick={() => {
-        const blob = new Blob([JSON.stringify(props.data.items)], { type: 'application/json' });
-        saveAs(blob, `${new Date()}.json`);
+        Swal.fire({
+          text: 'Select format to download:',
+          showDenyButton: true,
+          showCancelButton: true,
+          showDenyButton: true,
+          confirmButtonText: `JSON`,
+          denyButtonText: `CSV`,
+          cancelButtonText: `Close`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const blob = new Blob([JSON.stringify(props.data.items)], { type: 'application/json' });
+            saveAs(blob, `${new Date()}.json`);
+          } else if (result.isDenied) {
+            let csv = "date,type,total value,lenses,accessories,fees\r\n";
+            props.data.items.map((item) => {
+              const value = item.type === 'REFUND' || item.type === 'EXPENSE' ? item.value * -1 : item.value;
+              const { breakdown = {}, dateTime, type = '' } = item;
+              const { lenses = 0, accessories = 0, fees = 0 } = breakdown;
+              let myDate = moment(new Date(dateTime)).format("L");
+              const splitDate = myDate.split('/');
+
+              myDate = `${splitDate[1]}/${splitDate[0]}/${splitDate[2]}`;
+              csv = csv + `${myDate},${type},${value},${lenses},${accessories},${fees}\r\n`
+            })
+            console.log('yoooo csv', csv);
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            saveAs(blob, `${new Date()}.csv`);
+          }
+        })
       }}>
         <FiDownload size={"28px"} />
       </div> : null}
@@ -181,7 +206,7 @@ const Sales = (props) => {
             return (
               <>
                 {!isSame && date && props.auth.isOwner && (
-                  <div className={styles.dateHeader}>
+                  <div className={styles.dateHeader} >
                     {moment(date).format("dddd D MMM")}
                   </div>
                 )}

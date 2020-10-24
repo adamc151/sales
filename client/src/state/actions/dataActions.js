@@ -37,9 +37,44 @@ const error = (error, dispatch, cbFunction, cbArgs, newToken, onError = () => { 
   }
 };
 
+
+//TAX YEAR DATES 6th April – 5th April
+
 const getDates = (items, unit) => {
   const temp = [];
   let previous = "";
+
+  //moment('2010-10-20').isBetween('2010-10-19', '2010-10-25'); // true
+  //if(moment(item.dateTime) is before 6th April) ...get previous year 5th April
+  //if(moment(item.dateTime) is 6th April or after) ...get current year 6th April
+
+  if (unit === 'year') {
+    items.map((item, i) => {
+      const currentYear = moment(item.dateTime).format('YYYY');
+      const april6 = `04/06/${currentYear}`;
+      const april6Date = new Date(april6);
+      const isBefore = moment(item.dateTime).isBefore(april6Date);
+      let momentDate3 = moment(april6Date).toISOString();
+
+      if (isBefore) {
+        const prevApril6 = `04/06/${currentYear - 1}`;
+        const prevApril6Date = new Date(prevApril6);
+        momentDate3 = moment(prevApril6Date).toISOString();
+      }
+
+      if (temp.length === 0) {
+        temp.push(momentDate3);
+      } else if (temp[temp.length - 1] !== momentDate3) {
+        temp.push(momentDate3);
+      }
+
+      previous = item.dateTime;
+      return;
+    });
+    return temp;
+  }
+
+
   items.map((item, i) => {
 
     if (i === 0) {
@@ -89,10 +124,14 @@ const generate1 = (items, date, interval = "day") => {
 
   for (let i = 0; i < items.length; i++) {
     const currentDate = new Date(items[i].dateTime);
-    const isDate = moment(currentDate).isSame(
+    let isDate = moment(currentDate).isSame(
       moment(date),
       interval === "week" ? "isoWeek" : interval
     );
+
+    if (interval === 'year') {
+      isDate = moment(currentDate).isBetween(moment(date), moment(date).add(1, 'years'), []);
+    }
 
     const validPaymentMethod = items[i].paymentMethod === "CARD" || items[i].paymentMethod === "CASH" || items[i].paymentMethod === "AMEX" || !items[i].paymentMethod;
 
@@ -117,7 +156,7 @@ const generate1 = (items, date, interval = "day") => {
 
       tempData.push({
         ...items[i],
-        accumulative: acc,
+        accumulative: Number(acc.toFixed(2)),
       });
     } else if (interval !== "day" && isDate && validPaymentMethod) {
 
@@ -134,14 +173,14 @@ const generate1 = (items, date, interval = "day") => {
           acc = acc + items[i].value;
         }
 
-        tempData[tempData.length - 1].value = dayAcc;
-        tempData[tempData.length - 1].accumulative = acc;
+        tempData[tempData.length - 1].value = Number(dayAcc.toFixed(2));
+        tempData[tempData.length - 1].accumulative = Number(acc.toFixed(2));
 
       } else {
         tempData.push({
           dateTime: currentDate,
           value: items[i].value,
-          accumulative: acc + items[i].value,
+          accumulative: Number((acc + items[i].value).toFixed(2)),
         });
         dayAcc = items[i].value;
         if (acc === 0) {

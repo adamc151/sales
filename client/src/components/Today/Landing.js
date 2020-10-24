@@ -1,53 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./Landing.module.css";
 import { withRouter } from "react-router";
-import moment from "moment";
-import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { FaCashRegister, FaUser } from "react-icons/fa";
 import Loading from "../Loading/Loading";
-import { getGreeting } from '../Utils/utils';
-
-const tillFloatPopup = (value, action) => {
-  Swal.queue([
-    {
-      text: "Please enter till float amount (£):",
-      input: "text",
-      inputValue: value,
-      inputAttributes: {
-        autocapitalize: "off",
-      },
-      showCancelButton: true,
-      showLoaderOnConfirm: true,
-      preConfirm: (tillFloat) => {
-        if (Number(tillFloat) === value) {
-          Swal.close();
-        } else {
-          return action(Number(tillFloat))
-            .then((data) => {
-              Swal.insertQueueStep({
-                icon: "success",
-                title: `£${tillFloat}`,
-                text: "Till float updated successfully",
-                timer: 2000,
-                showConfirmButton: false,
-                showClass: {
-                  popup: "",
-                },
-                allowOutsideClick: false,
-              });
-            })
-            .catch(() => {
-              Swal.showValidationMessage(`Something went wrong`);
-            });
-        }
-
-      },
-    },
-  ]);
-};
+import { getGreeting, tillFloatPopup } from '../Utils/utils';
 
 const TopRight = (props) => {
   return (
@@ -63,6 +22,15 @@ const TopRight = (props) => {
     </>
   );
 };
+
+const ListItem = ({ name, onClick }) => (
+  <div className={styles.listItemWrapper} onClick={onClick}>
+    <div className={styles.initial}><FaUser /></div>
+    <div className={styles.detailsWrapper}>
+      <div className={styles.productInfo}>{name}</div>
+    </div>
+  </div>
+);
 
 const Landing = (props) => {
   useEffect(() => {
@@ -90,30 +58,8 @@ const Landing = (props) => {
     return null;
   }
 
-  let isToday = false;
-  if (props.data.data && props.data.data.length) {
-    const currentDate = new Date();
-    isToday = moment(currentDate).isSame(
-      moment(props.data.data[props.data.data.length - 1].dateTime),
-      "day"
-    );
-  }
-  return (
-    <Empty {...props} />
-  );
-};
-
-const ListItem = ({ name, onClick }) => (
-  <div className={styles.listItemWrapper} onClick={onClick}>
-    <div className={styles.initial}><FaUser /></div>
-    <div className={styles.detailsWrapper}>
-      <div className={styles.productInfo}>{name}</div>
-    </div>
-  </div>
-);
-
-const Empty = (props) => {
   const teamMembers = props.data.team;
+
   return (
     <div className={styles.listDesktopWrapper}>
       <div className={styles.listWrapper}>

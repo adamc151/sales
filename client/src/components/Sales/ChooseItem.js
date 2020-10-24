@@ -77,11 +77,7 @@ const ChooseItem = (props) => {
           return (
             <ListItem
               {...item}
-              setActive={() =>
-                i === activeItem ? setActiveItem(null) : setActiveItem(i)
-              }
               onClick={() => props.history.push({ pathname: item.link, search: props.location.search })}
-              isActive={i === activeItem}
             />
           );
         })}

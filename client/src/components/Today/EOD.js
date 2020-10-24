@@ -4,48 +4,10 @@ import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
 import Swal from "sweetalert2";
-
 import styles from "./EOD.module.css";
 import { FaAngleLeft, FaCashRegister } from "react-icons/fa";
 import { Button } from "../UI/Button";
-
-const tillFloatPopup = (value, action) => {
-  Swal.queue([
-    {
-      text: "Please enter till float amount (£):",
-      input: "text",
-      inputValue: value,
-      inputAttributes: {
-        autocapitalize: "off",
-      },
-      showCancelButton: true,
-      showLoaderOnConfirm: true,
-      preConfirm: (tillFloat) => {
-        if(Number(tillFloat) === value){
-          Swal.close();
-        } else {
-          return action(Number(tillFloat))
-            .then((data) => {
-              Swal.insertQueueStep({
-                icon: "success",
-                title: `£${tillFloat}`,
-                text: "Till float updated successfully",
-                timer: 2000,
-                showConfirmButton: false,
-                showClass: {
-                  popup: "",
-                },
-                allowOutsideClick: false,
-              });
-            })
-            .catch(() => {
-              Swal.showValidationMessage(`Something went wrong`);
-            });
-        }
-      },
-    },
-  ]);
-};
+import { tillFloatPopup } from '../Utils/utils';
 
 const TopRight = (props) => {
   return (
@@ -114,11 +76,9 @@ const EOD = (props) => {
         <div className={styles.priceWrapper}>
           <form style={{ width: "100%" }} onSubmit={handleSumbit}>
             <input
-              className={`${styles.longInput} ${
-                tillDiff === 0 ? styles.inputCorrect : ""
-              } ${
-                tillDiff !== null && tillDiff !== 0 ? styles.inputIncorrect : ""
-              }`}
+              className={`${styles.longInput} ${tillDiff === 0 ? styles.inputCorrect : ""
+                } ${tillDiff !== null && tillDiff !== 0 ? styles.inputIncorrect : ""
+                }`}
               type="number"
               placeholder="0.00"
               onChange={(e) => {
@@ -140,13 +100,11 @@ const EOD = (props) => {
         <div className={styles.priceWrapper}>
           <form style={{ width: "100%" }} onSubmit={handleSumbit}>
             <input
-              className={`${styles.longInput} ${
-                cardMachineDiff === 0 ? styles.inputCorrect : ""
-              } ${
-                cardMachineDiff !== null && cardMachineDiff !== 0
+              className={`${styles.longInput} ${cardMachineDiff === 0 ? styles.inputCorrect : ""
+                } ${cardMachineDiff !== null && cardMachineDiff !== 0
                   ? styles.inputIncorrect
                   : ""
-              }`}
+                }`}
               type="number"
               placeholder="0.00"
               onChange={(e) => {
@@ -166,74 +124,62 @@ const EOD = (props) => {
       {false ? (
         <div className={styles.allSettled}>All Settled</div>
       ) : (
-        <Button
-          style={{ marginTop: "32px" }}
-          onClick={async () => {
-            if (allSettled) {
-              props.history.goBack();
-            } else {
-              const { CASH, CARD, AMEX } = props.data.breakdowns;
-              const tillDiff = price1 - (CASH.total + props.data.tillFloat);
-              const cardMachineDiff = price2 - (CARD.total + AMEX.total);
-
-              setTillDiff(tillDiff);
-              setCardMachineDiff(cardMachineDiff);
-
-              if (tillDiff === 0 && cardMachineDiff === 0) {
-                // Swal.fire({
-                //   icon: "success",
-                //   title: "All settled up!",
-                //   showConfirmButton: true,
-                //   confirmButtonText: "Set till float £200",
-                //   showCancelButton: true,
-                //   cancelButtonText: "Close",
-                // });
-                Swal.queue([
-                  {
-                    icon: "success",
-                    title: "All settled up!",
-                    showConfirmButton: true,
-                    confirmButtonText: `Set till float £${CASH.total + props.data.tillFloat}`,
-                    showCancelButton: true,
-                    cancelButtonText: "Close",
-                    showLoaderOnConfirm: true,
-                    preConfirm: (tillFloat) => {
-                      return props.actions.postTillFloat(Number(CASH.total + props.data.tillFloat))
-                        .then((data) => {
-                          Swal.insertQueueStep({
-                            icon: "success",
-                            title: `£${CASH.total + props.data.tillFloat}`,
-                            text: "Till float updated successfully",
-                            timer: 2000,
-                            showConfirmButton: false,
-                            showClass: {
-                              popup: "",
-                            },
-                            allowOutsideClick: false,
-                          });
-                        })
-                        .catch(() => {
-                          Swal.showValidationMessage(`Something went wrong`);
-                        });
-                    },
-                  },
-                ]);
-                
-                
-                
-                
-                
-                setButton("Go Back");
-                setAllSettled(true);
+          <Button
+            style={{ marginTop: "32px" }}
+            onClick={async () => {
+              if (allSettled) {
+                props.history.goBack();
               } else {
-                setButton("Try Again");
+                const { CASH, CARD, AMEX } = props.data.breakdowns;
+                const tillDiff = Number((price1 - (CASH.total + props.data.tillFloat)).toFixed(2));
+                const cardMachineDiff = Number((price2 - (CARD.total + AMEX.total)).toFixed(2));
+
+                setTillDiff(tillDiff);
+                setCardMachineDiff(cardMachineDiff);
+
+                if (tillDiff === 0 && cardMachineDiff === 0) {
+                  Swal.queue([
+                    {
+                      icon: "success",
+                      title: "All settled up!",
+                      showConfirmButton: true,
+                      confirmButtonText: `Set till float £${Number((CASH.total + props.data.tillFloat).toFixed(2))}`,
+                      showCancelButton: true,
+                      cancelButtonText: "Close",
+                      showLoaderOnConfirm: true,
+                      preConfirm: (tillFloat) => {
+                        return props.actions.postTillFloat(Number((CASH.total + props.data.tillFloat).toFixed(2)))
+                          .then((data) => {
+                            Swal.insertQueueStep({
+                              icon: "success",
+                              title: `£${Number((CASH.total + props.data.tillFloat).toFixed(2))}`,
+                              text: "Till float updated successfully",
+                              timer: 2000,
+                              showConfirmButton: false,
+                              showClass: {
+                                popup: "",
+                              },
+                              allowOutsideClick: false,
+                            });
+                          })
+                          .catch(() => {
+                            Swal.showValidationMessage(`Something went wrong`);
+                          });
+                      },
+                    },
+                  ]);
+
+                  setButton("Go Back");
+                  setAllSettled(true);
+                } else {
+                  setButton("Try Again");
+                }
               }
-            }
-          }}
-        >
-          {button}
-        </Button>
-      )}
+            }}
+          >
+            {button}
+          </Button>
+        )}
     </div>
   );
 };

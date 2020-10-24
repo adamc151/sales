@@ -38,7 +38,7 @@ const Dashboard = (props) => {
         props.setTitle(`${moment(props.data.date).format("MMMM Y")}`);
         break;
       case "year":
-        props.setTitle(`${moment(props.data.date).format("Y")}`);
+        props.setTitle(`${moment(props.data.date).format("Y")}/${moment(props.data.date).add(1, 'years').format("YY")}`);
         break;
     }
   }, [props.data.date, props.data.intervalUnit]);

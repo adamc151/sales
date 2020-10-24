@@ -25,9 +25,9 @@ const parseItemsFromText = (text) => {
   console.log("yoooo text", JSON.stringify(text));
   console.log('yooo typeof text ', typeof text);
 
-  if (typeof text === 'string') {
-    console.log('yooo parse', JSON.parse(text));
-  }
+  // if (typeof text === 'string') {
+  //   console.log('yooo parse', JSON.parse(text));
+  // }
 
 
   const items = text && text.split("\r\n");
@@ -36,18 +36,17 @@ const parseItemsFromText = (text) => {
   if (items && items.length) {
     console.log('yooo items', items);
     items.pop();
-    items.map((item) => {
-      const [value, dateTime] = item.split(",");
+    items.map((item, i) => {
+      if (i === 0) return;
+      const [dateTime, type, value] = item.split(",");
       var myDate;
+      console.log('yoooo dateTime', dateTime);
       const splitDate = dateTime.split('/');
+      console.log('yoooo splitDate', splitDate);
+      const month = splitDate[1] - 1; //Javascript months are 0-11
+      myDate = new Date(splitDate[2], month, splitDate[0]);
 
-      if (splitDate.length === 3) {
-        const month = splitDate[1] - 1; //Javascript months are 0-11
-        myDate = new Date(splitDate[2], month, splitDate[0]);
-      } else {
-        myDate = new Date(dateTime);
-      }
-
+      console.log('yoooo myDate', myDate);
 
       myItems.push({ value, dateTime: myDate.toISOString(), type: 'DAILY' });
     });
