@@ -62,6 +62,7 @@ const Graph = (props) => {
             <ResponsiveContainer
               width="100%"
               height="100%"
+              className={styles.responsiveContainer}
               stackOffset={"expand"}
             >
               <ComposedChart
@@ -95,7 +96,7 @@ const Graph = (props) => {
                 </Bar>
                 <YAxis dataKey="value" domain={[0, "dataMax"]} hide />
                 <Tooltip
-                  wrapperStyle={{ visibility: "visible", position: 'fixed' }}
+                  wrapperStyle={{ visibility: "visible", position: 'absolute', top: '-110px', left: '0px' }}
                   content={
                     <CustomTooltip data={props.data.data} active={true} allowEscapeViewBox={{ x: true, y: true }} intervalUnit={props.data.intervalUnit} />
                   }
@@ -108,7 +109,7 @@ const Graph = (props) => {
 
         {props.data.data && props.data.data.length > 1 ? (
           <div className={styles.graphWrapper2}>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" className={styles.responsiveContainer}>
               <LineChart
                 data={props.data.data}
                 margin={{

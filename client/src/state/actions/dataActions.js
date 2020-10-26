@@ -121,6 +121,14 @@ const generate1 = (items, date, interval = "day") => {
     CARD: { total: 0, percentage: 0 },
     AMEX: { total: 0, percentage: 0 },
   };
+  let accSaleBreakdowns = {
+    lenses: {
+      total: 0,
+      percentage: 0,
+    },
+    accessories: { total: 0, percentage: 0 },
+    fees: { total: 0, percentage: 0 },
+  };
 
   for (let i = 0; i < items.length; i++) {
     const currentDate = new Date(items[i].dateTime);
@@ -144,6 +152,12 @@ const generate1 = (items, date, interval = "day") => {
         accBreakdowns[items[i].paymentMethod || "CASH"].total =
           accBreakdowns[items[i].paymentMethod || "CASH"].total +
           items[i].value;
+
+        if (items[i].breakdown) {
+          accSaleBreakdowns.lenses.total = accSaleBreakdowns.lenses.total + (items[i].breakdown.lenses || 0);
+          accSaleBreakdowns.accessories.total = accSaleBreakdowns.accessories.total + (items[i].breakdown.accessories || 0);
+          accSaleBreakdowns.fees.total = accSaleBreakdowns.fees.total + (items[i].breakdown.fees || 0);
+        }
       }
     }
 
@@ -182,11 +196,27 @@ const generate1 = (items, date, interval = "day") => {
           value: items[i].value,
           accumulative: Number((acc + items[i].value).toFixed(2)),
         });
-        dayAcc = items[i].value;
-        if (acc === 0) {
-          acc = items[i].value;
+
+        if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
+          dayAcc = items[i].value * -1;
         } else {
-          acc = acc + items[i].value
+          dayAcc = items[i].value;
+        }
+
+
+        if (acc === 0) {
+          if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
+            acc = items[i].value * -1;
+          } else {
+            acc = items[i].value
+          }
+        } else {
+          if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
+            acc = acc - items[i].value
+          } else {
+            acc = acc + items[i].value
+          }
+
         }
       }
     }
@@ -199,10 +229,17 @@ const generate1 = (items, date, interval = "day") => {
           tempData[tempData.length - 1].accumulative) *
         100
       ).toFixed(2);
+
+      accBreakdowns[key].total = Number(accBreakdowns[key].total.toFixed(2));
+    }
+  });
+  Object.keys(accSaleBreakdowns).map((key) => {
+    if (accSaleBreakdowns[key].total && tempData.length) {
+      accSaleBreakdowns[key].total = Number(accSaleBreakdowns[key].total.toFixed(2));
     }
   });
 
-  return { data: tempData, breakdowns: accBreakdowns };
+  return { data: tempData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns };
 };
 
 export function parseData(date, interval) {
@@ -217,13 +254,14 @@ export function parseData(date, interval) {
     const myDates = getDates(items, interval);
     const myDate = date || myDates[myDates.length - 1];
 
-    const { data, breakdowns } = generate1(items, myDate, interval);
+    const { data, breakdowns, saleBreakdowns } = generate1(items, myDate, interval);
 
     return dispatch({
       type: "CHANGE_DATA",
       payload: {
         data,
         breakdowns,
+        saleBreakdowns,
         date: myDate,
         intervals: myDates,
         intervalUnit: interval,

@@ -95,16 +95,16 @@ const TopRight = (props) => {
             const blob = new Blob([JSON.stringify(props.data.items)], { type: 'application/json' });
             saveAs(blob, `${new Date()}.json`);
           } else if (result.isDenied) {
-            let csv = "date,type,total value,lenses,accessories,fees\r\n";
+            let csv = "date,type,total,lenses,accessories,fees,payment method,details\r\n";
             props.data.items.map((item) => {
               const value = item.type === 'REFUND' || item.type === 'EXPENSE' ? item.value * -1 : item.value;
-              const { breakdown = {}, dateTime, type = '' } = item;
+              const { breakdown = {}, dateTime, type = '', paymentMethod, details } = item;
               const { lenses = 0, accessories = 0, fees = 0 } = breakdown;
               let myDate = moment(new Date(dateTime)).format("L");
               const splitDate = myDate.split('/');
 
               myDate = `${splitDate[1]}/${splitDate[0]}/${splitDate[2]}`;
-              csv = csv + `${myDate},${type},${value},${lenses},${accessories},${fees}\r\n`
+              csv = csv + `${myDate},${type},${value},${lenses},${accessories},${fees},${paymentMethod},"${details}"\r\n`
             })
             console.log('yoooo csv', csv);
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });

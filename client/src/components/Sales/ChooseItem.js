@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./ChooseItem.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -50,8 +50,6 @@ const ListItem = ({ name, icon, onClick }) => (
 );
 
 const ChooseItem = (props) => {
-  const [activeItem, setActiveItem] = useState(null);
-
   useEffect(() => {
     window.scroll(0, 0);
     const values = queryString.parse(props.location.search);

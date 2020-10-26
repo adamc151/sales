@@ -57,7 +57,7 @@ const Dashboard = (props) => {
         <span className={`${intervalUnit === 'month' ? styles.activeInterval : ''} ${styles.interval}`} onClick={() => { props.actions.parseData(date, 'month'); }}>Month</span>
         <span className={`${intervalUnit === 'year' ? styles.activeInterval : ''} ${styles.interval}`} onClick={() => { props.actions.parseData(date, 'year'); }}>Year</span>
       </div>
-      <List />
+      <List {...props} />
       <div className={styles.breakdowns}>
         <DateNavigation
           parseData={(date) => {

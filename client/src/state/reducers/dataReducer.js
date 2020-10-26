@@ -14,6 +14,7 @@ const reducer = (state = initialState, action) => {
         intervals: action.payload.intervals,
         intervalUnit: action.payload.intervalUnit,
         breakdowns: action.payload.breakdowns,
+        saleBreakdowns: action.payload.saleBreakdowns,
         loading: false,
       };
 

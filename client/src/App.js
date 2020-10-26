@@ -3,7 +3,6 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Today from "./components/Today/Today";
 import Landing from "./components/Today/Landing";
 
 import Login from "./components/Login/Login";

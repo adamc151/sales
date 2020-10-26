@@ -2,14 +2,11 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    padding-right: 24px;
-    /* box-shadow: 0 2px 10px rgba(15, 15, 28, 0.203); */
-    /* margin: 12px; */
     position: relative;
     align-items: center;
     font-size: 18px;
-    /* height: 40px; */
     border-bottom: 1px solid lightgray;
+    cursor: pointer;
   }
   
   .listWrapper {
@@ -59,4 +56,63 @@
     font-size: 18px;
     text-align: left;
     color: #505050;
+  }
+
+
+
+
+  .newListItemWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-right: 24px;
+    position: relative;
+    align-items: flex-start;
+    font-size: 18px;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+  }
+
+  .itemHeader {
+    font-size: 14px;
+    color: gray;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .itemDetails {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 16px;
+  }
+
+  .breakdownDetails {
+    margin-top: 16px;
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .paymentType {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .paymentTypeInner {
+    display: flex;
+    align-items: center;
+  }
+
+  .breakdownType {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 2px 0px;
   }
