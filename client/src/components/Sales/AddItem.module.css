@@ -119,3 +119,11 @@
     margin-left: 8px;
   }
   
+
+  .reload {
+    position: fixed !important;
+    top: 40%;
+    left: 20px;
+    width: calc(100% - 40px) !important;
+    margin: 20px;
+  }

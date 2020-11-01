@@ -44,8 +44,6 @@ const CustomTooltip = ({ active, payload, label, data, intervalUnit }) => {
 const Graph = (props) => {
   if (!props.data) return null;
 
-  console.log('yooo props.data', props.data);
-
   return (
     <div className={styles.graphsWrapper}>
       <div

@@ -3,21 +3,16 @@ import "./App.css";
 import Layout from "./components/Layout/Layout";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Landing from "./components/Today/Landing";
-
+import Landing from "./components/Landing/Landing";
 import Login from "./components/Login/Login";
 import Sales from "./components/Sales/Sales";
 import AddItem from "./components/Sales/AddItem";
-
-import EOD from "./components/Today/EOD";
+import ChooseItem from "./components/Sales/ChooseItem";
+import EOD from "./components/Landing/EOD";
 import Upload from "./components/Upload/Upload";
 import { Redirect } from "react-router";
-
-import { AuthProvider } from "./Auth";
-import { AuthContext } from "./Auth";
-
-import PrivateRoute from "./ProvateRoute";
-import ChooseItem from "./components/Sales/ChooseItem";
+import { AuthProvider, AuthContext } from "./components/Authentication/Auth";
+import PrivateRoute from "./components/Authentication/PrivateRoute";
 
 const PrivateRoutes = () => {
   const { isOwner } = useContext(AuthContext);
@@ -27,6 +22,7 @@ const PrivateRoutes = () => {
         const props = { setTitle, setRightComponent, setLeftComponent };
         return (
           <>
+            <Route exact path="/" render={() => <Redirect to={"/home"} />} />
             <Route exact path="/home" render={() => <Landing {...props} />} />
             <Route
               exact
@@ -47,10 +43,13 @@ const PrivateRoutes = () => {
             />
             <Route
               exact
+              path="/sales/edit/:id"
+              render={() => <AddItem isEdit={true} title={"Edit Item"} {...props} />} />
+            <Route
+              exact
               path="/add-expense"
               render={() => <AddItem type={"EXPENSE"} title={"Add Expense"} defaultPaymentType={"CASH"} {...props} />}
             />
-            <Route exact path="/" render={() => <Redirect to={"/home"} />} />
             {isOwner && (
               <Route
                 exact

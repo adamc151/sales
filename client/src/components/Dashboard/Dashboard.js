@@ -3,11 +3,25 @@ import styles from "./Dashboard.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
-import moment from "moment";
 import DateNavigation from "./DateNavigation";
-import Graph from "../Graph/Graph";
-import Loading from "../Loading/Loading";
+import Graph from "./Graph";
+import Loading from "../UI/Loading";
 import List from './List';
+import { FiDownload } from "react-icons/fi";
+import { getDateLabel, exportData } from '../Utils/utils';
+
+const TopRight = (props) => {
+  return (
+    <div
+      className={styles.addSale}
+      onClick={() => {
+        exportData(props);
+      }}
+    >
+      <FiDownload size={"25px"} />
+    </div>
+  );
+};
 
 const Dashboard = (props) => {
 
@@ -17,30 +31,15 @@ const Dashboard = (props) => {
     window.scroll(0, 0);
     props.actions.parseData(null, "day");
     props.setTitle("");
-    props.setRightComponent(null);
+    props.setRightComponent(<TopRight {...props} />);
   }, []);
 
   useEffect(() => {
-    switch (props.data.intervalUnit) {
-      case "day":
-        props.setTitle(`${moment(props.data.date).format("ddd D MMM YY")}`);
-        break;
-      case "week":
-        props.setTitle(
-          `${moment(props.data.date)
-            .startOf("isoWeek")
-            .format("D MMM YY")} - ${moment(props.data.date)
-              .endOf("isoWeek")
-              .format("D MMM YY")}`
-        );
-        break;
-      case "month":
-        props.setTitle(`${moment(props.data.date).format("MMMM Y")}`);
-        break;
-      case "year":
-        props.setTitle(`${moment(props.data.date).format("Y")}/${moment(props.data.date).add(1, 'years').format("YY")}`);
-        break;
-    }
+    props.setRightComponent(<TopRight {...props} />);
+  }, [props.data.data]);
+
+  useEffect(() => {
+    props.setTitle(getDateLabel(props.data.date, props.data.intervalUnit));
   }, [props.data.date, props.data.intervalUnit]);
 
   if (props.data.getItemsLoading) {

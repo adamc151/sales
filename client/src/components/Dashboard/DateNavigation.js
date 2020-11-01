@@ -12,7 +12,7 @@ function usePrevious(value) {
 }
 
 const DateNavigation = (props) => {
-    const { intervals, intervalUnit, date, breakdowns } = props;
+    const { intervals, intervalUnit } = props;
     const [currentIndex, setIndex] = useState(intervals && intervals.length - 1);
 
     const prevIntervalUnit = usePrevious(intervalUnit);

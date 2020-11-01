@@ -4,9 +4,10 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
-import { FaCashRegister, FaUser } from "react-icons/fa";
-import Loading from "../Loading/Loading";
+import { FaCashRegister, FaUser, FaBell } from "react-icons/fa";
+import Loading from "../UI/Loading";
 import { getGreeting, tillFloatPopup } from '../Utils/utils';
+import moment from "moment";
 
 const TopRight = (props) => {
   return (
@@ -32,6 +33,18 @@ const ListItem = ({ name, onClick }) => (
   </div>
 );
 
+const Notification = ({ message, dateTime, onClick }) => {
+  return <div className={styles.listItemWrapper} onClick={onClick}>
+    <div className={styles.initial}><FaBell /></div>
+    <div className={styles.notificationWrapper}>
+      <div className={styles.notificationTime}>{`${moment(dateTime).format("D MMM")} ${moment(dateTime).format("LT")}`}</div>
+      <div className={styles.productInfo}>{message.split('\r\n').map((m) => {
+        return <div>{m}</div>;
+      })}</div>
+    </div>
+  </div>
+};
+
 const Landing = (props) => {
   useEffect(() => {
     props.setTitle(getGreeting());
@@ -43,6 +56,14 @@ const Landing = (props) => {
     props.actions.getTillFloat();
     props.actions.getTeam();
   }, []);
+
+  useEffect(() => {
+    props.auth.isOwner && !props.data.getNotifictionsLoading && props.actions.getNotifications();
+  }, [props.auth]);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [props.data.notifications]);
 
   useEffect(() => {
     props.setRightComponent(() => {
@@ -59,28 +80,49 @@ const Landing = (props) => {
   }
 
   const teamMembers = props.data.team;
+  const notifications = props.data.notifications;
 
   return (
     <div className={styles.listDesktopWrapper}>
       <div className={styles.listWrapper}>
+        {props.auth.isOwner && notifications && notifications.length ? <>{notifications.map((notification, i) => {
+          return (
+            <Notification
+              {...notification}
+              key={`notification${i}`}
+            />
+          );
+        })}
+          <div
+            className={styles.eod}
+            onClick={async () => {
+              await props.actions.clearNotifications();
+              props.actions.getNotifications();
+            }}
+          >
+            Clear Notifications
+            </div>
+          <div className={styles.divider}></div>
+        </> : null}
         {teamMembers && teamMembers.length && teamMembers.map((item, i) => {
           return (
             <ListItem
               {...item}
+              key={`team_${i}`}
               onClick={() => {
                 props.history.push(`/add?user=${item.name}`);
               }}
             />
           );
         })}
-        <div
+        {teamMembers && teamMembers.length && <div
           className={styles.eod}
           onClick={() => {
             props.history.push("/eod");
           }}
         >
           End of Day
-            </div>
+            </div>}
       </div>
     </div>
   );

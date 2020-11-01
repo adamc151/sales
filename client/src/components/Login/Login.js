@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useContext } from "react";
 import styles from "./Login.module.css";
 import { withRouter, Redirect } from "react-router";
-import app from "../../firebase.js";
-import { AuthContext } from "../../Auth";
+import app from "../Authentication/firebase.js";
+import { AuthContext } from "../Authentication/Auth";
 import Image from "../Image/Image";
 
 const Login = ({ history }) => {
@@ -14,7 +14,6 @@ const Login = ({ history }) => {
       event.preventDefault();
       try {
         await app.auth().signInWithEmailAndPassword(username, password);
-        // history.push("/home");
       } catch (error) {
         alert(error);
       }

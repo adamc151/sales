@@ -43,6 +43,7 @@ class ViewportObserver extends Component {
         hasIntersected: entry.isIntersecting,
       });
       if (entry.isIntersecting) {
+        this.props.onIntersect && this.props.onIntersect();
         this.removeObserver();
       }
     });

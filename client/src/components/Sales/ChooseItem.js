@@ -9,11 +9,7 @@ import queryString from 'query-string'
 import Swal from "sweetalert2";
 
 const itemTypes = [
-  {
-    name: "Sale",
-    link: "/add-sale",
-    icon: <FaGlasses />,
-  },
+  { name: "Sale", link: "/add-sale", icon: <FaGlasses /> },
   { name: "Refund", link: "/add-refund", icon: <FaUndo /> },
   { name: "Petty Cash", link: "/add-expense", icon: <FaCashRegister /> },
 ];
@@ -74,6 +70,7 @@ const ChooseItem = (props) => {
         {itemTypes.map((item, i) => {
           return (
             <ListItem
+              key={`itemType_${i}`}
               {...item}
               onClick={() => props.history.push({ pathname: item.link, search: props.location.search })}
             />

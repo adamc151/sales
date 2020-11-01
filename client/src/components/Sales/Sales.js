@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Fragment } from "react";
 import styles from "./Sales.module.css";
 import {
   FaCcAmex,
@@ -6,15 +6,14 @@ import {
   FaCreditCard,
   FaPlus,
 } from "react-icons/fa";
-import { FiDownload } from "react-icons/fi";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
-import Loading from "../Loading/Loading";
+import Loading from "../UI/Loading";
 import { withRouter } from "react-router";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { saveAs } from 'file-saver';
+import ViewportObserver from "../Image/ViewportObserver";
 
 const paymentMethodIcons = {
   CASH: <FaMoneyBillAlt color={"#53a957"} />,
@@ -22,9 +21,11 @@ const paymentMethodIcons = {
   AMEX: <FaCcAmex color={"#016fcf"} />,
 };
 
+
 const ListItem = ({
   type,
   details,
+  breakdown,
   paymentMethod,
   value,
   isActive,
@@ -32,93 +33,99 @@ const ListItem = ({
   dateTime,
   _id,
   onDelete,
-}) => (
-    <div className={styles.listItemWrapper} onClick={() => setActive()} >
-      <div>{paymentMethodIcons[paymentMethod]}</div>
-      <div className={styles.detailsWrapper}>
-        <div className={styles.productInfo}>
-          {isActive ? (
-            <div className={styles.productDescriptionActive}>
-              <div>{moment(dateTime).format("LT")}</div>
-              <div
-                className={styles.productDescriptionText}
-                style={{ marginTop: "8px" }}
-              >
-                {details}
-              </div>
-            </div>
-          ) : (
-              <div className={styles.productDescription}>
-                <span>{moment(dateTime).format("LT")}</span>
-                <span className={styles.productDescriptionText}>
-                  {" "}
-                  {details ? "- " : ""}
-                  {details}
-                </span>
-              </div>
-            )}
-        </div>
-        <div className={styles.productPrice}>
-          {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
-        </div>
-        {isActive && (
-          <div className={styles.actions}>
-            <span
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete(_id);
-              }}
-            >
-              Delete
-          </span>
-            {/* <span>Edit</span> */}
+  history
+}) => {
+  return <div className={styles.listItemWrapper} onClick={() => setActive()} >
+    <div>{paymentMethodIcons[paymentMethod]}</div>
+    <div className={styles.detailsWrapper}>
+      <div className={styles.productInfo}>
+        {isActive ? (
+          <div className={styles.productDescriptionActive}>
+            <div className={styles.dateTime}>{moment(dateTime).format("LT")}</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td className={styles.sectionHeader} >Item Type</td>
+                  <td className={styles.sectionText} >{type}</td>
+                </tr>
+                <tr>
+                  <td className={styles.sectionHeader}>Details</td>
+                  <td className={styles.sectionText} >
+                    {details}
+                  </td>
+                </tr>
+                <tr>
+                  <td className={styles.sectionHeader} >Payment</td>
+                  <td className={styles.sectionText} >{paymentMethod}</td>
+                </tr>
+                {type === 'SALE' && <tr>
+                  <td className={styles.sectionHeader} >Lenses</td>
+                  <td className={styles.sectionText} >{`£${breakdown.lenses || 0}`}</td>
+                </tr>}
+                {type === 'SALE' && <tr>
+                  <td className={styles.sectionHeader} >Accessories</td>
+                  <td className={styles.sectionText} >{`£${breakdown.accessories || 0}`}</td>
+                </tr>}
+                {type === 'SALE' && <tr>
+                  <td className={styles.sectionHeader} >Fees</td>
+                  <td className={styles.sectionText} >{`£${breakdown.fees || 0}`}</td>
+                </tr>}
+              </tbody>
+            </table>
           </div>
-        )}
+        ) : (
+            <div className={styles.productDescription}>
+              <span>{moment(dateTime).format("LT")}</span>
+              <span className={styles.productDescriptionText}>
+                {" "}
+                {details ? "- " : ""}
+                {details}
+              </span>
+            </div>
+          )}
       </div>
+      <div className={styles.productPrice}>
+        {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
+      </div>
+      {isActive && (
+        <div className={styles.actions}>
+          <span
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(_id);
+            }}
+          >
+            Delete
+          </span>
+          <span onClick={(e) => {
+            e.stopPropagation();
+            Swal.fire({
+              icon: 'warning',
+              text: "Are you sure you want to edit this item?",
+              showConfirmButton: true,
+              confirmButtonText: "Yes",
+              showCancelButton: true,
+              cancelButtonText: "No"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                history.push(`sales/edit/${_id}`);
+              } else if (result.isDenied) {
+                Swal.close();
+              }
+            });
+          }} >Edit</span>
+        </div>
+      )}
     </div>
-  );
+  </div>
+};
 
 const TopRight = (props) => {
   return (
     <>
-      {props.isOwner ? <div className={styles.calenderIcon} onClick={() => {
-        Swal.fire({
-          text: 'Select format to download:',
-          showDenyButton: true,
-          showCancelButton: true,
-          showDenyButton: true,
-          confirmButtonText: `JSON`,
-          denyButtonText: `CSV`,
-          cancelButtonText: `Close`,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const blob = new Blob([JSON.stringify(props.data.items)], { type: 'application/json' });
-            saveAs(blob, `${new Date()}.json`);
-          } else if (result.isDenied) {
-            let csv = "date,type,total,lenses,accessories,fees,payment method,details\r\n";
-            props.data.items.map((item) => {
-              const value = item.type === 'REFUND' || item.type === 'EXPENSE' ? item.value * -1 : item.value;
-              const { breakdown = {}, dateTime, type = '', paymentMethod, details } = item;
-              const { lenses = 0, accessories = 0, fees = 0 } = breakdown;
-              let myDate = moment(new Date(dateTime)).format("L");
-              const splitDate = myDate.split('/');
-
-              myDate = `${splitDate[1]}/${splitDate[0]}/${splitDate[2]}`;
-              csv = csv + `${myDate},${type},${value},${lenses},${accessories},${fees},${paymentMethod},"${details}"\r\n`
-            })
-            console.log('yoooo csv', csv);
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            saveAs(blob, `${new Date()}.csv`);
-          }
-        })
-      }}>
-        <FiDownload size={"28px"} />
-      </div> : null}
       <div
         className={styles.addSale}
-        onClick={() => {
-          props.history.push("/home");
-        }}
+        onClick={() => { props.history.push("/home"); }}
       >
         <FaPlus size={"28px"} />
       </div>
@@ -137,25 +144,27 @@ function usePrevious(value) {
 const Sales = (props) => {
   const [activeItem, setActiveItem] = useState(null);
   const prevLoading = usePrevious(props.data.getItemsLoading);
+  const [isReady, setIsReady] = useState(false);
+  const [currentPointer, setCurrentPointer] = useState(50);
 
   useEffect(() => {
     window.scroll(0, 0);
     props.setTitle("Sales");
-    props.setRightComponent(
-      <TopRight {...props} isOwner={props.auth.isOwner} />
-    );
+    props.setRightComponent(<TopRight {...props} isOwner={props.auth.isOwner} />);
     props.setLeftComponent(null);
-
     props.actions.loadItems();
+    props.actions.parseData(new Date(), 'month');
+
   }, []);
 
   if (prevLoading && !props.data.getItemsLoading) {
+    !isReady && setIsReady(true);
     props.setRightComponent(
       <TopRight {...props} isOwner={props.auth.isOwner} />
     );
   }
 
-  if (props.data.getItemsLoading) {
+  if (props.data.getItemsLoading || !isReady) {
     return <Loading />;
   }
 
@@ -192,35 +201,38 @@ const Sales = (props) => {
   };
 
   const reversedItems = props.data.items && props.data.items.slice(0).reverse();
+  const pointer = currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
 
   return (
     <div className={styles.listDesktopWrapper}>
       <div className={styles.listWrapper}>
         {reversedItems &&
-          reversedItems.map((item, i) => {
+          reversedItems.slice(0, pointer).map((item, i) => {
             const current = new Date(item.dateTime);
             const prev = i > 0 && new Date(reversedItems[i - 1].dateTime);
             const isSame = i > 0 && moment(prev).isSame(moment(current), "day");
             const date = item.dateTime;
 
             return (
-              <>
+              <Fragment key={`sales_${i}`}>
                 {!isSame && date && props.auth.isOwner && (
-                  <div className={styles.dateHeader} >
-                    {moment(date).format("dddd D MMM")}
-                  </div>
+                  <div className={styles.dateHeader} >{moment(date).format("dddd D MMM")}</div>
                 )}
                 <ListItem
                   {...item}
+                  history={props.history}
                   onDelete={deleteItem}
                   setActive={() =>
                     i === activeItem ? setActiveItem(null) : setActiveItem(i)
                   }
                   isActive={i === activeItem}
                 />
-              </>
+              </Fragment>
             );
           })}
+        {props.data.items && pointer !== props.data.items.length && <ViewportObserver key={pointer} onIntersect={() => {
+          setTimeout(() => { setCurrentPointer(currentPointer + 50); }, 500);
+        }}>{() => <div style={{ margin: '16px 0' }}>...loading</div>}</ViewportObserver>}
       </div>
     </div>
   );

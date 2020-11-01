@@ -9,20 +9,9 @@
     cursor: pointer;
   }
   
-  .listWrapper {
-    /* margin-top: 68px; */
-  }
-  
   @media (min-width: 769px) {
     .listWrapper {
         width: 100%;
-    }
-  }
-  
-  @media (min-width: 769px) {
-    .listDesktopWrapper {
-      /* height: calc(100vh); */
-      /* overflow: scroll; */
     }
   }
   
@@ -82,17 +71,17 @@
   }
 
   .itemDetails {
-    margin-top: 16px;
+    margin-top: 8px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .breakdownDetails {
-    margin-top: 16px;
-    font-size: 16px;
+    margin-top: 8px;
+    font-size: 14px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -108,11 +97,34 @@
   .paymentTypeInner {
     display: flex;
     align-items: center;
+    align-items: center;
   }
 
   .breakdownType {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 2px 0px;
+    padding: 4px 0px;
+    border-top: 1px lightgray solid;
+  }
+
+  .breakdownType:nth-child(1) {
+    border-top: none;
+  }
+
+  .breakdownType2 {
+    border-top: none;
+    padding: 2px 0px;
+  }
+
+  .breakdownType2:nth-child(4){
+    margin-bottom: 8px;
+  }
+
+  .saleBreakdown {
+    margin-left: 16px;
+  }
+
+  .paymentTypeIcon {
+    display: flex;
   }

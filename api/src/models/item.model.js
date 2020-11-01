@@ -80,7 +80,22 @@ let tillFloatSchema = new mongoose.Schema(
   { collection: "tillFloat" }
 );
 
+let notificationsSchema = new mongoose.Schema(
+  {
+    message: {
+      type: String,
+      require: false,
+    },
+    dateTime: {
+      type: Date,
+      require: false,
+    },
+  },
+  { collection: "notifications" }
+);
+
 module.exports = {
   items: mongoose.model("Item", itemSchema),
   tillFloat: mongoose.model("TillFloat", tillFloatSchema),
+  notifications: mongoose.model("Notifications", notificationsSchema)
 };

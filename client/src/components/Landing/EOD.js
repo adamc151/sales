@@ -125,8 +125,10 @@ const EOD = (props) => {
         <div className={styles.allSettled}>All Settled</div>
       ) : (
           <Button
+            isLoading={props.data.addNotificationLoading}
             style={{ marginTop: "32px" }}
             onClick={async () => {
+              if (props.data.addNotificationLoading) return;
               if (allSettled) {
                 props.history.goBack();
               } else {
@@ -138,6 +140,10 @@ const EOD = (props) => {
                 setCardMachineDiff(cardMachineDiff);
 
                 if (tillDiff === 0 && cardMachineDiff === 0) {
+                  props.actions.postNotification({
+                    dateTime: new Date().toISOString(),
+                    message: `Successfully settled up!\r\nTill: ${CASH.total + props.data.tillFloat < 0 ? '-' : ''} £${Math.abs(CASH.total + props.data.tillFloat).toFixed(2)}\r\nCard Machine: ${CARD.total + AMEX.total < 0 ? '-' : ''} £${Math.abs(CARD.total + AMEX.total).toFixed(2)}`
+                  });
                   Swal.queue([
                     {
                       icon: "success",
@@ -172,6 +178,29 @@ const EOD = (props) => {
                   setButton("Go Back");
                   setAllSettled(true);
                 } else {
+                  let tillMessage;
+                  let cardMessage;
+
+                  if (tillDiff === 0) {
+                    tillMessage = `Till: ${CASH.total + props.data.tillFloat < 0 ? '-' : ''} £${Math.abs(CASH.total + props.data.tillFloat).toFixed(2)} (correct)`;
+                  } else if (tillDiff > 0) {
+                    tillMessage = `Till entry over by £${Math.abs(tillDiff)}`;
+                  } else if (tillDiff < 0) {
+                    tillMessage = `Till entry under by £${Math.abs(tillDiff)}`;
+                  }
+
+                  if (cardMachineDiff === 0) {
+                    cardMessage = `Card Machine: ${CARD.total + AMEX.total < 0 ? '-' : ''} £${Math.abs(CARD.total + AMEX.total).toFixed(2)} (correct)`;
+                  } else if (cardMachineDiff > 0) {
+                    cardMessage = `Card Machine entry over by £${Math.abs(cardMachineDiff)}`;
+                  } else if (cardMachineDiff < 0) {
+                    cardMessage = `Card Machine entry under by £${Math.abs(cardMachineDiff)}`;
+                  }
+
+                  props.actions.postNotification({
+                    dateTime: new Date().toISOString(),
+                    message: `Failed to settled up!\r\n${tillMessage}\r\n${cardMessage}`
+                  });
                   setButton("Try Again");
                 }
               }

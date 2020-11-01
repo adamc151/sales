@@ -124,3 +124,28 @@
   position: sticky;
   top: 0;
 }
+
+
+.sectionHeader {
+  color: gray;
+  font-size: 14px;
+  width: 100%;
+  margin: auto;
+  text-align: left;
+  margin-top: 4px;
+  width: 100px;
+  display: inline-block;
+}
+
+.sectionText {
+  color: black;
+  font-size: 14px;
+  margin-top: 4px;
+  width: 100%;
+  margin: auto;
+  text-align: left;
+}
+
+.dateTime {
+  margin-bottom: 8px;
+}

@@ -17,6 +17,7 @@ import { Redirect, withRouter } from "react-router";
 import Swal from "sweetalert2";
 import { Button } from "../UI/Button";
 import queryString from 'query-string'
+import Loading from "../UI/Loading";
 
 const TopRight = ({ user, history }) => {
     return (
@@ -73,6 +74,7 @@ const AddItemNew = (props) => {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [date, setDate] = useState(new Date());
     const [price1, setPrice1] = useState(0);
+    const [type, setType] = useState(props.type);
     const [price2, setPrice2] = useState(0);
     const [price3, setPrice3] = useState(0);
     const [details, setDetails] = useState("");
@@ -81,8 +83,15 @@ const AddItemNew = (props) => {
     const [redirect, setRedirect] = useState(false);
     const [addButtonActive, setAddButtonActive] = useState(true);
     const [user, setUser] = useState(null);
-
+    const [id, setId] = useState(null);
+    const [loadingEdit, setLoadingEdit] = useState(props.isEdit);
     const prevLoading = usePrevious(props.data.addItemLoading);
+
+    useEffect(() => {
+        if (props.isEdit && !props.data.items) {
+            props.actions.loadItems();
+        }
+    }, []);
 
     useEffect(() => {
         const values = queryString.parse(props.location.search);
@@ -98,14 +107,13 @@ const AddItemNew = (props) => {
                 <FaAngleLeft size={"32px"} />
             </div>
         ));
-        props.setRightComponent(<TopRight user={values.user} history={props.history} />);
+        props.setRightComponent(!props.isEdit ? <TopRight user={values.user} history={props.history} /> : null);
 
         if (prevLoading && !props.data.addItemLoading) {
             if (!props.data.error) {
-                const item = props.data.items[props.data.items.length - 1];
                 Swal.fire({
                     icon: "success",
-                    title: `£${item.value}`,
+                    title: `£${(price1 + price2 + price3).toFixed(2)}`,
                     text: "Item added successfully",
                     timer: 2000,
                     showConfirmButton: false,
@@ -118,22 +126,61 @@ const AddItemNew = (props) => {
                 setAddButtonActive(true);
             }
         }
-    }, [props.data.addItemLoading]);
 
-    const buttonText = () => {
-        return `Add £${(price1 + price2 + price3).toFixed(2)}`;
-    };
+        if (props.isEdit) {
+            if (props.data.items && props.data.items.length) {
+                const url = window.location.pathname.split("/");
+                const id = url[3];
+                const myItem = props.data.items.find(item => item._id === id);
+                if (!myItem) {
+                    setLoadingEdit(false);
+                    setRedirect(true);
+                    return;
+                }
+
+                const { type, paymentMethod, details, breakdown, value, dateTime, _id } = myItem;
+                setType(type);
+                setDetails(details);
+                setId(_id);
+
+                if (paymentMethod !== 'CASH' && paymentMethod !== 'CARD' && paymentMethod !== 'AMEX') {
+                    setPaymentType('OTHER');
+                    setOtherPaymentType(paymentMethod);
+                } else {
+                    setPaymentType(paymentMethod);
+                }
+                setDate(new Date(dateTime));
+                if (breakdown) {
+                    const { lenses, accessories, fees } = breakdown;
+                    setPrice1(lenses || 0);
+                    setPrice2(accessories || 0);
+                    setPrice3(fees || 0);
+                } else {
+                    setPrice1(value || 0);
+                }
+                setLoadingEdit(false);
+            }
+        }
+
+
+    }, [props.data.addItemLoading, props.data.getItemsLoading]);
+
 
     if (redirect) {
         return <Redirect to={"/home"} />;
+    }
+
+    if (props.data.error && !props.data.items && props.isEdit) {
+        return <Button className={styles.reload} onClick={() => { window.location.reload(); }}>Reload</Button>
+    }
+    if (loadingEdit) {
+        return <Loading />
     }
 
     const handleSumbit = (e) => {
         e.preventDefault();
         e.target.querySelector("input").blur();
     };
-
-    console.log('yoooo props.data.', props.data);
 
     return (
         <div className={styles.wrapper}>
@@ -152,58 +199,26 @@ const AddItemNew = (props) => {
                 </div>
             )}
 
-            {props.type === 'EXPENSE' &&
-                <div>
-                    <div className={styles.sectionText}>Expense (£)</div>
-                    <div className={styles.priceWrapper}>
-                        <form style={{ width: "100%" }} onSubmit={handleSumbit}>
-                            <input
-                                className={`${styles.longInput}`}
-                                type="number"
-                                placeholder="0.00"
-                                onChange={(e) => {
-                                    setPrice1(Number(e.target.value));
-                                }}
-                            />
-                        </form>
-                    </div>
-                </div>}
+            <div>
+                {type === 'EXPENSE' && <div className={styles.sectionText}>Expense (£)</div>}
+                {type === 'REFUND' && <div className={styles.sectionText}>Refund Amount (£)</div>}
+                {type === 'SALE' && <div className={styles.sectionText}>Spectacles/Contact Lenses (£)</div>}
+                <div className={styles.priceWrapper}>
+                    <form style={{ width: "100%" }} onSubmit={handleSumbit}>
+                        <input
+                            className={`${styles.longInput}`}
+                            type="number"
+                            placeholder="0.00"
+                            {...(props.isEdit && { value: price1 })}
+                            onChange={(e) => {
+                                setPrice1(Number(e.target.value));
+                            }}
+                        />
+                    </form>
+                </div>
+            </div>
 
-            {props.type === 'REFUND' &&
-                <div>
-                    <div className={styles.sectionText}>Refund Amount (£)</div>
-                    <div className={styles.priceWrapper}>
-                        <form style={{ width: "100%" }} onSubmit={handleSumbit}>
-                            <input
-                                className={`${styles.longInput}`}
-                                type="number"
-                                placeholder="0.00"
-                                onChange={(e) => {
-                                    setPrice1(Number(e.target.value));
-                                }}
-                            />
-                        </form>
-                    </div>
-                </div>}
-
-            {props.type === 'SALE' &&
-                <div>
-                    <div className={styles.sectionText}>Spectacles/Contact Lenses (£)</div>
-                    <div className={styles.priceWrapper}>
-                        <form style={{ width: "100%" }} onSubmit={handleSumbit}>
-                            <input
-                                className={`${styles.longInput}`}
-                                type="number"
-                                placeholder="0.00"
-                                onChange={(e) => {
-                                    setPrice1(Number(e.target.value));
-                                }}
-                            />
-                        </form>
-                    </div>
-                </div>}
-
-            {props.type === 'SALE' &&
+            {type === 'SALE' &&
                 <div>
                     <div className={styles.sectionText}>Accessories (£)</div>
                     <div className={styles.priceWrapper}>
@@ -212,6 +227,7 @@ const AddItemNew = (props) => {
                                 className={`${styles.longInput}`}
                                 type="number"
                                 placeholder="0.00"
+                                {...(props.isEdit && { value: price2 })}
                                 onChange={(e) => {
                                     setPrice2(Number(e.target.value));
                                 }}
@@ -220,7 +236,7 @@ const AddItemNew = (props) => {
                     </div>
                 </div>}
 
-            {props.type === 'SALE' &&
+            {type === 'SALE' &&
                 <div>
                     <div className={styles.sectionText}>Fees (£)</div>
                     <div className={styles.priceWrapper}>
@@ -229,6 +245,7 @@ const AddItemNew = (props) => {
                                 className={`${styles.longInput}`}
                                 type="number"
                                 placeholder="0.00"
+                                {...(props.isEdit && { value: price3 })}
                                 onChange={(e) => {
                                     setPrice3(Number(e.target.value));
                                 }}
@@ -243,6 +260,7 @@ const AddItemNew = (props) => {
                     <input
                         className={styles.longInput}
                         type="text"
+                        value={details}
                         onChange={(e) => {
                             setDetails(e.target.value);
                         }}
@@ -251,7 +269,7 @@ const AddItemNew = (props) => {
             </div>
             <div className={styles.sectionText}>Payment Method</div>
 
-            {props.type === 'EXPENSE' &&
+            {type === 'EXPENSE' &&
                 <div
                     className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""
                         }`}
@@ -261,7 +279,7 @@ const AddItemNew = (props) => {
                     <div>CASH</div>
                 </div>}
 
-            {(props.type === 'SALE' || props.type === 'REFUND') &&
+            {(type === 'SALE' || type === 'REFUND') &&
                 <div className={styles.multiselectWrapper}>
                     <div
                         className={`${styles.optionWrapper} ${paymentType === "CARD" ? styles.isSelected : ""
@@ -303,6 +321,7 @@ const AddItemNew = (props) => {
                     <input
                         className={styles.longInput}
                         type="text"
+                        {...(props.isEdit && { value: otherPaymentType })}
                         onChange={(e) => {
                             setOtherPaymentType(e.target.value);
                         }}
@@ -316,20 +335,22 @@ const AddItemNew = (props) => {
                         setAddButtonActive(false);
                         const myPaymentType = paymentType === 'OTHER' ? otherPaymentType : paymentType;
                         if (price1 + price2 + price3 > 0) {
-                            await props.actions.postItem({
+                            const myAction = props.isEdit ? props.actions.updateItem : props.actions.postItem;
+                            await myAction({
+                                type,
                                 dateTime: date.toISOString(),
                                 value: (price1 + price2 + price3).toFixed(2),
                                 paymentMethod: myPaymentType,
                                 ...(details && { details }),
-                                user: user ? props.data.team.find(item => item.name === user).id : "",
-                                ...(props.type === 'SALE' && {
+                                ...(!props.isEdit && { user: user ? props.data.team.find(item => item.name === user).id : "" }),
+                                ...(type === 'SALE' && {
                                     breakdown: {
                                         ...(price1.toFixed(2) > 0 && { lenses: price1.toFixed(2) }),
                                         ...(price2.toFixed(2) > 0 && { accessories: price2.toFixed(2) }),
                                         ...(price3.toFixed(2) > 0 && { fees: price3.toFixed(2) })
                                     }
                                 }),
-                                type: props.type
+                                ...(id && { _id: id }),
                             });
                         } else {
                             Swal.fire({
@@ -343,7 +364,7 @@ const AddItemNew = (props) => {
                     }
                 }}
             >
-                {buttonText()}
+                {`Add £${(price1 + price2 + price3).toFixed(2)}`}
             </Button>
         </div >
     );

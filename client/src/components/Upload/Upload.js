@@ -5,11 +5,9 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
-import { Redirect, withRouter } from "react-router";
+import { withRouter } from "react-router";
 import { Button } from "../UI/Button";
 import Swal from "sweetalert2";
-// import { saveAs } from 'file-saver';
-
 
 const ListItem = ({ dateTime, value }) => (
   <div className={styles.listItemWrapper} >
@@ -20,36 +18,35 @@ const ListItem = ({ dateTime, value }) => (
   </div>
 );
 
-const parseItemsFromText = (text) => {
+const parseItemsFromText = (text, uploadFormat) => {
   const myItems = [];
-  console.log("yoooo text", JSON.stringify(text));
-  console.log('yooo typeof text ', typeof text);
 
-  // if (typeof text === 'string') {
-  //   console.log('yooo parse', JSON.parse(text));
-  // }
+  if (uploadFormat === 'JSON' && text) {
+    console.log('yooo parse', JSON.parse(text));
+    return JSON.parse(text);
+  }
 
+  if (uploadFormat === 'CSV' && text) {
+    const items = text && text.split("\r\n");
+    console.log("yoooo items", items);
 
-  const items = text && text.split("\r\n");
-  console.log("yoooo items", items);
+    if (items && items.length) {
+      console.log('yooo items', items);
+      items.pop();
+      items.map((item, i) => {
+        const [dateTime, value] = item.split(",");
+        var myDate;
+        console.log('yoooo dateTime', dateTime);
+        const splitDate = dateTime.split('/');
+        console.log('yoooo splitDate', splitDate);
+        const month = splitDate[1] - 1; //Javascript months are 0-11
+        myDate = new Date(splitDate[2], month, splitDate[0]);
 
-  if (items && items.length) {
-    console.log('yooo items', items);
-    items.pop();
-    items.map((item, i) => {
-      if (i === 0) return;
-      const [dateTime, type, value] = item.split(",");
-      var myDate;
-      console.log('yoooo dateTime', dateTime);
-      const splitDate = dateTime.split('/');
-      console.log('yoooo splitDate', splitDate);
-      const month = splitDate[1] - 1; //Javascript months are 0-11
-      myDate = new Date(splitDate[2], month, splitDate[0]);
+        console.log('yoooo myDate', myDate);
 
-      console.log('yoooo myDate', myDate);
-
-      myItems.push({ value, dateTime: myDate.toISOString(), type: 'DAILY' });
-    });
+        myItems.push({ value, dateTime: myDate.toISOString(), type: 'DAILY' });
+      });
+    }
   }
 
   return myItems;
@@ -67,8 +64,9 @@ const Upload = (props) => {
   const [addButtonActive, setAddButtonActive] = useState(true);
   const [uploadComplete, setUploadComplete] = useState(false);
   const [files, setFiles] = useState([]);
-  const items = parseItemsFromText(files[0]);
   const prevLoading = usePrevious(props.data.addItemLoading);
+  const [uploadFormat, setUploadFormat] = useState('JSON');
+  const items = parseItemsFromText(files[0], uploadFormat);
 
   useEffect(() => {
     props.setTitle('Upload');
@@ -97,6 +95,22 @@ const Upload = (props) => {
 
   return (
     <div className={styles.wrapper}>
+      <div className={styles.multiselectWrapper}>
+        <div
+          className={`${styles.optionWrapper} ${uploadFormat === "JSON" ? styles.isSelected : ""
+            }`}
+          onClick={() => setUploadFormat("JSON")}
+        >
+          <div>JSON</div>
+        </div>
+        <div
+          className={`${styles.optionWrapper} ${uploadFormat === "CSV" ? styles.isSelected : ""
+            }`}
+          onClick={() => setUploadFormat("CSV")}
+        >
+          <div>CSV</div>
+        </div>
+      </div>
       <FileDrop setFiles={setFiles} files={files} />
       {items.length ? items.map((item) => {
         return <ListItem {...item} />
@@ -105,7 +119,7 @@ const Upload = (props) => {
         className={`${styles.button} ${uploadComplete ? styles.uploadComplete : ''}`}
         isLoading={props.data.addItemLoading}
         onClick={async () => {
-          if (addButtonActive && !uploadComplete && false) {
+          if (addButtonActive && !uploadComplete) {
             setAddButtonActive(false);
             await props.actions.postItems(items);
           }
@@ -116,14 +130,6 @@ const Upload = (props) => {
     </div>
   );
 };
-
-/*
-<Button className={`${styles.button}`} onClick={() => {
-        console.log('yoooo props', props);
-        const blob = new Blob([JSON.stringify(props.data.items)], { type: 'application/json' });
-        saveAs(blob, "hello world.json");
-      }}>Export</Button>
-      */
 
 function mapStateToProps(state) {
   return state;

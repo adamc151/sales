@@ -1,6 +1,6 @@
 import moment from "moment";
 import Swal from "sweetalert2";
-import app from '../../firebase';
+import app from '../../components/Authentication/firebase';
 
 const error = (error, dispatch, cbFunction, cbArgs, newToken, onError = () => { }) => {
 
@@ -111,6 +111,7 @@ const getDates = (items, unit) => {
 
 const generate1 = (items, date, interval = "day") => {
   const tempData = [];
+  const tempItemsInRange = [];
   let acc = 0;
   let dayAcc = 0;
   let accBreakdowns = {
@@ -120,6 +121,7 @@ const generate1 = (items, date, interval = "day") => {
     },
     CARD: { total: 0, percentage: 0 },
     AMEX: { total: 0, percentage: 0 },
+    OTHER: { total: 0, percentage: 0 }
   };
   let accSaleBreakdowns = {
     lenses: {
@@ -128,6 +130,15 @@ const generate1 = (items, date, interval = "day") => {
     },
     accessories: { total: 0, percentage: 0 },
     fees: { total: 0, percentage: 0 },
+  };
+  let itemTypeBreakdowns = {
+    SALE: {
+      total: 0,
+      tally: 0,
+      percentage: 0,
+    },
+    REFUND: { total: 0, tally: 0, percentage: 0 },
+    EXPENSE: { total: 0, tally: 0, percentage: 0 },
   };
 
   for (let i = 0; i < items.length; i++) {
@@ -143,14 +154,27 @@ const generate1 = (items, date, interval = "day") => {
 
     const validPaymentMethod = items[i].paymentMethod === "CARD" || items[i].paymentMethod === "CASH" || items[i].paymentMethod === "AMEX" || !items[i].paymentMethod;
 
+    if (isDate) {
+      tempItemsInRange.push(items[i]);
+    }
+
     if (isDate && validPaymentMethod) {
       if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
-        accBreakdowns[items[i].paymentMethod || "CASH"].total =
-          accBreakdowns[items[i].paymentMethod || "CASH"].total -
+
+        (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total =
+          (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total -
           items[i].value;
+
+        if (items[i].type === 'REFUND') {
+          itemTypeBreakdowns.REFUND.total = itemTypeBreakdowns.REFUND.total - items[i].value;
+          itemTypeBreakdowns.REFUND.tally++;
+        } else if (items[i].type === 'EXPENSE') {
+          itemTypeBreakdowns.EXPENSE.total = itemTypeBreakdowns.EXPENSE.total - items[i].value;
+          itemTypeBreakdowns.EXPENSE.tally++;
+        }
       } else {
-        accBreakdowns[items[i].paymentMethod || "CASH"].total =
-          accBreakdowns[items[i].paymentMethod || "CASH"].total +
+        (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total =
+          (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total +
           items[i].value;
 
         if (items[i].breakdown) {
@@ -158,6 +182,10 @@ const generate1 = (items, date, interval = "day") => {
           accSaleBreakdowns.accessories.total = accSaleBreakdowns.accessories.total + (items[i].breakdown.accessories || 0);
           accSaleBreakdowns.fees.total = accSaleBreakdowns.fees.total + (items[i].breakdown.fees || 0);
         }
+
+        itemTypeBreakdowns.SALE.total = itemTypeBreakdowns.SALE.total + items[i].value;
+        itemTypeBreakdowns.SALE.tally++;
+
       }
     }
 
@@ -239,7 +267,13 @@ const generate1 = (items, date, interval = "day") => {
     }
   });
 
-  return { data: tempData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns };
+  Object.keys(itemTypeBreakdowns).map((key) => {
+    if (itemTypeBreakdowns[key].total && tempData.length) {
+      itemTypeBreakdowns[key].total = Number(itemTypeBreakdowns[key].total.toFixed(2));
+    }
+  });
+
+  return { data: tempData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns, itemsInRange: tempItemsInRange, itemTypeBreakdowns };
 };
 
 export function parseData(date, interval) {
@@ -253,8 +287,7 @@ export function parseData(date, interval) {
 
     const myDates = getDates(items, interval);
     const myDate = date || myDates[myDates.length - 1];
-
-    const { data, breakdowns, saleBreakdowns } = generate1(items, myDate, interval);
+    const { data, breakdowns, saleBreakdowns, itemsInRange, itemTypeBreakdowns } = generate1(items, myDate, interval);
 
     return dispatch({
       type: "CHANGE_DATA",
@@ -262,6 +295,8 @@ export function parseData(date, interval) {
         data,
         breakdowns,
         saleBreakdowns,
+        itemsInRange,
+        itemTypeBreakdowns,
         date: myDate,
         intervals: myDates,
         intervalUnit: interval,
@@ -270,6 +305,7 @@ export function parseData(date, interval) {
   };
 }
 
+/***** Items *****/
 export const loadItems = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_ITEMS_REQUEST", payload: null });
@@ -286,10 +322,12 @@ export const loadItems = () => {
         dispatch({ type: "GET_ITEMS_SUCCESS", payload: json });
         return json;
       } else {
+        console.log('yoooo error 1');
         error(json.error);
         dispatch({ type: "GET_ITEMS_FAILED", payload: null });
       }
     } catch (e) {
+      console.log('yoooo error e', e);
       error(e);
       dispatch({ type: "GET_ITEMS_FAILED", payload: null });
     }
@@ -300,6 +338,8 @@ export function postItem(item, newToken) {
   return async (dispatch, getState) => {
     dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
 
+    const { _id, ...rest } = item;
+
     try {
       const response = await fetch("/api/additem", {
         method: "POST",
@@ -307,7 +347,7 @@ export function postItem(item, newToken) {
           "X-Firebase-ID-Token": newToken || getState().auth.token,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(item),
+        body: JSON.stringify(rest),
       });
       const json = await response.json();
       if (response.ok) {
@@ -316,6 +356,37 @@ export function postItem(item, newToken) {
       } else {
         const onError = () => dispatch({ type: "ADD_ITEM_FAILED", payload: null });
         error(json.error, dispatch, postItem, item, newToken, onError)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+    }
+  };
+}
+
+export function updateItem(item, newToken) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
+
+    const { _id, ...rest } = item;
+
+    try {
+      const response = await fetch(`/api/editItem?item_id=${_id}`, {
+        method: "PUT",
+        headers: {
+          "X-Firebase-ID-Token": newToken || getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rest),
+      });
+      const json = await response.json();
+      if (response.ok) {
+        await dispatch(loadItems());
+        dispatch({ type: "ADD_ITEM_SUCCESS", payload: null });
+      } else {
+        const onError = () => dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+        error(json.error, dispatch, updateItem, item, newToken, onError)
       }
       return response.ok;
     } catch (e) {
@@ -350,6 +421,38 @@ export function deleteItem(itemId) {
   };
 }
 
+
+export function postItems(items, newToken) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/additems", {
+        method: "POST",
+        headers: {
+          "X-Firebase-ID-Token": newToken || getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(items),
+      });
+      const json = await response.json();
+      if (response.ok) {
+        await dispatch(loadItems());
+        dispatch({ type: "ADD_ITEM_SUCCESS", payload: null });
+      } else {
+        const onError = () => dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+        error(json.error, dispatch, postItem, items, newToken, onError)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "ADD_ITEM_FAILED", payload: null });
+    }
+  };
+}
+
+
+/***** Till Float *****/
 export const getTillFloat = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_TILLFLOAT_REQUEST", payload: null });
@@ -410,35 +513,7 @@ export function postTillFloat(value) {
 }
 
 
-export function postItems(items, newToken) {
-  return async (dispatch, getState) => {
-    dispatch({ type: "ADD_ITEM_REQUEST", payload: null });
-
-    try {
-      const response = await fetch("/api/additems", {
-        method: "POST",
-        headers: {
-          "X-Firebase-ID-Token": newToken || getState().auth.token,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(items),
-      });
-      const json = await response.json();
-      if (response.ok) {
-        await dispatch(loadItems());
-        dispatch({ type: "ADD_ITEM_SUCCESS", payload: null });
-      } else {
-        const onError = () => dispatch({ type: "ADD_ITEM_FAILED", payload: null });
-        error(json.error, dispatch, postItem, items, newToken, onError)
-      }
-      return response.ok;
-    } catch (e) {
-      error(e);
-      dispatch({ type: "ADD_ITEM_FAILED", payload: null });
-    }
-  };
-}
-
+/***** Team *****/
 export const getTeam = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_TEAM_REQUEST", payload: null });
@@ -464,3 +539,87 @@ export const getTeam = () => {
     }
   };
 };
+
+
+
+/***** Notifications *****/
+export const getNotifications = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "GET_NOTIFICATIONS_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/notifications", {
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "GET_NOTIFICATIONS_SUCCESS", payload: json });
+        return json;
+      } else {
+        error(json.error);
+        dispatch({ type: "GET_NOTIFICATIONS_FAILED", payload: null });
+      }
+    } catch (e) {
+      error(e);
+      dispatch({ type: "GET_NOTIFICATIONS_FAILED", payload: null });
+    }
+  };
+};
+
+export function postNotification(item, newToken) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "ADD_NOTIFICATION_REQUEST", payload: null });
+
+    const { _id, ...rest } = item;
+
+    try {
+      const response = await fetch("/api/addNotification", {
+        method: "POST",
+        headers: {
+          "X-Firebase-ID-Token": newToken || getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rest),
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "ADD_NOTIFICATION_SUCCESS", payload: null });
+      } else {
+        const onError = () => dispatch({ type: "ADD_NOTIFICATION_FAILED", payload: null });
+        error(json.error, dispatch, postItem, item, newToken, onError)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "ADD_NOTIFICATION_FAILED", payload: null });
+    }
+  };
+}
+
+export function clearNotifications() {
+  return async (dispatch, getState) => {
+    dispatch({ type: "DELETE_NOTIFICATIONS_REQUEST", payload: null });
+
+    try {
+      const response = await fetch(`/api/clearNotifications`, {
+        method: "DELETE",
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        dispatch({ type: "DELETE_NOTIFICATIONS_SUCCESS", payload: null });
+      } else {
+        dispatch({ type: "DELETE_NOTIFICATIONS_FAILED", payload: null });
+        error(response.error);
+      }
+    } catch (e) {
+      dispatch({ type: "DELETE_NOTIFICATIONS_FAILED", payload: null });
+      error(e);
+    }
+  };
+}

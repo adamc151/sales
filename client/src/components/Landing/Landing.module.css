@@ -139,3 +139,21 @@
   text-align: left;
   color: #505050;
 }
+
+.notificationWrapper {
+  width: 90%;
+  font-size: 14px;
+  text-align: left;
+  color: #505050;
+}
+
+.divider {
+  width: calc(100% - 32px);
+  height: 1px;
+  margin: 32px 16px;
+  border-bottom: 1px lightgray solid;
+}
+
+.notificationTime {
+  margin-bottom: 8px;
+}

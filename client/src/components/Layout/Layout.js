@@ -14,8 +14,8 @@ import { GoGraph } from "react-icons/go";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { FiUpload } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import app from "../../firebase";
-import { AuthContext } from "../../Auth";
+import app from "../Authentication/firebase";
+import { AuthContext } from "../Authentication/Auth";
 
 const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
   const { isOwner } = useContext(AuthContext);
@@ -89,7 +89,7 @@ const Main = ({ handleToggleSidebar, children }) => {
   );
 };
 
-const Layout = ({ children, isLoading }) => {
+const Layout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
 

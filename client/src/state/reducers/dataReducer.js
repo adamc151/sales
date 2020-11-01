@@ -15,6 +15,8 @@ const reducer = (state = initialState, action) => {
         intervalUnit: action.payload.intervalUnit,
         breakdowns: action.payload.breakdowns,
         saleBreakdowns: action.payload.saleBreakdowns,
+        itemsInRange: action.payload.itemsInRange,
+        itemTypeBreakdowns: action.payload.itemTypeBreakdowns,
         loading: false,
       };
 
@@ -31,12 +33,12 @@ const reducer = (state = initialState, action) => {
     case "ADD_ITEM_SUCCESS":
       return { ...state, addItemLoading: false };
 
+
     case "GET_TILLFLOAT_REQUEST":
       return { ...state, getTillFloatLoading: true, error: false };
     case "GET_TILLFLOAT_FAILED":
       return { ...state, getTillFloatLoading: false, error: true };
     case "GET_TILLFLOAT_SUCCESS":
-      console.log("yooo action.payload", action.payload);
       return {
         ...state,
         getTillFloatLoading: false,
@@ -56,6 +58,21 @@ const reducer = (state = initialState, action) => {
       return { ...state, getTeamLoading: false, error: true };
     case "GET_TEAM_SUCCESS":
       return { ...state, getTeamLoading: false, team: action.payload };
+
+
+    case "GET_NOTIFICATIONS_REQUEST":
+      return { ...state, getNotifictionsLoading: true, error: false };
+    case "GET_NOTIFICATIONS_FAILED":
+      return { ...state, getNotifictionsLoading: false, error: true };
+    case "GET_NOTIFICATIONS_SUCCESS":
+      return { ...state, getNotifictionsLoading: false, notifications: action.payload };
+    case "ADD_NOTIFICATION_REQUEST":
+      return { ...state, addNotificationLoading: true, error: false };
+    case "ADD_NOTIFICATION_FAILED":
+      return { ...state, addNotificationLoading: false, error: true };
+    case "ADD_NOTIFICATION_SUCCESS":
+      return { ...state, addNotificationLoading: false };
+
     default:
       return state;
   }
