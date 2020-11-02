@@ -13,7 +13,7 @@ import Loading from "../UI/Loading";
 import { withRouter } from "react-router";
 import moment from "moment";
 import Swal from "sweetalert2";
-import ViewportObserver from "../Image/ViewportObserver";
+import ViewportObserver from "../UI/ViewportObserver";
 
 const paymentMethodIcons = {
   CASH: <FaMoneyBillAlt color={"#53a957"} />,

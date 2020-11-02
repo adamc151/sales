@@ -114,7 +114,7 @@ const AddItemNew = (props) => {
                 Swal.fire({
                     icon: "success",
                     title: `£${(price1 + price2 + price3).toFixed(2)}`,
-                    text: "Item added successfully",
+                    text: `Item ${props.isEdit ? 'updated' : 'added'} successfully`,
                     timer: 2000,
                     showConfirmButton: false,
                     allowOutsideClick: false,
@@ -272,7 +272,7 @@ const AddItemNew = (props) => {
             {type === 'EXPENSE' &&
                 <div
                     className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""
-                        }`}
+                        } `}
                     onClick={() => setPaymentType("CASH")}
                 >
                     <div>{paymentMethodIcons.CASH}</div>
@@ -283,7 +283,7 @@ const AddItemNew = (props) => {
                 <div className={styles.multiselectWrapper}>
                     <div
                         className={`${styles.optionWrapper} ${paymentType === "CARD" ? styles.isSelected : ""
-                            }`}
+                            } `}
                         onClick={() => setPaymentType("CARD")}
                     >
                         <div>{paymentMethodIcons.CARD}</div>
@@ -291,7 +291,7 @@ const AddItemNew = (props) => {
                     </div>
                     <div
                         className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""
-                            }`}
+                            } `}
                         onClick={() => setPaymentType("CASH")}
                     >
                         <div>{paymentMethodIcons.CASH}</div>
@@ -299,7 +299,7 @@ const AddItemNew = (props) => {
                     </div>
                     <div
                         className={`${styles.optionWrapper} ${paymentType === "AMEX" ? styles.isSelected : ""
-                            }`}
+                            } `}
                         onClick={() => setPaymentType("AMEX")}
                     >
                         <div>{paymentMethodIcons.AMEX}</div>
@@ -307,7 +307,7 @@ const AddItemNew = (props) => {
                     </div>
                     <div
                         className={`${styles.optionWrapper} ${paymentType === "OTHER" ? styles.isSelected : ""
-                            }`}
+                            } `}
                         onClick={() => setPaymentType("OTHER")}
                         style={{ marginRight: "0px" }}
                     >
@@ -364,7 +364,7 @@ const AddItemNew = (props) => {
                     }
                 }}
             >
-                {`Add £${(price1 + price2 + price3).toFixed(2)}`}
+                {`${props.isEdit ? "Update" : "Add"} £${(price1 + price2 + price3).toFixed(2)} `}
             </Button>
         </div >
     );

@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import { withRouter, Redirect } from "react-router";
 import app from "../Authentication/firebase.js";
 import { AuthContext } from "../Authentication/Auth";
-import Image from "../Image/Image";
+import Image from "../UI/Image";
 
 const Login = ({ history }) => {
   const [username, setUsername] = useState("");

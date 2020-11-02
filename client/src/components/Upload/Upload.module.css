@@ -14,6 +14,27 @@
   font-size: 18px;
 }
 
+.listWrapper {
+  margin-top: 58px;
+}
+
+@media (min-width: 769px) {
+  .listWrapper {
+    width: calc(100vw - 270px);
+  }
+}
+
+@media (min-width: 769px) {
+  .listDesktopWrapper {
+    height: calc(100vh);
+    overflow: scroll;
+  }
+}
+
+.listWrapper::-webkit-scrollbar {
+  display: none;
+}
+
 
 .button {
   width: calc(100% - 24px);

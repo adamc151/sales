@@ -94,39 +94,41 @@ const Upload = (props) => {
 
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.multiselectWrapper}>
-        <div
-          className={`${styles.optionWrapper} ${uploadFormat === "JSON" ? styles.isSelected : ""
-            }`}
-          onClick={() => setUploadFormat("JSON")}
-        >
-          <div>JSON</div>
+    <div className={styles.listDesktopWrapper}>
+      <div className={styles.listWrapper}>
+        <div className={styles.multiselectWrapper}>
+          <div
+            className={`${styles.optionWrapper} ${uploadFormat === "JSON" ? styles.isSelected : ""
+              }`}
+            onClick={() => setUploadFormat("JSON")}
+          >
+            <div>JSON</div>
+          </div>
+          <div
+            className={`${styles.optionWrapper} ${uploadFormat === "CSV" ? styles.isSelected : ""
+              }`}
+            onClick={() => setUploadFormat("CSV")}
+          >
+            <div>CSV</div>
+          </div>
         </div>
-        <div
-          className={`${styles.optionWrapper} ${uploadFormat === "CSV" ? styles.isSelected : ""
-            }`}
-          onClick={() => setUploadFormat("CSV")}
+        <FileDrop setFiles={setFiles} files={files} />
+        {items.length ? items.map((item) => {
+          return <ListItem {...item} />
+        }) : ''}
+        {items.length ? <Button
+          className={`${styles.button} ${uploadComplete ? styles.uploadComplete : ''}`}
+          isLoading={props.data.addItemLoading}
+          onClick={async () => {
+            if (addButtonActive && !uploadComplete) {
+              setAddButtonActive(false);
+              await props.actions.postItems(items);
+            }
+          }}
         >
-          <div>CSV</div>
-        </div>
+          {!uploadComplete ? 'Upload' : 'Uploaded!'}
+        </Button> : ''}
       </div>
-      <FileDrop setFiles={setFiles} files={files} />
-      {items.length ? items.map((item) => {
-        return <ListItem {...item} />
-      }) : ''}
-      {items.length ? <Button
-        className={`${styles.button} ${uploadComplete ? styles.uploadComplete : ''}`}
-        isLoading={props.data.addItemLoading}
-        onClick={async () => {
-          if (addButtonActive && !uploadComplete) {
-            setAddButtonActive(false);
-            await props.actions.postItems(items);
-          }
-        }}
-      >
-        {!uploadComplete ? 'Upload' : 'Uploaded!'}
-      </Button> : ''}
     </div>
   );
 };
