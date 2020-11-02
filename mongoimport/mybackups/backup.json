@@ -1,6 +1,0 @@
-{"_id":{"$oid":"5f96c437dcff2700188ba953"},"dateTime":{"$date":"2020-10-26T12:42:22.384Z"},"value":10.45,"paymentMethod":"CARD","details":"test details 2","user":"011","breakdown":{"lenses":10.45},"type":"SALE","__v":0}
-{"_id":{"$oid":"5f96c460dcff2700188ba954"},"dateTime":{"$date":"2020-10-26T12:42:36.039Z"},"value":55.89,"paymentMethod":"voucher","details":"test details other payment method","user":"012","breakdown":{"lenses":55.89},"type":"SALE","__v":0}
-{"_id":{"$oid":"5f96c4dedcff2700188ba957"},"dateTime":{"$date":"2020-10-26T12:44:44.423Z"},"value":132.62,"paymentMethod":"AMEX","details":"test sale with breakdowns","user":"010","breakdown":{"lenses":12.6,"accessories":20.01,"fees":100.01},"type":"SALE","__v":0}
-{"_id":{"$oid":"5f96c429dcff2700188ba952"},"dateTime":{"$date":"2020-10-26T12:41:58.309Z"},"value":9.99,"paymentMethod":"CARD","details":"test details","user":"010","breakdown":{"lenses":9.99},"type":"SALE","__v":0}
-{"_id":{"$oid":"5f96c479dcff2700188ba955"},"dateTime":{"$date":"2020-10-26T12:43:17.033Z"},"value":22.57,"paymentMethod":"CARD","details":"refund details","user":"010","type":"REFUND","__v":0}
-{"_id":{"$oid":"5f96c487dcff2700188ba956"},"dateTime":{"$date":"2020-10-26T12:43:42.373Z"},"value":10,"paymentMethod":"CASH","details":"petty cash details","user":"013","type":"EXPENSE","__v":0}
