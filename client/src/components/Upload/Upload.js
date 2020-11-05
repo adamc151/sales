@@ -120,7 +120,7 @@ const Upload = (props) => {
           className={`${styles.button} ${uploadComplete ? styles.uploadComplete : ''}`}
           isLoading={props.data.addItemLoading}
           onClick={async () => {
-            if (addButtonActive && !uploadComplete) {
+            if (addButtonActive && !uploadComplete && false) {
               setAddButtonActive(false);
               await props.actions.postItems(items);
             }

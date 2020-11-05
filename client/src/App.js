@@ -77,7 +77,7 @@ function App() {
       <div className="App">
         <AuthProvider>
           <Switch>
-            <Route path="/login" render={() => <Login />} />
+            <Route path="/(login|signup)" render={() => <Login />} />
             <PrivateRoute component={PrivateRoutes} />
           </Switch>
         </AuthProvider>

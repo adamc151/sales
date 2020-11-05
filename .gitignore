@@ -4,3 +4,6 @@ https-docker-compose.yaml
 docker-compose.yaml
 /mongoimport
 .env
+.env.development
+.env.production
+.env.venti-e2e

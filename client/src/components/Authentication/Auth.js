@@ -56,6 +56,13 @@ export const AuthProvider = connect(
         });
     }, []);
 
+    const register = async (name, email, password) => {
+        await app.auth.createUserWithEmailAndPassword(email, password)
+        return app.auth.currentUser.updateProfile({
+            displayName: name
+        })
+    }
+
     if (pending) {
         return <Loading />;
     }
@@ -66,7 +73,8 @@ export const AuthProvider = connect(
                 currentUser,
                 token,
                 isOwner,
-                pending
+                pending,
+                register
             }}
         >
             {children}
