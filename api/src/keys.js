@@ -5,5 +5,5 @@ module.exports = {
   mongoPort: process.env.MONGO_PORT,
   mongoDatabase: process.env.MONGO_DB,
   mongoProd: process.env.MONGO_PROD,
-  team: process.env.TEAM
+  // team: process.env.TEAM
 };

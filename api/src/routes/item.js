@@ -1,6 +1,7 @@
 let ItemModel = require("../models/item.model").items;
 let TillFloatModel = require("../models/item.model").tillFloat;
 let NotificationsModel = require("../models/item.model").notifications;
+let TeamMembersModel = require("../models/item.model").teamMembers;
 let express = require("express");
 let router = express.Router();
 const keys = require("../keys");
@@ -183,21 +184,20 @@ router.delete("/removeitem", (req, res) => {
     });
 });
 
-
 router.get("/team", (req, res) => {
-  try {
-    const team = keys.team;
-    const myTeam = [];
-    team.split(',').map((member) => {
-      const [name, id] = member.split(':');
-      myTeam.push({
-        name, id
+    TeamMembersModel.find({"shop_id": "111"})
+    .then((teamMembers) => {
+      const myTeam = [];
+      teamMembers.map((member) => {
+        myTeam.push({
+          name: member.name, id: member.id
+        });
       });
+      res.json(myTeam);
+    })
+    .catch((err) => {
+      res.status(500).json(err); // TODO: Need to handle case where there is no team in the DB, currently displays a number to the user
     });
-    res.json(myTeam);
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
 module.exports = router;
