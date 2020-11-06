@@ -10,7 +10,7 @@ admin.initializeApp();
 
 const checkAuth = async (idToken) => {
   const decoded = await admin.auth().verifyIdToken(idToken);
-  return decoded.owner;
+  return decoded;
 };
 
 app.use(cors());
@@ -35,7 +35,9 @@ app.use(async (req, res, next) => {
       res.status(500).json({ error: "ID token not specified" });
     }
     try {
-      req.isOwner = await checkAuth(idToken);
+      const user = await checkAuth(idToken);
+      req.isOwner = user.owner;
+      req.email = user.email;
       next();
     } catch (err) {
       res.status(500).json({ error: "Not Authorized" });

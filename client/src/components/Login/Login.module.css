@@ -118,3 +118,34 @@
   text-align: left;
   margin: 16px 0px 8px 0px;
 }
+
+
+.termsAndConditionsWrapper {
+  margin: 16px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.termsAndConditionsCheckbox {
+  width: 20px;
+  height: 20px;
+}
+
+.termsAndConditionsLink {
+  text-decoration: underline;
+}
+
+
+.appName {
+  font-family: "Pacifico", sans-serif;
+  font-size: 32px;
+  margin-bottom: 16px;
+  height: 56px;
+}
+
+.tagline {
+  font-size: 18px;
+  color: gray;
+  margin-bottom: 16px;
+}

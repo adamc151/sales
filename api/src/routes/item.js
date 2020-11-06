@@ -2,9 +2,40 @@ let ItemModel = require("../models/item.model").items;
 let TillFloatModel = require("../models/item.model").tillFloat;
 let NotificationsModel = require("../models/item.model").notifications;
 let TeamMembersModel = require("../models/item.model").teamMembers;
+let UserModel = require("../models/item.model").users;
 let express = require("express");
 let router = express.Router();
 // const keys = require("../keys");
+
+const generateHash = (s) => {
+  var hash = 0, i, chr, len;
+  if (s.length === 0) return hash;
+  for (i = 0, len = s.length; i < len; i++) {
+    chr = s.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+}
+
+router.post("/addUser", (req, res) => {
+  if (!req.body) {
+    return res.status(400).send("Request body is missing");
+  }
+
+  let model = new UserModel({ email: req.email, shop_id: generateHash(req.email), isOwner: true });
+  model
+    .save()
+    .then((doc) => {
+      if (!doc || doc.length === 0) {
+        return res.status(500).send(doc);
+      }
+      res.status(201).send({ message: "User added" });
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 router.get("/notifications", (req, res) => {
   if (req.isOwner) {
@@ -87,11 +118,14 @@ router.post("/tillfloat", async (req, res) => {
   }
 });
 
-router.get("/items", (req, res) => {
+router.get("/items", async (req, res) => {
+
+  const user = await UserModel.findOne({ email: req.email });
+
   if (!req.isOwner) {
     var d = new Date();
     d.setHours(0, 0, 0, 0);
-    ItemModel.find({ dateTime: { $gt: d } })
+    ItemModel.find({ dateTime: { $gt: d }, shop_id: user && user.shop_id })
       .then((doc) => {
         res.json(doc);
       })
@@ -99,7 +133,7 @@ router.get("/items", (req, res) => {
         res.status(500).json(err);
       });
   } else {
-    ItemModel.find()
+    ItemModel.find({ shop_id: user && user.shop_id })
       .sort({ dateTime: 1 })
       .then((doc) => {
         res.json(doc);
@@ -110,12 +144,15 @@ router.get("/items", (req, res) => {
   }
 });
 
-router.post("/additem", (req, res) => {
+router.post("/additem", async (req, res) => {
   if (!req.body) {
     return res.status(400).send("Request body is missing");
   }
 
-  let model = new ItemModel(req.body);
+  const user = await UserModel.findOne({ email: req.email });
+  console.log('yooo user', user);
+
+  let model = new ItemModel({ ...req.body, shop_id: user && user.shop_id });
   model
     .save()
     .then((doc) => {
@@ -185,7 +222,7 @@ router.delete("/removeitem", (req, res) => {
 });
 
 router.get("/team", (req, res) => {
-    TeamMembersModel.find({"shop_id": "111"})
+  TeamMembersModel.find({ "shop_id": "111" })
     .then((teamMembers) => {
       const myTeam = [];
       teamMembers.map((member) => {

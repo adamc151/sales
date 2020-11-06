@@ -6,10 +6,13 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Landing from "./components/Landing/Landing";
 import Login from "./components/Login/Login";
 import Sales from "./components/Sales/Sales";
+import Vouchers from "./components/Sales/Vouchers";
 import AddItem from "./components/Sales/AddItem";
 import ChooseItem from "./components/Sales/ChooseItem";
+import ChooseVoucher from "./components/Sales/ChooseVoucher";
 import EOD from "./components/Landing/EOD";
 import Upload from "./components/Upload/Upload";
+import Settings from "./components/Settings/Settings";
 import { Redirect } from "react-router";
 import { AuthProvider, AuthContext } from "./components/Authentication/Auth";
 import PrivateRoute from "./components/Authentication/PrivateRoute";
@@ -29,8 +32,14 @@ const PrivateRoutes = () => {
               path="/add"
               render={() => <ChooseItem {...props} />}
             />
+            <Route
+              exact
+              path="/add-voucher"
+              render={() => <ChooseVoucher {...props} />}
+            />
             <Route exact path="/eod" render={() => <EOD {...props} />} />
             <Route exact path="/sales" render={() => <Sales {...props} />} />
+            <Route exact path="/vouchers" render={() => <Vouchers {...props} />} />
             <Route
               exact
               path="/add-sale"
@@ -64,6 +73,13 @@ const PrivateRoutes = () => {
                 render={() => <Upload {...props} />}
               />
             )}
+            {isOwner && (
+              <Route
+                exact
+                path="/settings"
+                render={() => <Settings {...props} />}
+              />
+            )}
           </>
         );
       }}
@@ -77,7 +93,7 @@ function App() {
       <div className="App">
         <AuthProvider>
           <Switch>
-            <Route path="/(login|signup)" render={() => <Login />} />
+            <Route path="/(login|signup|termsandconditions)" render={() => <Login />} />
             <PrivateRoute component={PrivateRoutes} />
           </Switch>
         </AuthProvider>

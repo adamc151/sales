@@ -9,16 +9,18 @@ import {
   SidebarHeader,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import { FaList, FaHome } from "react-icons/fa";
+import { FaList, FaHome, FaUserCog } from "react-icons/fa";
+import { MdLocalHospital } from "react-icons/md";
 import { GoGraph } from "react-icons/go";
 import { HiMenuAlt1 } from "react-icons/hi";
-import { FiUpload } from "react-icons/fi";
+import { FiUpload, FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import app from "../Authentication/firebase";
 import { AuthContext } from "../Authentication/Auth";
 
 const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
-  const { isOwner } = useContext(AuthContext);
+  const { isOwner, currentUser } = useContext(AuthContext);
+  console.log('yoooo currentUser.displayName', currentUser.displayName);
 
   return (
     <ProSidebar
@@ -28,7 +30,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
       onToggle={handleToggleSidebar}
     >
       <SidebarHeader style={{ padding: "16px 24px" }}>
-        {isOwner ? "Owner" : "Shop"}
+        {`${currentUser.displayName || ''} ${isOwner ? "(Owner)" : "(Shop)"}`}
       </SidebarHeader>
       <SidebarContent>
         <Menu iconShape="square">
@@ -39,6 +41,10 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
           <MenuItem icon={<FaList />}>
             Sales
             <Link to="/sales" onClick={() => handleToggleSidebar(false)} />
+          </MenuItem>
+          <MenuItem icon={<MdLocalHospital />}>
+            NHS Vouchers
+            <Link to="/vouchers" onClick={() => handleToggleSidebar(false)} />
           </MenuItem>
           {isOwner ? (
             <MenuItem icon={<GoGraph />}>
@@ -52,6 +58,14 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             <MenuItem icon={<FiUpload />}>
               Upload
               <Link to="/upload" onClick={() => handleToggleSidebar(false)} />
+            </MenuItem>
+          ) : (
+              <></>
+            )}
+          {isOwner ? (
+            <MenuItem icon={<FaUserCog />}>
+              Account Settings
+              <Link to="/settings" onClick={() => handleToggleSidebar(false)} />
             </MenuItem>
           ) : (
               <></>

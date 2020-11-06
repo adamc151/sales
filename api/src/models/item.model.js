@@ -61,6 +61,10 @@ let itemSchema = new mongoose.Schema(
     user: {
       type: String,
       require: false,
+    },
+    shop_id: {
+      type: Number,
+      require: false,
     }
   },
   { collection: "items" }
@@ -105,12 +109,30 @@ let teamMembersSchema = new mongoose.Schema(
       require: true,
     },
   },
-  { collection: "teamMembers" }
+  { collection: "teamMembers" });
+
+let userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      require: true,
+    },
+    isOwner: {
+      type: Boolean,
+      require: false,
+    },
+    shop_id: {
+      type: Number,
+      require: true
+    }
+  },
+  { collection: "users" }
 );
 
 module.exports = {
   items: mongoose.model("Item", itemSchema),
   tillFloat: mongoose.model("TillFloat", tillFloatSchema),
   notifications: mongoose.model("Notifications", notificationsSchema),
-  teamMembers: mongoose.model("TeamMembers", teamMembersSchema)
+  teamMembers: mongoose.model("TeamMembers", teamMembersSchema),
+  users: mongoose.model("Users", userSchema),
 };
