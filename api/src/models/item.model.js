@@ -94,8 +94,23 @@ let notificationsSchema = new mongoose.Schema(
   { collection: "notifications" }
 );
 
+let teamMembersSchema = new mongoose.Schema(
+  {
+    shop_id: {
+      type: String,
+      require: true,
+    },
+    name: {
+      type: String,
+      require: true,
+    },
+  },
+  { collection: "teamMembers" }
+);
+
 module.exports = {
   items: mongoose.model("Item", itemSchema),
   tillFloat: mongoose.model("TillFloat", tillFloatSchema),
-  notifications: mongoose.model("Notifications", notificationsSchema)
+  notifications: mongoose.model("Notifications", notificationsSchema),
+  teamMembers: mongoose.model("TeamMembers", teamMembersSchema)
 };

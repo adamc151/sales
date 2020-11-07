@@ -67,8 +67,8 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
 
 const Main = ({ handleToggleSidebar, children }) => {
   const [title, setTitle] = useState("");
-  const [rightComponent, setRightComponent] = useState(null);
-  const [leftComponent, setLeftComponent] = useState("");
+  const [rightComponent, setRightComponent] = useState(null); // Should this be called setTopRightComponent?
+  const [leftComponent, setLeftComponent] = useState(""); // Should this be called setTopLeftComponent?
 
   return (
     <div className={styles.main}>
@@ -109,10 +109,10 @@ const Layout = ({ children }) => {
         handleToggleSidebar={handleToggleSidebar}
       />
       <Main
-        toggled={toggled}
-        collapsed={collapsed}
+        toggled={toggled} // No need?
+        collapsed={collapsed} // No need?
         handleToggleSidebar={handleToggleSidebar}
-        handleCollapsedChange={handleCollapsedChange}
+        handleCollapsedChange={handleCollapsedChange} // No need?
       >
         {children}
       </Main>
