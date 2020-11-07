@@ -42,6 +42,35 @@ export function updateAuth({ isOwner, token }) {
   };
 }
 
+export const getUser = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "GET_USER_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/user", {
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "GET_USER_SUCCESS", payload: json });
+        return json;
+      } else {
+        // error(json.error);
+        dispatch({ type: "GET_USER_FAILED", payload: null });
+        throw json.error;
+      }
+    } catch (e) {
+      console.log('yoooo error e', e);
+      // error(e);
+      dispatch({ type: "GET_USER_FAILED", payload: null });
+      throw e;
+    }
+  };
+};
+
 
 export function addUser() {
   return async (dispatch, getState) => {

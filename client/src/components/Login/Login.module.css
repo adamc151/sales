@@ -149,3 +149,9 @@
   color: gray;
   margin-bottom: 16px;
 }
+
+.error {
+  background-color: #FFCCCB;
+  border: 1px solid red;
+  padding: 8px;
+}

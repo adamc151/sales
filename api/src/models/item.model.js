@@ -63,7 +63,7 @@ let itemSchema = new mongoose.Schema(
       require: false,
     },
     shop_id: {
-      type: Number,
+      type: String,
       require: false,
     }
   },
@@ -80,6 +80,10 @@ let tillFloatSchema = new mongoose.Schema(
       type: Date,
       require: false,
     },
+    shop_id: {
+      type: String,
+      require: true,
+    }
   },
   { collection: "tillFloat" }
 );
@@ -94,6 +98,10 @@ let notificationsSchema = new mongoose.Schema(
       type: Date,
       require: false,
     },
+    shop_id: {
+      type: String,
+      require: true,
+    }
   },
   { collection: "notifications" }
 );
@@ -121,10 +129,9 @@ let userSchema = new mongoose.Schema(
       type: Boolean,
       require: false,
     },
-    shop_id: {
-      type: Number,
-      require: true
-    }
+    shop_ids: [{
+      type: String
+    }]
   },
   { collection: "users" }
 );

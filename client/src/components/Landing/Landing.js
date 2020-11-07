@@ -57,6 +57,8 @@ const Landing = (props) => {
     props.actions.getTeam();
   }, []);
 
+  console.log('yooooo props', props);
+
   useEffect(() => {
     props.auth.isOwner && !props.data.getNotifictionsLoading && props.actions.getNotifications();
   }, [props.auth]);

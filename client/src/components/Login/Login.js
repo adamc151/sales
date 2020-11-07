@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/authActions";
 import Loading from "../UI/Loading";
 import { Switch, Route } from "react-router-dom";
+import { Button } from '../UI/Button';
 
 function openInNewTab(url) {
   var win = window.open(url, '_blank');
@@ -16,23 +17,32 @@ function openInNewTab(url) {
 }
 
 const Login = ({ history, actions }) => {
+  const { currentUser, setOwner } = useContext(AuthContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [redirect, setReirect] = useState(true);
+  const [redirect, setRedirect] = useState(true);
 
   const [shopName, setShopName] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
   const [passwordRegisterConfirmation, setPasswordRegisterConfirmation] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = useCallback(
     async (event, username, password) => {
+
       event.preventDefault();
       try {
+        setRedirect(false);
         await app.auth().signInWithEmailAndPassword(username, password);
+
+        setRedirect(true);
+
       } catch (error) {
-        alert(error);
+        setRedirect(true);
+        setErrorMessage(`${error}`);
       }
     },
     [history]
@@ -42,25 +52,26 @@ const Login = ({ history, actions }) => {
     async (event, shopName, email, password) => {
       event.preventDefault();
       try {
-        setReirect(false);
+        setRedirect(false);
         await app.auth().createUserWithEmailAndPassword(email, password);
         await app.auth().currentUser.updateProfile({
           displayName: shopName
         })
 
         //Add User to users db
-        console.log('yoooo actions', actions);
         await actions.addUser();
+        //Update isOwner in Auth Context
+        const userSummary = await actions.getUser();
+        setOwner(userSummary && userSummary.length && userSummary[0].isOwner);
 
-        setReirect(true);
+        setRedirect(true);
       } catch (error) {
-        alert(error);
+        setRedirect(true);
+        setErrorMessage(`${error}`);
       }
     },
     [history]
   );
-
-  const { currentUser } = useContext(AuthContext);
 
   if (currentUser && redirect) {
     return <Redirect to="/home" />;
@@ -91,13 +102,13 @@ const Login = ({ history, actions }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button className={styles.signIn} type="submit">
+              <Button className={styles.signIn} type="submit" isLoading={!redirect}>
                 Sign In
-          </button>
+              </Button>
 
-              <a className={styles.signUp} onClick={() => { history.push('/signup'); }}>
+              <a className={styles.signUp} onClick={() => { setErrorMessage(""); history.push('/signup'); }}>
                 Sign Up
-          </a>
+              </a>
             </form>
           }} />
 
@@ -135,11 +146,12 @@ const Login = ({ history, actions }) => {
               <div className={styles.termsAndConditionsWrapper}>
                 <div>I agree to the <a className={styles.termsAndConditionsLink} onClick={() => openInNewTab('/termsandconditions')}>Terms and Conditions</a></div><input className={styles.termsAndConditionsCheckbox} type="checkbox" />
               </div>
-              <button className={styles.signIn} type="submit" isLoading={!redirect}>
+              {errorMessage ? <div className={styles.error}>{errorMessage}</div> : null}
+              <Button className={styles.signIn} type="submit" isLoading={!redirect}>
                 Sign Up
-          </button>
+              </Button>
 
-              <a className={styles.signUp} onClick={() => { history.push('/login'); }}>
+              <a className={styles.signUp} onClick={() => { setErrorMessage(""); history.push('/login'); }}>
                 Sign In
           </a>
             </form>
