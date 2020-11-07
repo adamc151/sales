@@ -4,7 +4,7 @@ let NotificationsModel = require("../models/item.model").notifications;
 let TeamMembersModel = require("../models/item.model").teamMembers;
 let express = require("express");
 let router = express.Router();
-const keys = require("../keys");
+// const keys = require("../keys");
 
 router.get("/notifications", (req, res) => {
   if (req.isOwner) {
@@ -196,7 +196,7 @@ router.get("/team", (req, res) => {
       res.json(myTeam);
     })
     .catch((err) => {
-      res.status(500).json(err); // TODO: Need to handle case where there is no team in the DB, currently displays a number to the user
+      res.status(500).json(err);
     });
 });
 

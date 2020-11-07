@@ -104,18 +104,18 @@ const Landing = (props) => {
             </div>
           <div className={styles.divider}></div>
         </> : null}
-        {teamMembers && teamMembers.length && teamMembers.map((item, i) => {
+        {teamMembers && teamMembers.length > 0 && teamMembers.map((item, i) => {
           return (
             <ListItem
               {...item}
-              key={`team_${i}`}
+              key={`team_member_${i}`}
               onClick={() => {
-                props.history.push(`/add?user=${item.name}`);
+                props.history.push(`/add?user=${item.name}`); // In this case name needs to be unique or else bug city.
               }}
             />
           );
         })}
-        {teamMembers && teamMembers.length && <div
+        {teamMembers && teamMembers.length > 0 && <div // A button with styling might be better here?
           className={styles.eod}
           onClick={() => {
             props.history.push("/eod");
@@ -123,6 +123,9 @@ const Landing = (props) => {
         >
           End of Day
             </div>}
+        {!teamMembers || teamMembers.length == 0 && <div>
+          No team members found.
+        </div>}
       </div>
     </div>
   );
