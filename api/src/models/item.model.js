@@ -7,10 +7,13 @@ const MONGO_HOSTNAME = keys.mongoHostname;
 const MONGO_PORT = keys.mongoPort;
 const MONGO_DB = keys.mongoDatabase;
 const MONGO_PROD = keys.mongoProd;
+const ATLAS_PASSWORD = keys.atlasPassword;
+const ATLAS_USERNAME = keys.atlasUsername;
+const ATLAS_HOSTNAME = keys.atlasHostname;
 let url = "";
 
 if (MONGO_PROD == "Atlas") {
-  url = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/${MONGO_DB}?retryWrites=true&w=majority`;
+  url = `mongodb+srv://${ATLAS_USERNAME}:${ATLAS_PASSWORD}@${ATLAS_HOSTNAME}/${MONGO_DB}?retryWrites=true&w=majority`
 } else if (MONGO_PROD == "true") {
   url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 } else {
