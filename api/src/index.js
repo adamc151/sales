@@ -1,16 +1,23 @@
 let express = require("express");
 let app = express();
 let itemRoute = require("./routes/item");
+let userRoute = require("./routes/users");
+let teamMembersRoute = require("./routes/teamMembers");
+let notificationsRoute = require("./routes/notifications");
+let tillFloatRoute = require("./routes/tillFloat");
+
+
 let path = require("path");
 let bodyParser = require("body-parser");
 const cors = require("cors");
 const admin = require("firebase-admin");
+let UserModel = require("./models/item.model").users;
 
 admin.initializeApp();
 
 const checkAuth = async (idToken) => {
   const decoded = await admin.auth().verifyIdToken(idToken);
-  return decoded.owner;
+  return decoded;
 };
 
 app.use(cors());
@@ -35,7 +42,13 @@ app.use(async (req, res, next) => {
       res.status(500).json({ error: "ID token not specified" });
     }
     try {
-      req.isOwner = await checkAuth(idToken);
+      const firebaseUser = await checkAuth(idToken);
+      console.log('yoooo firebaseUser', firebaseUser);
+      const mongoUser = await UserModel.findOne({ email: firebaseUser.email });
+      console.log('yoooo mongoUser', mongoUser);
+      req.isOwner = mongoUser && mongoUser.isOwner;
+      req.shop_ids = mongoUser && mongoUser.shop_ids;
+      req.email = firebaseUser && firebaseUser.email;
       next();
     } catch (err) {
       res.status(500).json({ error: "Not Authorized" });
@@ -43,7 +56,11 @@ app.use(async (req, res, next) => {
   }
 });
 
+app.use(userRoute);
 app.use(itemRoute);
+app.use(teamMembersRoute);
+app.use(notificationsRoute);
+app.use(tillFloatRoute);
 
 app.use(express.static("public"));
 

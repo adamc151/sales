@@ -1,97 +1,13 @@
 let ItemModel = require("../models/item.model").items;
-let TillFloatModel = require("../models/item.model").tillFloat;
-let NotificationsModel = require("../models/item.model").notifications;
-let TeamMembersModel = require("../models/item.model").teamMembers;
 let express = require("express");
 let router = express.Router();
-// const keys = require("../keys");
 
-router.get("/notifications", (req, res) => {
-  if (req.isOwner) {
-    NotificationsModel.find()
-      .then((doc) => {
-        res.json(doc);
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
-  } else {
-    res.status(500).json({ error: "Not Authorized Account" });
-  }
-});
+router.get("/items", async (req, res) => {
 
-router.post("/addNotification", (req, res) => {
-  if (!req.body) {
-    return res.status(400).send("Request body is missing");
-  }
-
-  let model = new NotificationsModel(req.body);
-  model
-    .save()
-    .then((doc) => {
-      if (!doc || doc.length === 0) {
-        return res.status(500).send(doc);
-      }
-      res.status(201).send(doc);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
-});
-
-router.delete("/clearNotifications", (req, res) => {
-  if (req.isOwner) {
-    NotificationsModel.deleteMany({})
-      .then((doc) => {
-        res.json(doc);
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
-  } else {
-    res.status(500).json({ error: "Not Authorized Account" });
-  }
-});
-
-router.get("/tillfloat", (req, res) => {
-  TillFloatModel.find()
-    .then((doc) => {
-      res.json(doc);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
-});
-
-router.post("/tillfloat", async (req, res) => {
-  if (!req.body) {
-    return res.status(400).send("Request body is missing");
-  }
-
-  try {
-    const tillFloat = await TillFloatModel.findOne();
-
-    if (tillFloat) {
-      tillFloat.value = req.body.value;
-      tillFloat.dateTime = req.body.dateTime;
-      await tillFloat.save();
-    } else {
-      let model = new TillFloatModel(req.body);
-      await model.save();
-    }
-
-    const doc = await TillFloatModel.find();
-    return res.status(201).send(doc);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get("/items", (req, res) => {
   if (!req.isOwner) {
     var d = new Date();
     d.setHours(0, 0, 0, 0);
-    ItemModel.find({ dateTime: { $gt: d } })
+    ItemModel.find({ dateTime: { $gt: d }, shop_id: { $in: req.shop_ids } })
       .then((doc) => {
         res.json(doc);
       })
@@ -99,7 +15,7 @@ router.get("/items", (req, res) => {
         res.status(500).json(err);
       });
   } else {
-    ItemModel.find()
+    ItemModel.find({ shop_id: { $in: req.shop_ids } })
       .sort({ dateTime: 1 })
       .then((doc) => {
         res.json(doc);
@@ -110,12 +26,12 @@ router.get("/items", (req, res) => {
   }
 });
 
-router.post("/additem", (req, res) => {
+router.post("/additem", async (req, res) => {
   if (!req.body) {
     return res.status(400).send("Request body is missing");
   }
 
-  let model = new ItemModel(req.body);
+  let model = new ItemModel({ ...req.body, shop_id: req.shop_ids[0] });
   model
     .save()
     .then((doc) => {
@@ -178,22 +94,6 @@ router.delete("/removeitem", (req, res) => {
   })
     .then((doc) => {
       res.json(doc);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
-});
-
-router.get("/team", (req, res) => {
-    TeamMembersModel.find({"shop_id": "111"})
-    .then((teamMembers) => {
-      const myTeam = [];
-      teamMembers.map((member) => {
-        myTeam.push({
-          name: member.name, id: member.id
-        });
-      });
-      res.json(myTeam);
     })
     .catch((err) => {
       res.status(500).json(err);
