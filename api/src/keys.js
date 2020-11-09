@@ -5,5 +5,8 @@ module.exports = {
   mongoPort: process.env.MONGO_PORT,
   mongoDatabase: process.env.MONGO_DB,
   mongoProd: process.env.MONGO_PROD,
+  atlasPassword: process.env.ATLAS_PASSWORD,
+  atlasUsername: process.env.ATLAS_USERNAME,
+  atlasHostname: process.env.ATLAS_HOSTNAME,
   // team: process.env.TEAM
 };
