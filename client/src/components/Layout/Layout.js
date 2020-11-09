@@ -9,7 +9,7 @@ import {
   SidebarHeader,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import { FaList, FaHome, FaUserCog } from "react-icons/fa";
+import { FaList, FaHome, FaUserCog, FaPlus } from "react-icons/fa";
 import { MdLocalHospital } from "react-icons/md";
 import { GoGraph } from "react-icons/go";
 import { HiMenuAlt1 } from "react-icons/hi";
@@ -20,7 +20,6 @@ import { AuthContext } from "../Authentication/Auth";
 
 const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
   const { isOwner, currentUser } = useContext(AuthContext);
-  console.log('yoooo currentUser.displayName', currentUser.displayName);
 
   return (
     <ProSidebar
@@ -38,6 +37,14 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             Home
             <Link to="/home" onClick={() => handleToggleSidebar(false)} />
           </MenuItem>
+          {isOwner ? (
+            <MenuItem icon={<FaPlus />}>
+              Add Item
+              <Link to="/add-item" onClick={() => handleToggleSidebar(false)} />
+            </MenuItem>
+          ) : (
+              <></>
+            )}
           <MenuItem icon={<FaList />}>
             Sales
             <Link to="/sales" onClick={() => handleToggleSidebar(false)} />
@@ -46,7 +53,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             NHS Vouchers
             <Link to="/vouchers" onClick={() => handleToggleSidebar(false)} />
           </MenuItem>
-          {isOwner ? (
+          {false ? (
             <MenuItem icon={<GoGraph />}>
               Graph
               <Link to="/graph" onClick={() => handleToggleSidebar(false)} />
@@ -54,7 +61,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
           ) : (
               <></>
             )}
-          {isOwner ? (
+          {false ? (
             <MenuItem icon={<FiUpload />}>
               Upload
               <Link to="/upload" onClick={() => handleToggleSidebar(false)} />

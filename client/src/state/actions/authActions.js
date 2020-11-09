@@ -36,9 +36,9 @@ const error = (error, dispatch, cbFunction, cbArgs, newToken, onError = () => { 
   }
 };
 
-export function updateAuth({ isOwner, token }) {
+export function updateAuth({ isOwner, token, displayName, staffAccounts }) {
   return async (dispatch, getState) => {
-    dispatch({ type: "UPDATE_AUTH", payload: { isOwner, token } });
+    dispatch({ type: "UPDATE_AUTH", payload: { isOwner, token, displayName, staffAccounts } });
   };
 }
 
@@ -72,17 +72,18 @@ export const getUser = () => {
 };
 
 
-export function addUser() {
+export function addUser({ isStaffAccount, email }) {
   return async (dispatch, getState) => {
     dispatch({ type: "ADD_USER_REQUEST", payload: null });
 
     try {
-      const response = await fetch("/api/addUser", {
+      const response = await fetch(isStaffAccount ? "/api/addStaffUser" : "/api/addUser", {
         method: "POST",
         headers: {
           "X-Firebase-ID-Token": getState().auth.token,
           "Content-Type": "application/json",
         },
+        body: email && JSON.stringify({ email })
       });
       const json = await response.json();
       if (response.ok) {

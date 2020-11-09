@@ -21,11 +21,13 @@ export const AuthProvider = connect(
             user.getIdToken().then(async (token) => {
 
                 setToken(token);
+                console.log('yooo user', user);
                 try {
                     //set current User AFTER token and isOwner  
-                    await actions.updateAuth({ token });
+                    await actions.updateAuth({ token, displayName: user.displayName });
                     const userSummary = await actions.getUser();
-                    setOwner(userSummary && userSummary.length && userSummary[0].isOwner);
+                    console.log('yoooo userSummary', userSummary);
+                    setOwner(userSummary && userSummary.isOwner);
                     setCurrentUser(user);
                     setPending(false);
                 } catch (e) {

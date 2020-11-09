@@ -3,14 +3,18 @@ let express = require("express");
 let router = express.Router();
 var uniqid = require('uniqid');
 
-router.get("/user", (req, res) => {
-    UserModel.find({ email: req.email })
-        .then((doc) => {
-            res.json(doc);
-        })
-        .catch((err) => {
-            res.status(500).json(err);
-        });
+router.get("/user", async (req, res) => {
+    try {
+        const staffAccounts = await UserModel.find({ shop_id: { $in: req.shop_ids } }) || [];
+        const staffEmails = staffAccounts.reduce((acc, item) => {
+            return [...acc, item.email];
+        }, [])
+
+        res.json({ staffAccounts: staffEmails, isOwner: req.isOwner, email: req.email });
+    } catch (err) {
+        console.log('yoooo err', err);
+        res.status(500).json(err);
+    }
 });
 
 router.post("/addUser", (req, res) => {
@@ -19,6 +23,25 @@ router.post("/addUser", (req, res) => {
     }
 
     let model = new UserModel({ email: req.email, shop_ids: [uniqid()], isOwner: true });
+    model
+        .save()
+        .then((doc) => {
+            if (!doc || doc.length === 0) {
+                return res.status(500).send(doc);
+            }
+            res.status(201).send({ message: "User added" });
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        });
+});
+
+router.post("/addStaffUser", (req, res) => {
+    if (!req.body) {
+        return res.status(400).send("Request body is missing");
+    }
+
+    let model = new UserModel({ email: req.body.email, shop_id: req.shop_ids[0], shop_ids: [req.shop_ids[0]], isOwner: false });
     model
         .save()
         .then((doc) => {

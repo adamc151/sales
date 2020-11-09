@@ -15,7 +15,8 @@ const reducer = (state = initialState, action) => {
     case "GET_USER_FAILED":
       return { ...state, getUserLoading: false, error: true };
     case "GET_USER_SUCCESS":
-      return { ...state, getUserLoading: false, ...action.payload[0] };
+      console.log('yoooo action.payload[0]', action.payload);
+      return { ...state, getUserLoading: false, ...action.payload };
 
     case "ADD_USER_REQUEST":
       return { ...state, addUserLoading: true, error: false };

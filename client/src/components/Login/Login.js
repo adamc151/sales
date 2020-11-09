@@ -102,6 +102,7 @@ const Login = ({ history, actions }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {errorMessage ? <div className={styles.error}>{errorMessage}</div> : null}
               <Button className={styles.signIn} type="submit" isLoading={!redirect}>
                 Sign In
               </Button>

@@ -44,10 +44,10 @@ app.use(async (req, res, next) => {
     try {
       const firebaseUser = await checkAuth(idToken);
       console.log('yoooo firebaseUser', firebaseUser);
-      const mongoUser = await UserModel.findOne({ email: firebaseUser.email });
-      console.log('yoooo mongoUser', mongoUser);
-      req.isOwner = mongoUser && mongoUser.isOwner;
-      req.shop_ids = mongoUser && mongoUser.shop_ids;
+      const ownerUser = await UserModel.findOne({ email: firebaseUser.email });
+      console.log('yoooo ownerUser', ownerUser);
+      req.isOwner = ownerUser && ownerUser.isOwner;
+      req.shop_ids = ownerUser && ownerUser.shop_ids;
       req.email = firebaseUser && firebaseUser.email;
       next();
     } catch (err) {
