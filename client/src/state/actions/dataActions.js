@@ -1,12 +1,14 @@
 import moment from "moment";
 import Swal from "sweetalert2";
 import app from '../../components/Authentication/firebase';
+import * as actions from "../../state/actions/authActions";
 
 const error = (error, dispatch, cbFunction, cbArgs, newToken, onError = () => { }) => {
 
   if (error === 'Not Authorized') {
     if (dispatch && !newToken) {
-      app.auth().currentUser.getIdToken(true).then(function (idToken) {
+      app.auth().currentUser.getIdToken(true).then(async (idToken) => {
+        await dispatch(actions.updateAuth({ token: idToken }));
         dispatch(cbFunction(cbArgs, idToken));
       });
     } else {

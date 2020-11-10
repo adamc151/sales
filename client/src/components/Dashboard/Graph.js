@@ -42,11 +42,12 @@ const CustomTooltip = ({ active, payload, label, data, intervalUnit }) => {
 };
 
 const Graph = (props) => {
-  if (!props.data) return null;
+
+  if (!props.data.data) return null;
 
   return (
     <div className={styles.graphsWrapper}>
-      <div
+      {props.data.data ? <div
         style={{
           height: "100%",
           position: "relative",
@@ -131,7 +132,7 @@ const Graph = (props) => {
             </ResponsiveContainer>
           </div>
         ) : null}
-      </div>
+      </div> : null}
     </div>
   );
 };

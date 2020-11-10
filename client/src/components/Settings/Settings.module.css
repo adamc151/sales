@@ -25,7 +25,7 @@
   
   @media (min-width: 769px) {
     .listWrapper {
-      width: calc(100vw - 270px);
+      width: calc(100vw - 310px);
     }
   }
   

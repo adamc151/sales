@@ -8,6 +8,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "UPDATE_AUTH":
+      console.log('yoooo UPDATE_AUTH payload', action.payload);
       return { ...state, ...action.payload };
 
     case "GET_USER_REQUEST":
