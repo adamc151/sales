@@ -105,7 +105,7 @@ function App() {
       <div className="App">
         <AuthProvider>
           <Switch>
-            <Route path="/(login|signup|termsandconditions)" render={() => <Login />} />
+            <Route path="/(login|signup|reset-password|termsandconditions)" render={() => <Login />} />
             <PrivateRoute component={PrivateRoutes} />
           </Switch>
         </AuthProvider>

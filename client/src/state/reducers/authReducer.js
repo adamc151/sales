@@ -19,6 +19,19 @@ const reducer = (state = initialState, action) => {
       console.log('yoooo action.payload[0]', action.payload);
       return { ...state, getUserLoading: false, ...action.payload };
 
+    case "RESET_PASSWORD_REQUEST":
+      return { ...state, error: false };
+    case "RESET_PASSWORD_FAILED":
+      return { ...state, error: true };
+    case "RESET_PASSWORD_SUCCESS":
+      return { ...state };
+    case "RESET_PASSWORD_REQUEST_UNAUTH":
+      return { ...state, error: false };
+    case "RESET_PASSWORD_FAILED_UNAUTH":
+      return { ...state, error: true };
+    case "RESET_PASSWORD_SUCCESS_UNAUTH":
+      return { ...state };
+
     case "ADD_USER_REQUEST":
       return { ...state, addUserLoading: true, error: false };
     case "ADD_USER_FAILED":

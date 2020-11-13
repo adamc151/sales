@@ -98,6 +98,7 @@ const Settings = (props) => {
                     })}</div>
                     : <AddStaffAccount {...props} />}
             </div>
+            <Button onClick={() => {props.actions.resetPassword(process.env.REACT_APP_FIREBASE_KEY)}}>Reset Password</Button>
         </div>
     );
 };

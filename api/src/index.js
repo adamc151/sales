@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 app.use(async (req, res, next) => {
   if (true) {
     const idToken = req.header("X-Firebase-ID-Token");
+    const apiKey = req.header("API-KEY");
     if (!idToken) {
       res.status(500).json({ error: "ID token not specified" });
     }
@@ -49,6 +50,7 @@ app.use(async (req, res, next) => {
       req.isOwner = ownerUser && ownerUser.isOwner;
       req.shop_ids = ownerUser && ownerUser.shop_ids;
       req.email = firebaseUser && firebaseUser.email;
+      req.apiKey = apiKey;
       next();
     } catch (err) {
       res.status(500).json({ error: "Not Authorized" });

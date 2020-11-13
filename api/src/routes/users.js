@@ -2,6 +2,7 @@ let UserModel = require("../models/item.model").users;
 let express = require("express");
 let router = express.Router();
 var uniqid = require('uniqid');
+var axios = require('axios');
 
 router.get("/user", async (req, res) => {
     try {
@@ -49,6 +50,28 @@ router.post("/addStaffUser", (req, res) => {
                 return res.status(500).send(doc);
             }
             res.status(201).send({ message: "User added" });
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        });
+});
+
+router.get("/resetPassword", (req, res) => {
+
+    if (!req.email) {
+        return res.status(400).send("Email required in reqest header");
+    }
+
+    const authData = {
+        requestType: "PASSWORD_RESET",
+        email: req.email,
+    };
+    let url = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + req.apiKey;
+
+    axios
+        .post(url, authData)
+        .then((response) => {
+            res.status(201).send({ message: "Password Reset" });
         })
         .catch((err) => {
             res.status(500).json(err);

@@ -98,3 +98,61 @@ export function addUser({ isStaffAccount, email }) {
     }
   };
 }
+
+export function resetPassword(apiKey) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "RESET_PASSWORD_REQUEST", payload: null });
+    try {
+      const response = await fetch("/api/resetPassword", {
+        method: "GET",
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+          "Content-Type": "application/json",
+          "API-KEY": apiKey,
+        },
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "RESET_PASSWORD_SUCCESS", payload: null });
+      } else {
+        error(json.error)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "RESET_PASSWORD_FAILED", payload: null });
+    }
+  };
+}
+
+export function resetPasswordUnauthenticated(apiKey, email) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "RESET_PASSWORD_REQUEST_UNAUTH", payload: null });
+
+    const authData = {
+      requestType: "PASSWORD_RESET",
+      email: email,
+    };
+    let url = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + apiKey;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: authData && JSON.stringify(authData),
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "RESET_PASSWORD_SUCCESS_UNAUTH", payload: null });
+      } else {
+        dispatch({ type: "RESET_PASSWORD_FAILED_UNAUTH", payload: null });
+      }
+      return response.ok;
+    } catch (e) {
+      dispatch({ type: "RESET_PASSWORD_FAILED_UNAUTH", payload: null });
+    }
+  };
+}
