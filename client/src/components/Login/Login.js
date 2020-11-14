@@ -10,6 +10,7 @@ import * as actions from "../../state/actions/authActions";
 import Loading from "../UI/Loading";
 import { Switch, Route } from "react-router-dom";
 import { Button } from '../UI/Button';
+import Swal from "sweetalert2";
 
 function openInNewTab(url) {
   var win = window.open(url, '_blank');
@@ -81,6 +82,12 @@ const Login = ({ history, actions }) => {
         setRedirect(false);
         await actions.resetPasswordUnauthenticated(process.env.REACT_APP_FIREBASE_KEY, email);
         setRedirect(true);
+        Swal.fire({
+          icon: "success",
+          text: `If an account exists with that email, we have sent a reset link. Please check your emails to proceed`,
+          showConfirmButton: true,
+          allowOutsideClick: false,
+      });
       } catch (error) {
         setRedirect(true);
         setErrorMessage(`${error}`);

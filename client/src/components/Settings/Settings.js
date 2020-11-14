@@ -7,6 +7,7 @@ import Loading from "../UI/Loading";
 import { withRouter } from "react-router";
 import app from "../Authentication/firebase.js";
 import { Button } from '../UI/Button';
+import Swal from "sweetalert2";
 
 
 function usePrevious(value) {
@@ -45,7 +46,6 @@ const AddStaffAccount = (props) => {
         }
     }
 
-
     return <form onSubmit={(e) => handleRegister(e, emailRegister, passwordRegister)} style={{ 'width': '100%' }}>
         <div className={styles.sectionText}>Please enter your email address:</div>
         <input
@@ -70,6 +70,18 @@ const AddStaffAccount = (props) => {
 
 const Settings = (props) => {
     const prevLoading = usePrevious(props.data.getItemsLoading);
+
+    const handleResetPassword = () => {
+        props.actions.resetPassword(process.env.REACT_APP_FIREBASE_KEY);
+        Swal.fire({
+            icon: "success",
+            title: `Password Reset`,
+            text: `A reset link has been sent to your email address`,
+            timer: 2000,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        });
+    }
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -98,7 +110,16 @@ const Settings = (props) => {
                     })}</div>
                     : <AddStaffAccount {...props} />}
             </div>
-            <Button onClick={() => {props.actions.resetPassword(process.env.REACT_APP_FIREBASE_KEY)}}>Reset Password</Button>
+            <div className={styles.listWrapper}>
+                <div className={styles.sectionText}>Team Management</div>
+                <div className={styles.text}>Team members here...</div>
+            </div>
+            <div className={styles.listWrapper}>
+                <div className={styles.sectionText}>Account Management</div>
+                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
+                    Reset Password
+                </Button>
+            </div>
         </div>
     );
 };
