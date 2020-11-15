@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styles from "./Layout.module.css";
 import {
   ProSidebar,
@@ -13,14 +13,25 @@ import { FaList, FaHome, FaUserCog, FaPlus } from "react-icons/fa";
 import { MdLocalHospital } from "react-icons/md";
 import { GoGraph } from "react-icons/go";
 import { HiMenuAlt1 } from "react-icons/hi";
-import { FiUpload, FiSettings } from "react-icons/fi";
+import { FiUpload } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import app from "../Authentication/firebase";
-import { AuthContext } from "../Authentication/Auth";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "../../state/actions/authActions";
 
-const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
-  const { isOwner, currentUser } = useContext(AuthContext);
+function mapStateToProps(state) {
+  return state;
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+const Aside = connect(mapStateToProps, mapDispatchToProps)(({ collapsed, toggled, handleToggleSidebar, auth }) => {
+  const { isOwner, shopName } = auth || {};
   return (
     <ProSidebar
       collapsed={collapsed}
@@ -29,22 +40,20 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
       onToggle={handleToggleSidebar}
     >
       <SidebarHeader style={{ padding: "16px 24px" }}>
-        {`${currentUser.displayName || ''} ${isOwner ? "(Owner)" : "(Shop)"}`}
+        {`${shopName || ''} ${isOwner ? "(Owner)" : "(Shop)"}`}
       </SidebarHeader>
       <SidebarContent>
         <Menu iconShape="square">
-          <MenuItem icon={<FaHome />}>
-            Home
-            <Link to="/home" onClick={() => handleToggleSidebar(false)} />
-          </MenuItem>
-          {isOwner ? (
-            <MenuItem icon={<FaPlus />}>
-              Add Item
-              <Link to="/add-item" onClick={() => handleToggleSidebar(false)} />
-            </MenuItem>
-          ) : (
+          {isOwner ? <MenuItem icon={<GoGraph />}>
+            Dashboard
+            <Link to="/dashboard" onClick={() => handleToggleSidebar(false)} />
+          </MenuItem> : (
               <></>
             )}
+          <MenuItem icon={<FaPlus />}>
+            Add Item
+              <Link to="/add-item" onClick={() => handleToggleSidebar(false)} />
+          </MenuItem>
           <MenuItem icon={<FaList />}>
             Sales
             <Link to="/sales" onClick={() => handleToggleSidebar(false)} />
@@ -53,14 +62,6 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             NHS Vouchers
             <Link to="/vouchers" onClick={() => handleToggleSidebar(false)} />
           </MenuItem>
-          {false ? (
-            <MenuItem icon={<GoGraph />}>
-              Graph
-              <Link to="/graph" onClick={() => handleToggleSidebar(false)} />
-            </MenuItem>
-          ) : (
-              <></>
-            )}
           {false ? (
             <MenuItem icon={<FiUpload />}>
               Upload
@@ -84,7 +85,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
       </SidebarFooter>
     </ProSidebar>
   );
-};
+});
 
 const Main = ({ handleToggleSidebar, children }) => {
   const [title, setTitle] = useState("");
@@ -142,3 +143,5 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
+

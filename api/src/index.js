@@ -6,7 +6,6 @@ let teamMembersRoute = require("./routes/teamMembers");
 let notificationsRoute = require("./routes/notifications");
 let tillFloatRoute = require("./routes/tillFloat");
 
-
 let path = require("path");
 let bodyParser = require("body-parser");
 const cors = require("cors");
@@ -47,10 +46,19 @@ app.use(async (req, res, next) => {
       console.log('yoooo firebaseUser', firebaseUser);
       const ownerUser = await UserModel.findOne({ email: firebaseUser.email });
       console.log('yoooo ownerUser', ownerUser);
+
+      if (ownerUser && ownerUser.shops.length > 1 && ownerUser.shops.find(shop => shop.id === 'shop_id')) {
+        req.shop_id = 'shop_id';
+        req.shopName = 'shop_name';
+      } else {
+        req.shop_id = ownerUser && ownerUser.shops[0].shop_id;
+        req.shopName = ownerUser && ownerUser.shops[0].shopName;
+      }
+
       req.isOwner = ownerUser && ownerUser.isOwner;
-      req.shop_ids = ownerUser && ownerUser.shop_ids;
       req.email = firebaseUser && firebaseUser.email;
       req.apiKey = apiKey;
+
       next();
     } catch (err) {
       res.status(500).json({ error: "Not Authorized" });

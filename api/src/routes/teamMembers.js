@@ -3,7 +3,7 @@ let express = require("express");
 let router = express.Router();
 
 router.get("/team", (req, res) => {
-    TeamMembersModel.find({ shop_id: { $in: req.shop_ids } })
+    TeamMembersModel.find({ shop_id: req.shop_id })
         .then((teamMembers) => {
             const myTeam = [];
             teamMembers.map((member) => {

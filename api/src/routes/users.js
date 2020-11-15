@@ -6,14 +6,14 @@ var axios = require('axios');
 
 router.get("/user", async (req, res) => {
     try {
-        const staffAccounts = await UserModel.find({ shop_id: { $in: req.shop_ids } }) || [];
+
+        const staffAccounts = await UserModel.find({ "shops.shop_id": req.shop_id, isOwner: false }) || [];
         const staffEmails = staffAccounts.reduce((acc, item) => {
             return [...acc, item.email];
         }, [])
 
-        res.json({ staffAccounts: staffEmails, isOwner: req.isOwner, email: req.email });
+        res.json({ staffAccounts: staffEmails, isOwner: req.isOwner, email: req.email, shopName: req.shopName, shop_id: req.shop_id });
     } catch (err) {
-        console.log('yoooo err', err);
         res.status(500).json(err);
     }
 });
@@ -23,7 +23,9 @@ router.post("/addUser", (req, res) => {
         return res.status(400).send("Request body is missing");
     }
 
-    let model = new UserModel({ email: req.email, shop_ids: [uniqid()], isOwner: true });
+    const shops = [{ shopName: req.body.shopName, shop_id: uniqid() }];
+
+    let model = new UserModel({ email: req.email, shops, isOwner: true });
     model
         .save()
         .then((doc) => {
@@ -42,7 +44,9 @@ router.post("/addStaffUser", (req, res) => {
         return res.status(400).send("Request body is missing");
     }
 
-    let model = new UserModel({ email: req.body.email, shop_id: req.shop_ids[0], shop_ids: [req.shop_ids[0]], isOwner: false });
+    const shops = [{ shopName: req.shopName, shop_id: req.shop_id }];
+
+    let model = new UserModel({ email: req.body.email, shops, isOwner: false });
     model
         .save()
         .then((doc) => {
@@ -77,5 +81,30 @@ router.get("/resetPassword", (req, res) => {
             res.status(500).json(err);
         });
 });
+
+
+
+router.put('/changeShopName', (req, res) => {
+    if (!req.body) {
+        return res.status(400).send("Request body is missing");
+    }
+    if (!req.body.shopName) {
+        return res.status(400).send("Request body is missing shopName");
+    }
+
+    UserModel.updateMany(
+        { "shops.shop_id": req.shop_id },
+        { $set: { "shops.$.shopName": req.body.shopName } }
+    ).then(doc => {
+        if (!doc || doc.length === 0) {
+            return res.status(500).send({ shopName: req.body.shopName });
+        }
+        res.status(201).send(doc);
+    }).catch(err => {
+        res.status(500).json(err);
+    })
+});
+
+
 
 module.exports = router;

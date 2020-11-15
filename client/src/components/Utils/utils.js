@@ -121,3 +121,42 @@ export const exportData = (props) => {
     }
   })
 }
+
+
+export const accountSettingsPopup = (value, message, successMessage, action) => {
+  Swal.queue([
+    {
+      text: message,
+      input: "text",
+      inputValue: value,
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      preConfirm: (newValue) => {
+        if (newValue === value) {
+          Swal.close();
+        } else {
+          return action(newValue)
+            .then((data) => {
+              Swal.insertQueueStep({
+                icon: "success",
+                text: successMessage,
+                timer: 2000,
+                showConfirmButton: false,
+                showClass: {
+                  popup: "",
+                },
+                allowOutsideClick: false,
+              });
+            })
+            .catch(() => {
+              Swal.showValidationMessage(`Something went wrong`);
+            });
+        }
+
+      },
+    },
+  ]);
+};

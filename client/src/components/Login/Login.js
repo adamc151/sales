@@ -18,7 +18,7 @@ function openInNewTab(url) {
 }
 
 const Login = ({ history, actions }) => {
-  const { currentUser, setOwner } = useContext(AuthContext);
+  const { currentUser, setOwner, isOwner } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -61,10 +61,10 @@ const Login = ({ history, actions }) => {
         })
 
         //Add User to users db
-        await actions.addUser();
+        await actions.addUser({ shopName });
         //Update isOwner in Auth Context
         const userSummary = await actions.getUser();
-        setOwner(userSummary && userSummary.length && userSummary[0].isOwner);
+        setOwner(userSummary && userSummary.isOwner);
 
         setRedirect(true);
       } catch (error) {
@@ -97,7 +97,7 @@ const Login = ({ history, actions }) => {
   );
 
   if (currentUser && redirect) {
-    return <Redirect to="/home" />;
+    return isOwner ? <Redirect to="/dashboard" /> : <Redirect to="/add-item" />;
   }
 
   return (

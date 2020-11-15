@@ -16,7 +16,6 @@ const reducer = (state = initialState, action) => {
     case "GET_USER_FAILED":
       return { ...state, getUserLoading: false, error: true };
     case "GET_USER_SUCCESS":
-      console.log('yoooo action.payload[0]', action.payload);
       return { ...state, getUserLoading: false, ...action.payload };
 
     case "RESET_PASSWORD_REQUEST":
@@ -38,6 +37,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, addUserLoading: false, error: true };
     case "ADD_USER_SUCCESS":
       return { ...state, addUserLoading: false };
+
+    case "CHANGE_SHOPNAME_REQUEST":
+      return { ...state, changeShopNameLoading: true, error: false };
+    case "CHANGE_SHOPNAME_FAILED":
+      return { ...state, changeShopNameLoading: false, error: true };
+    case "CHANGE_SHOPNAME_SUCCESS":
+      return { ...state, changeShopNameLoading: false, ...action.payload };
+
     default:
       return state;
   }

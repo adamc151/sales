@@ -14,6 +14,7 @@ export const AuthProvider = connect(
     const [currentUser, setCurrentUser] = useState(null);
     const [token, setToken] = useState(null);
     const [isOwner, setOwner] = useState(false);
+    const [shopName, setShopName] = useState('');
     const [pending, setPending] = useState(true);
 
     const updateAuthState = (user, auth) => {
@@ -28,6 +29,7 @@ export const AuthProvider = connect(
                     const userSummary = await actions.getUser();
                     console.log('yoooo userSummary', userSummary);
                     setOwner(userSummary && userSummary.isOwner);
+                    setShopName(userSummary && userSummary.shopName);
                     setCurrentUser(user);
                     setPending(false);
                 } catch (e) {
@@ -63,7 +65,8 @@ export const AuthProvider = connect(
                 token,
                 isOwner,
                 setOwner,
-                pending
+                pending,
+                shopName
             }}
         >
             {children}

@@ -5,9 +5,11 @@ import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/authActions";
 import Loading from "../UI/Loading";
 import { withRouter } from "react-router";
-import app from "../Authentication/firebase.js";
+import { detachedApp as app } from "../Authentication/firebase.js";
 import { Button } from '../UI/Button';
 import Swal from "sweetalert2";
+import { FaEdit } from 'react-icons/fa';
+import { accountSettingsPopup } from '../Utils/utils';
 
 
 function usePrevious(value) {
@@ -28,10 +30,10 @@ const AddStaffAccount = (props) => {
         try {
             // setRedirect(false);
 
-            //Add User to db isOwner = FALSE
-            props.actions.addUser({ isStaffAccount: true, email });
-
-            await app.auth().createUserWithEmailAndPassword(email, password);
+            await app.auth().createUserWithEmailAndPassword(email, password).then(async () => {
+                await props.actions.addUser({ isStaffAccount: true, email });
+                await props.actions.getUser();
+            });
             await app.auth().currentUser.updateProfile({
                 displayName: props.auth.displayName
             })
@@ -99,8 +101,18 @@ const Settings = (props) => {
     return (
         <div className={styles.listDesktopWrapper}>
             <div className={styles.listWrapper}>
+                <div className={styles.sectionText}>Shop Name</div>
+                <div className={styles.editWrapper}>
+                    <div className={styles.text}>{props.auth.shopName}</div>
+                    <div
+                        className={styles.edit}
+                        onClick={() => accountSettingsPopup(props.auth.shopName, 'Change shop name', 'Successfully changed shop name', async (newValue) => { await props.actions.changeShopName({ shopName: newValue }) })}
+                    >
+                        <FaEdit />
+                    </div>
+                </div>
+
                 <div className={styles.sectionText}>Owner Details</div>
-                <div className={styles.text}>{props.auth.displayName}</div>
                 <div className={styles.text}>{props.auth.email}</div>
 
                 <div className={styles.sectionText}>Staff Account</div>

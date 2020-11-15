@@ -83,3 +83,8 @@
     outline: none;
     padding-left: 8px;
   }
+
+  .editWrapper {
+    display: flex;
+    align-items: center;
+  }

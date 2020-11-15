@@ -4,7 +4,7 @@ let router = express.Router();
 
 router.get("/notifications", (req, res) => {
     if (req.isOwner) {
-        NotificationsModel.find({ shop_id: { $in: req.shop_ids } })
+        NotificationsModel.find({ shop_id: req.shop_id })
             .then((doc) => {
                 res.json(doc);
             })
@@ -21,7 +21,7 @@ router.post("/addNotification", (req, res) => {
         return res.status(400).send("Request body is missing");
     }
 
-    let model = new NotificationsModel({ ...req.body, shop_id: req.shop_ids[0] });
+    let model = new NotificationsModel({ ...req.body, shop_id: req.shop_id });
     model
         .save()
         .then((doc) => {
@@ -37,7 +37,7 @@ router.post("/addNotification", (req, res) => {
 
 router.delete("/clearNotifications", (req, res) => {
     if (req.isOwner) {
-        NotificationsModel.deleteMany({ shop_id: { $in: req.shop_ids } })
+        NotificationsModel.deleteMany({ shop_id: req.shop_id })
             .then((doc) => {
                 res.json(doc);
             })

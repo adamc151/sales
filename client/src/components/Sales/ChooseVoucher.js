@@ -5,13 +5,13 @@ import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
 import { FaAngleLeft, FaGlasses, FaCashRegister, FaUser, FaUndo } from "react-icons/fa";
+import { MdLocalHospital } from "react-icons/md";
 import queryString from 'query-string'
 import Swal from "sweetalert2";
 
 const itemTypes = [
-    { name: "Sale", link: "/add-sale", icon: <FaGlasses /> },
-    { name: "Refund", link: "/add-refund", icon: <FaUndo /> },
-    { name: "Petty Cash", link: "/add-expense", icon: <FaCashRegister /> },
+    { name: "GOS1", link: "/add-gos1", icon: <MdLocalHospital /> },
+    { name: "GOS3", link: "/add-gos3", icon: <MdLocalHospital /> }
 ];
 
 const TopRight = ({ user, history }) => {
