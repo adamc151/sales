@@ -13,6 +13,7 @@ import ChooseVoucher from "./components/Sales/ChooseVoucher";
 import EOD from "./components/Landing/EOD";
 import Upload from "./components/Upload/Upload";
 import Settings from "./components/Settings/Settings";
+import Notifications from "./components/Notifications/Notifications";
 import { Redirect } from "react-router";
 import { AuthProvider, AuthContext } from "./components/Authentication/Auth";
 import PrivateRoute from "./components/Authentication/PrivateRoute";
@@ -26,7 +27,18 @@ const PrivateRoutes = () => {
         return (
           <>
             <Route exact path="/" render={() => <Redirect to={"/home"} />} />
-            <Route exact path="/home" render={() => <Landing {...props} />} />
+
+            {isOwner ? (
+              <Route exact path="/home" render={() => <Dashboard {...props} />} />
+            ) : <Route exact path="/home" render={() => <Landing {...props} />} />}
+
+            {isOwner && (<Route exact path="/notifications" render={() => <Notifications {...props} />} />)}
+
+            <Route
+              exact
+              path="/add-item"
+              render={() => <Landing {...props} />}
+            />
             <Route
               exact
               path="/add"
@@ -93,7 +105,7 @@ function App() {
       <div className="App">
         <AuthProvider>
           <Switch>
-            <Route path="/(login|signup|termsandconditions)" render={() => <Login />} />
+            <Route path="/(login|signup|reset-password|termsandconditions)" render={() => <Login />} />
             <PrivateRoute component={PrivateRoutes} />
           </Switch>
         </AuthProvider>

@@ -153,7 +153,7 @@ const Sales = (props) => {
     props.setRightComponent(<TopRight {...props} isOwner={props.auth.isOwner} />);
     props.setLeftComponent(null);
     props.actions.loadItems();
-    props.actions.parseData(new Date(), 'month');
+    // props.actions.parseData(new Date(), 'month');
 
   }, []);
 

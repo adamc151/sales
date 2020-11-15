@@ -332,6 +332,8 @@ const AddItemNew = (props) => {
                 isLoading={props.data.addItemLoading}
                 onClick={async () => {
                     if (addButtonActive) {
+                        const team = props.data.team || await props.actions.getTeam();
+
                         setAddButtonActive(false);
                         const myPaymentType = paymentType === 'OTHER' ? otherPaymentType : paymentType;
                         if (price1 + price2 + price3 > 0) {
@@ -342,7 +344,7 @@ const AddItemNew = (props) => {
                                 value: (price1 + price2 + price3).toFixed(2),
                                 paymentMethod: myPaymentType,
                                 ...(details && { details }),
-                                ...(!props.isEdit && { user: user ? props.data.team.find(item => item.name === user).id : "" }),
+                                ...(!props.isEdit && { user: user ? team.find(item => item.name === user).id : "" }),
                                 ...(type === 'SALE' && {
                                     breakdown: {
                                         ...(price1.toFixed(2) > 0 && { lenses: price1.toFixed(2) }),

@@ -134,7 +134,11 @@ let userSchema = new mongoose.Schema(
     },
     shop_ids: [{
       type: String
-    }]
+    }],
+    shop_id: {
+      type: String,
+      require: false,
+    }
   },
   { collection: "users" }
 );

@@ -8,17 +8,31 @@ import Graph from "./Graph";
 import Loading from "../UI/Loading";
 import List from './List';
 import { FiDownload } from "react-icons/fi";
+import { FaBell } from "react-icons/fa";
 import { getDateLabel, exportData } from '../Utils/utils';
+import { withRouter } from "react-router";
+
 
 const TopRight = (props) => {
   return (
-    <div
-      className={styles.addSale}
-      onClick={() => {
-        exportData(props);
-      }}
-    >
-      <FiDownload size={"25px"} />
+    <div>
+      <div
+        className={styles.notificationsLink}
+        onClick={() => {
+          props.history.push("/notifications");
+        }}
+      >
+        {props.data.notifications && props.data.notifications.length ? <div className={styles.dot} /> : null}
+        <FaBell size={"25px"} />
+      </div>
+      <div
+        className={styles.addSale}
+        onClick={() => {
+          exportData(props);
+        }}
+      >
+        <FiDownload size={"25px"} />
+      </div>
     </div>
   );
 };
@@ -32,7 +46,17 @@ const Dashboard = (props) => {
     props.actions.parseData(null, "day");
     props.setTitle("");
     props.setRightComponent(<TopRight {...props} />);
+    props.setLeftComponent(null);
   }, []);
+
+  useEffect(() => {
+    props.auth.isOwner && !props.data.getNotifictionsLoading && props.actions.getNotifications();
+  }, [props.auth]);
+
+  useEffect(() => {
+    // if notifications > 1 show button
+    props.setRightComponent(<TopRight {...props} />);
+  }, [props.data.notifications]);
 
   useEffect(() => {
     props.setRightComponent(<TopRight {...props} />);
@@ -82,4 +106,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));

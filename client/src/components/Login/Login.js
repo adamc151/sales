@@ -10,6 +10,7 @@ import * as actions from "../../state/actions/authActions";
 import Loading from "../UI/Loading";
 import { Switch, Route } from "react-router-dom";
 import { Button } from '../UI/Button';
+import Swal from "sweetalert2";
 
 function openInNewTab(url) {
   var win = window.open(url, '_blank');
@@ -26,6 +27,7 @@ const Login = ({ history, actions }) => {
 
   const [shopName, setShopName] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
+  const [emailReset, setEmailReset] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
   const [passwordRegisterConfirmation, setPasswordRegisterConfirmation] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -73,6 +75,27 @@ const Login = ({ history, actions }) => {
     [history]
   );
 
+  const handlePasswordReset = useCallback(
+    async (event, email) => {
+      event.preventDefault();
+      try {
+        setRedirect(false);
+        await actions.resetPasswordUnauthenticated(process.env.REACT_APP_FIREBASE_KEY, email);
+        setRedirect(true);
+        Swal.fire({
+          icon: "success",
+          text: `If an account exists with that email, we have sent a reset link. Please check your emails to proceed`,
+          showConfirmButton: true,
+          allowOutsideClick: false,
+      });
+      } catch (error) {
+        setRedirect(true);
+        setErrorMessage(`${error}`);
+      }
+    },
+    [history]
+  );
+
   if (currentUser && redirect) {
     return <Redirect to="/home" />;
   }
@@ -102,12 +125,16 @@ const Login = ({ history, actions }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {errorMessage ? <div className={styles.error}>{errorMessage}</div> : null}
               <Button className={styles.signIn} type="submit" isLoading={!redirect}>
                 Sign In
               </Button>
 
               <a className={styles.signUp} onClick={() => { setErrorMessage(""); history.push('/signup'); }}>
                 Sign Up
+              </a>
+              <a className={styles.signUp} onClick={() => { setErrorMessage(""); history.push('/reset-password'); }}>
+                Forgotten Password?
               </a>
             </form>
           }} />
@@ -154,6 +181,26 @@ const Login = ({ history, actions }) => {
               <a className={styles.signUp} onClick={() => { setErrorMessage(""); history.push('/login'); }}>
                 Sign In
           </a>
+            </form>
+          }} />
+
+          <Route path="/reset-password" render={() => {
+            return <form onSubmit={(e) => handlePasswordReset(e, emailReset)} style={{ 'width': '100%' }}>
+              <div className={styles.sectionText}>Please enter your email address:</div>
+              <input
+                className={styles.input}
+                type="text"
+                value={emailReset}
+                onChange={(e) => setEmailReset(e.target.value)}
+              />
+              {errorMessage ? <div className={styles.error}>{errorMessage}</div> : null}
+              <Button className={styles.signIn} type="submit" isLoading={!redirect}>
+                Reset Password
+              </Button>
+
+              <a className={styles.signUp} onClick={() => { setErrorMessage(""); history.push('/login'); }}>
+                Sign In
+              </a>
             </form>
           }} />
 

@@ -10,22 +10,24 @@ export const AuthContext = React.createContext();
 export const AuthProvider = connect(
     mapStateToProps,
     mapDispatchToProps
-)(({ children, actions }) => {
+)(({ children, actions, auth }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [token, setToken] = useState(null);
     const [isOwner, setOwner] = useState(false);
     const [pending, setPending] = useState(true);
 
-    const updateAuthState = (user) => {
+    const updateAuthState = (user, auth) => {
         if (user) {
             user.getIdToken().then(async (token) => {
 
                 setToken(token);
+                console.log('yooo auth', auth);
                 try {
                     //set current User AFTER token and isOwner  
-                    await actions.updateAuth({ token });
+                    await actions.updateAuth({ token, displayName: user.displayName });
                     const userSummary = await actions.getUser();
-                    setOwner(userSummary && userSummary.length && userSummary[0].isOwner);
+                    console.log('yoooo userSummary', userSummary);
+                    setOwner(userSummary && userSummary.isOwner);
                     setCurrentUser(user);
                     setPending(false);
                 } catch (e) {
@@ -41,12 +43,12 @@ export const AuthProvider = connect(
     }
 
     useEffect(() => {
-        app.auth().onIdTokenChanged((user) => {
-            updateAuthState(user);
-        });
+        // app.auth().onIdTokenChanged((user) => {
+        //     updateAuthState(user, auth);
+        // });
 
         app.auth().onAuthStateChanged((user) => {
-            updateAuthState(user);
+            updateAuthState(user, auth);
         });
     }, []);
 
@@ -70,6 +72,7 @@ export const AuthProvider = connect(
 });
 
 function mapStateToProps(state) {
+    console.log('yoooo state', state);
     return state;
 }
 
