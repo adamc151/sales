@@ -45,10 +45,6 @@ export const AuthProvider = connect(
     }
 
     useEffect(() => {
-        // app.auth().onIdTokenChanged((user) => {
-        //     updateAuthState(user, auth);
-        // });
-
         app.auth().onAuthStateChanged((user) => {
             updateAuthState(user, auth);
         });

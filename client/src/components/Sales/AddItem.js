@@ -162,12 +162,11 @@ const AddItemNew = (props) => {
             }
         }
 
-
     }, [props.data.addItemLoading, props.data.getItemsLoading]);
 
 
     if (redirect) {
-        return <Redirect to={"/home"} />;
+        return <Redirect to={"/add-item"} />;
     }
 
     if (props.data.error && !props.data.items && props.isEdit) {

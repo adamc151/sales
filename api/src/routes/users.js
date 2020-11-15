@@ -6,13 +6,8 @@ var axios = require('axios');
 
 router.get("/user", async (req, res) => {
     try {
-
-        const staffAccounts = await UserModel.find({ "shops.shop_id": req.shop_id, isOwner: false }) || [];
-        const staffEmails = staffAccounts.reduce((acc, item) => {
-            return [...acc, item.email];
-        }, [])
-
-        res.json({ staffAccounts: staffEmails, isOwner: req.isOwner, email: req.email, shopName: req.shopName, shop_id: req.shop_id });
+        const { staffEmail, isOwner, email, shopName, shop_id } = req;
+        res.json({ staffEmail, isOwner, email, shopName, shop_id });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -26,17 +21,14 @@ router.post("/addUser", (req, res) => {
     const shops = [{ shopName: req.body.shopName, shop_id: uniqid() }];
 
     let model = new UserModel({ email: req.email, shops, isOwner: true });
-    model
-        .save()
-        .then((doc) => {
-            if (!doc || doc.length === 0) {
-                return res.status(500).send(doc);
-            }
-            res.status(201).send({ message: "User added" });
-        })
-        .catch((err) => {
-            res.status(500).json(err);
-        });
+    model.save().then((doc) => {
+        if (!doc || doc.length === 0) {
+            return res.status(500).send(doc);
+        }
+        res.status(201).send({ message: "User added" });
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
 });
 
 router.post("/addStaffUser", (req, res) => {
@@ -44,20 +36,17 @@ router.post("/addStaffUser", (req, res) => {
         return res.status(400).send("Request body is missing");
     }
 
-    const shops = [{ shopName: req.shopName, shop_id: req.shop_id }];
-
-    let model = new UserModel({ email: req.body.email, shops, isOwner: false });
-    model
-        .save()
-        .then((doc) => {
-            if (!doc || doc.length === 0) {
-                return res.status(500).send(doc);
-            }
-            res.status(201).send({ message: "User added" });
-        })
-        .catch((err) => {
-            res.status(500).json(err);
-        });
+    UserModel.updateOne(
+        { "shops.shop_id": req.shop_id },
+        { $set: { "shops.$.staffEmail": req.body.email } }
+    ).then((doc) => {
+        if (!doc || doc.length === 0) {
+            return res.status(500).send(doc);
+        }
+        res.status(201).send({ message: "User added" });
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
 });
 
 router.get("/resetPassword", (req, res) => {
@@ -72,14 +61,11 @@ router.get("/resetPassword", (req, res) => {
     };
     let url = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + req.apiKey;
 
-    axios
-        .post(url, authData)
-        .then((response) => {
-            res.status(201).send({ message: "Password Reset" });
-        })
-        .catch((err) => {
-            res.status(500).json(err);
-        });
+    axios.post(url, authData).then((response) => {
+        res.status(201).send({ message: "Password Reset" });
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
 });
 
 
@@ -92,7 +78,7 @@ router.put('/changeShopName', (req, res) => {
         return res.status(400).send("Request body is missing shopName");
     }
 
-    UserModel.updateMany(
+    UserModel.updateOne(
         { "shops.shop_id": req.shop_id },
         { $set: { "shops.$.shopName": req.body.shopName } }
     ).then(doc => {

@@ -34,9 +34,9 @@ const AddStaffAccount = (props) => {
                 await props.actions.addUser({ isStaffAccount: true, email });
                 await props.actions.getUser();
             });
-            await app.auth().currentUser.updateProfile({
-                displayName: props.auth.displayName
-            })
+            // await app.auth().currentUser.updateProfile({
+            //     displayName: props.auth.displayName
+            // })
 
             // setRedirect(true);
         } catch (error) {
@@ -116,11 +116,9 @@ const Settings = (props) => {
                 <div className={styles.text}>{props.auth.email}</div>
 
                 <div className={styles.sectionText}>Staff Account</div>
-                {props.auth.staffAccounts && props.auth.staffAccounts.length ?
-                    <div>{props.auth.staffAccounts.map((account) => {
-                        return <div className={styles.text}>{account}</div>;
-                    })}</div>
-                    : <AddStaffAccount {...props} />}
+                {props.auth.staffEmail ?
+                    <div className={styles.text}>{props.auth.staffEmail}</div> :
+                    <AddStaffAccount {...props} />}
             </div>
             <div className={styles.listWrapper}>
                 <div className={styles.sectionText}>Team Management</div>
