@@ -72,7 +72,8 @@ export const getUser = () => {
 };
 
 
-export function addUser({ isStaffAccount, email }) {
+export function addUser(args, token) {
+  const { isStaffAccount, email, shopName } = args || {};
   return async (dispatch, getState) => {
     dispatch({ type: "ADD_USER_REQUEST", payload: null });
 
@@ -80,10 +81,10 @@ export function addUser({ isStaffAccount, email }) {
       const response = await fetch(isStaffAccount ? "/api/addStaffUser" : "/api/addUser", {
         method: "POST",
         headers: {
-          "X-Firebase-ID-Token": getState().auth.token,
+          "X-Firebase-ID-Token": token || getState().auth.token,
           "Content-Type": "application/json",
         },
-        body: email && JSON.stringify({ email })
+        body: JSON.stringify({ email, shopName })
       });
       const json = await response.json();
       if (response.ok) {
@@ -153,6 +154,33 @@ export function resetPasswordUnauthenticated(apiKey, email) {
       return response.ok;
     } catch (e) {
       dispatch({ type: "RESET_PASSWORD_FAILED_UNAUTH", payload: null });
+    }
+  };
+}
+
+export function changeShopName({ shopName }) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "CHANGE_SHOPNAME_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/changeShopName", {
+        method: "PUT",
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: shopName && JSON.stringify({ shopName })
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "CHANGE_SHOPNAME_SUCCESS", payload: json });
+        dispatch(getUser());
+      } else {
+        throw new Error("ADD_TILLFLOAT_FAILED");
+      }
+    } catch (e) {
+      dispatch({ type: "CHANGE_SHOPNAME_FAILED", payload: null });
+      throw new Error("ADD_TILLFLOAT_FAILED");
     }
   };
 }

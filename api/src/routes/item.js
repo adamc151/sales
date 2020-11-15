@@ -7,7 +7,7 @@ router.get("/items", async (req, res) => {
   if (!req.isOwner) {
     var d = new Date();
     d.setHours(0, 0, 0, 0);
-    ItemModel.find({ dateTime: { $gt: d }, shop_id: { $in: req.shop_ids } })
+    ItemModel.find({ dateTime: { $gt: d }, shop_id: req.shop_id })
       .then((doc) => {
         res.json(doc);
       })
@@ -15,7 +15,7 @@ router.get("/items", async (req, res) => {
         res.status(500).json(err);
       });
   } else {
-    ItemModel.find({ shop_id: { $in: req.shop_ids } })
+    ItemModel.find({ shop_id: req.shop_id })
       .sort({ dateTime: 1 })
       .then((doc) => {
         res.json(doc);
@@ -31,7 +31,7 @@ router.post("/additem", async (req, res) => {
     return res.status(400).send("Request body is missing");
   }
 
-  let model = new ItemModel({ ...req.body, shop_id: req.shop_ids[0] });
+  let model = new ItemModel({ ...req.body, shop_id: req.shop_id });
   model
     .save()
     .then((doc) => {

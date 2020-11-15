@@ -162,12 +162,11 @@ const AddItemNew = (props) => {
             }
         }
 
-
     }, [props.data.addItemLoading, props.data.getItemsLoading]);
 
 
     if (redirect) {
-        return <Redirect to={"/home"} />;
+        return <Redirect to={"/add-item"} />;
     }
 
     if (props.data.error && !props.data.items && props.isEdit) {
@@ -203,7 +202,7 @@ const AddItemNew = (props) => {
                 {type === 'EXPENSE' && <div className={styles.sectionText}>Expense (£)</div>}
                 {type === 'REFUND' && <div className={styles.sectionText}>Refund Amount (£)</div>}
                 {type === 'SALE' && <div className={styles.sectionText}>Spectacles/Contact Lenses (£)</div>}
-                <div className={styles.priceWrapper}>
+                {type !== 'VOUCHER' && <div className={styles.priceWrapper}>
                     <form style={{ width: "100%" }} onSubmit={handleSumbit}>
                         <input
                             className={`${styles.longInput}`}
@@ -215,7 +214,7 @@ const AddItemNew = (props) => {
                             }}
                         />
                     </form>
-                </div>
+                </div>}
             </div>
 
             {type === 'SALE' &&
@@ -267,7 +266,7 @@ const AddItemNew = (props) => {
                     />
                 </form>
             </div>
-            <div className={styles.sectionText}>Payment Method</div>
+            {type !== 'VOUCHER' && <div className={styles.sectionText}>Payment Method</div>}
 
             {type === 'EXPENSE' &&
                 <div

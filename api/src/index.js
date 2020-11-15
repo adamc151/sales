@@ -6,7 +6,6 @@ let teamMembersRoute = require("./routes/teamMembers");
 let notificationsRoute = require("./routes/notifications");
 let tillFloatRoute = require("./routes/tillFloat");
 
-
 let path = require("path");
 let bodyParser = require("body-parser");
 const cors = require("cors");
@@ -45,14 +44,32 @@ app.use(async (req, res, next) => {
     try {
       const firebaseUser = await checkAuth(idToken);
       console.log('yoooo firebaseUser', firebaseUser);
-      const ownerUser = await UserModel.findOne({ email: firebaseUser.email });
-      console.log('yoooo ownerUser', ownerUser);
-      req.isOwner = ownerUser && ownerUser.isOwner;
-      req.shop_ids = ownerUser && ownerUser.shop_ids;
+
+      const mongoUser = await UserModel.findOne({ $or: [{ email: firebaseUser.email }, { "shops.staffEmail": firebaseUser.email }] });
+
+      console.log('yoooo mongoUser', mongoUser);
+
+      req.shop_id = mongoUser && mongoUser.shops[0].shop_id;
+      req.shopName = mongoUser && mongoUser.shops[0].shopName;
+      req.staffEmail = mongoUser && mongoUser.shops[0].staffEmail;
+      req.isOwner = mongoUser && mongoUser.email === firebaseUser.email;
       req.email = firebaseUser && firebaseUser.email;
       req.apiKey = apiKey;
-      next();
+
+      console.log('yooooo req.url', req.url);
+      console.log('yooooo req.shop_id', req.shop_id);
+      console.log('yooooo req.email', req.email);
+
+
+      if ((req.url === '/addUser' || req.url === '/user' || req.shop_id) && req.email) {
+        next();
+      } else {
+        console.log('yooo err 1', (req.url === '/addUser' || req.shop_id) && req.email);
+        res.status(500).json({ error: "Not Authorized" });
+      }
+
     } catch (err) {
+      console.log('yooo err 2', err);
       res.status(500).json({ error: "Not Authorized" });
     }
   }

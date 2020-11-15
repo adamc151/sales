@@ -125,7 +125,7 @@ const TopRight = (props) => {
     <>
       <div
         className={styles.addSale}
-        onClick={() => { props.history.push("/home"); }}
+        onClick={() => { props.history.push("/add-item"); }}
       >
         <FaPlus size={"28px"} />
       </div>

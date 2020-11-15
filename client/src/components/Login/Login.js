@@ -18,7 +18,7 @@ function openInNewTab(url) {
 }
 
 const Login = ({ history, actions }) => {
-  const { currentUser, setOwner } = useContext(AuthContext);
+  const { currentUser, setOwner, isOwner } = useContext(AuthContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -56,17 +56,18 @@ const Login = ({ history, actions }) => {
       try {
         setRedirect(false);
         await app.auth().createUserWithEmailAndPassword(email, password);
-        await app.auth().currentUser.updateProfile({
-          displayName: shopName
-        })
+
+        const idToken = await app.auth().currentUser.getIdToken();
+
+        console.log('yooo idToken', idToken);
 
         //Add User to users db
-        await actions.addUser();
+        await actions.addUser({ shopName }, idToken);
         //Update isOwner in Auth Context
         const userSummary = await actions.getUser();
-        setOwner(userSummary && userSummary.length && userSummary[0].isOwner);
-
+        setOwner(userSummary && userSummary.isOwner);
         setRedirect(true);
+
       } catch (error) {
         setRedirect(true);
         setErrorMessage(`${error}`);
@@ -87,7 +88,7 @@ const Login = ({ history, actions }) => {
           text: `If an account exists with that email, we have sent a reset link. Please check your emails to proceed`,
           showConfirmButton: true,
           allowOutsideClick: false,
-      });
+        });
       } catch (error) {
         setRedirect(true);
         setErrorMessage(`${error}`);
@@ -97,7 +98,7 @@ const Login = ({ history, actions }) => {
   );
 
   if (currentUser && redirect) {
-    return <Redirect to="/home" />;
+    return isOwner ? <Redirect to="/dashboard" /> : <Redirect to="/add-item" />;
   }
 
   return (

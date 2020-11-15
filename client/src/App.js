@@ -26,11 +26,11 @@ const PrivateRoutes = () => {
         const props = { setTitle, setRightComponent, setLeftComponent };
         return (
           <>
-            <Route exact path="/" render={() => <Redirect to={"/home"} />} />
+            <Route exact path="/" render={() => isOwner ? <Redirect to={"/dashboard"} /> : <Redirect to={"/add-item"} />} />
 
-            {isOwner ? (
-              <Route exact path="/home" render={() => <Dashboard {...props} />} />
-            ) : <Route exact path="/home" render={() => <Landing {...props} />} />}
+            {isOwner && (
+              <Route exact path="/dashboard" render={() => <Dashboard {...props} />} />
+            )}
 
             {isOwner && (<Route exact path="/notifications" render={() => <Notifications {...props} />} />)}
 
@@ -70,6 +70,16 @@ const PrivateRoutes = () => {
               exact
               path="/add-expense"
               render={() => <AddItem type={"EXPENSE"} title={"Add Expense"} defaultPaymentType={"CASH"} {...props} />}
+            />
+            <Route
+              exact
+              path="/add-gos1"
+              render={() => <AddItem type={"VOUCHER"} title={"Add GOS1"} {...props} />}
+            />
+            <Route
+              exact
+              path="/add-gos3"
+              render={() => <AddItem type={"VOUCHER"} title={"Add GOS3"} {...props} />}
             />
             {isOwner && (
               <Route

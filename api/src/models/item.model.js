@@ -122,23 +122,18 @@ let teamMembersSchema = new mongoose.Schema(
   },
   { collection: "teamMembers" });
 
+
 let userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
       require: true,
     },
-    isOwner: {
-      type: Boolean,
-      require: false,
-    },
-    shop_ids: [{
-      type: String
-    }],
-    shop_id: {
-      type: String,
-      require: false,
-    }
+    shops: [{
+      shop_id: String,
+      shopName: String,
+      staffEmail: String
+    }]
   },
   { collection: "users" }
 );
