@@ -123,7 +123,9 @@ const generate1 = (items, date, interval = "day") => {
     },
     CARD: { total: 0, percentage: 0 },
     AMEX: { total: 0, percentage: 0 },
-    OTHER: { total: 0, percentage: 0 }
+    OTHER: { total: 0, percentage: 0 },
+    VOUCHER: { total: 0, percentage: 0 },
+    DAILY: { total: 0, percentage: 0 }
   };
   let accSaleBreakdowns = {
     lenses: {
@@ -141,6 +143,8 @@ const generate1 = (items, date, interval = "day") => {
     },
     REFUND: { total: 0, tally: 0, percentage: 0 },
     EXPENSE: { total: 0, tally: 0, percentage: 0 },
+    VOUCHER: { total: 0, tally: 0, percentage: 0 },
+    DAILY: { total: 0, tally: 0, percentage: 0 }
   };
 
   for (let i = 0; i < items.length; i++) {
@@ -155,12 +159,13 @@ const generate1 = (items, date, interval = "day") => {
     }
 
     const validPaymentMethod = items[i].paymentMethod === "CARD" || items[i].paymentMethod === "CASH" || items[i].paymentMethod === "AMEX" || !items[i].paymentMethod;
+    const isPendingVoucher = items[i].type === 'VOUCHER' && items[i].paymentStatus === 'pending';
 
     if (isDate) {
       tempItemsInRange.push(items[i]);
     }
 
-    if (isDate && validPaymentMethod) {
+    if (isDate && validPaymentMethod && !isPendingVoucher) {
       if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
 
         (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total =
@@ -174,7 +179,7 @@ const generate1 = (items, date, interval = "day") => {
           itemTypeBreakdowns.EXPENSE.total = itemTypeBreakdowns.EXPENSE.total - items[i].value;
           itemTypeBreakdowns.EXPENSE.tally++;
         }
-      } else {
+      } else if (items[i].type === 'SALE') {
         (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total =
           (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total +
           items[i].value;
@@ -188,10 +193,18 @@ const generate1 = (items, date, interval = "day") => {
         itemTypeBreakdowns.SALE.total = itemTypeBreakdowns.SALE.total + items[i].value;
         itemTypeBreakdowns.SALE.tally++;
 
+      } else if (items[i].type === 'DAILY') {
+        accBreakdowns['DAILY'].total = accBreakdowns['DAILY'].total + items[i].value;
+        itemTypeBreakdowns.DAILY.total = itemTypeBreakdowns.DAILY.total + items[i].value;
+        itemTypeBreakdowns.DAILY.tally++;
+      } else if (items[i].type === 'VOUCHER') {
+        accBreakdowns['VOUCHER'].total = accBreakdowns['VOUCHER'].total + items[i].value;
+        itemTypeBreakdowns.VOUCHER.total = itemTypeBreakdowns.VOUCHER.total + items[i].value;
+        itemTypeBreakdowns.DAILY.tally++;
       }
     }
 
-    if (interval === "day" && isDate && validPaymentMethod) {
+    if (interval === "day" && isDate && validPaymentMethod && !isPendingVoucher) {
       if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
         acc = acc - items[i].value;
       } else {
@@ -202,7 +215,7 @@ const generate1 = (items, date, interval = "day") => {
         ...items[i],
         accumulative: Number(acc.toFixed(2)),
       });
-    } else if (interval !== "day" && isDate && validPaymentMethod) {
+    } else if (interval !== "day" && isDate && validPaymentMethod && !isPendingVoucher) {
 
       const previous =
         tempData.length && tempData[tempData.length - 1].dateTime;
@@ -625,3 +638,34 @@ export function clearNotifications() {
     }
   };
 }
+
+
+
+
+
+/***** Vouchers *****/
+export const getVouchers = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "GET_VOUCHERS_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/vouchers", {
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "GET_VOUCHERS_SUCCESS", payload: json });
+        return json;
+      } else {
+        error(json.error);
+        dispatch({ type: "GET_VOUCHERS_FAILED", payload: null });
+      }
+    } catch (e) {
+      error(e);
+      dispatch({ type: "GET_VOUCHERS_FAILED", payload: null });
+    }
+  };
+};

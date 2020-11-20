@@ -156,3 +156,13 @@
   padding: 8px;
   margin-top: 8px;
 }
+
+.policyWrapper {
+  height: 90%;
+  width: 90%;
+  max-width: unset;
+  top: 5%;
+  display: block;
+  text-align: left;
+  overflow: scroll;
+}

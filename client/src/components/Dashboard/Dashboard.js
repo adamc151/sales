@@ -70,6 +70,8 @@ const Dashboard = (props) => {
     return <Loading />;
   }
 
+  console.log('yoooo props', props);
+
   return (
     <div className={styles.wrapper}>
       <Graph {...props} />

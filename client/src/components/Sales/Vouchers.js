@@ -25,7 +25,9 @@ const paymentMethodIcons = {
 const ListItem = ({
     type,
     details,
-    breakdown,
+    voucherType,
+    paymentStatus,
+    setPaymentStatus,
     paymentMethod,
     value,
     isActive,
@@ -49,27 +51,18 @@ const ListItem = ({
                                     <td className={styles.sectionText} >{type}</td>
                                 </tr>
                                 <tr>
-                                    <td className={styles.sectionHeader}>Details</td>
-                                    <td className={styles.sectionText} >
-                                        {details}
-                                    </td>
+                                    <td className={styles.sectionHeader}>Voucher Type</td>
+                                    <td className={styles.sectionText} >{voucherType}</td>
                                 </tr>
                                 <tr>
-                                    <td className={styles.sectionHeader} >Payment</td>
-                                    <td className={styles.sectionText} >{paymentMethod}</td>
+                                    <td className={styles.sectionHeader}>Payment Status</td>
+                                    <td className={styles.sectionText} >{paymentStatus}</td>
                                 </tr>
-                                {type === 'SALE' && <tr>
-                                    <td className={styles.sectionHeader} >Lenses</td>
-                                    <td className={styles.sectionText} >{`£${breakdown.lenses || 0}`}</td>
-                                </tr>}
-                                {type === 'SALE' && <tr>
-                                    <td className={styles.sectionHeader} >Accessories</td>
-                                    <td className={styles.sectionText} >{`£${breakdown.accessories || 0}`}</td>
-                                </tr>}
-                                {type === 'SALE' && <tr>
-                                    <td className={styles.sectionHeader} >Fees</td>
-                                    <td className={styles.sectionText} >{`£${breakdown.fees || 0}`}</td>
-                                </tr>}
+                                <tr>
+                                    <td className={styles.sectionHeader}>Details</td>
+                                    <td className={styles.sectionText} >{details}</td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -78,8 +71,8 @@ const ListItem = ({
                             <span>{moment(dateTime).format("LT")}</span>
                             <span className={styles.productDescriptionText}>
                                 {" "}
-                                {details ? "- " : ""}
-                                {details}
+                                {voucherType ? "- " : ""}
+                                {voucherType}
                             </span>
                         </div>
                     )}
@@ -114,6 +107,10 @@ const ListItem = ({
                             }
                         });
                     }} >Edit</span>
+                    <span onClick={(e) => {
+                        e.stopPropagation();
+                        paymentStatus === 'paid' ? setPaymentStatus(_id, 'pending') : setPaymentStatus(_id, 'paid');
+                    }} >{paymentStatus === 'paid' ? "SET AS PENDING" : "SET AS PAID"}</span>
                 </div>
             )}
         </div>
@@ -201,32 +198,77 @@ const Vouchers = (props) => {
         ]);
     };
 
+    const setPaymentStatus = async (id, paymentStatus) => {
+        Swal.queue([
+            {
+                icon: "warning",
+                text: `Are you sure you want to set this Voucher as ${paymentStatus === 'paid' ? "PAID? This will now get added to your total sales as todays date" : "PENDING? This will now get removed from your total sales but date will stay the same as when set as PAID"}`,
+                showCancelButton: true,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return props.actions
+                        .updateItem({
+                            dateTime: (new Date()).toISOString(),
+                            paymentStatus,
+                            _id: id
+                        })
+                        .then(() => {
+                            setActiveItem(null);
+                            props.actions.loadItems();
+                            Swal.insertQueueStep({
+                                icon: "success",
+                                text: "Item successfully updated",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                showClass: {
+                                    popup: "",
+                                },
+                                allowOutsideClick: false,
+                            });
+                        })
+                        .catch(() => {
+                            Swal.showValidationMessage(`Something went wrong`);
+                        });
+                },
+            },
+        ]);
+    };
+
     const reversedItems = props.data.items && props.data.items.slice(0).reverse();
     const pointer = currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
+
+    let visibleCount = 0;
 
     return (
         <div className={styles.listDesktopWrapper}>
             <div className={styles.listWrapper}>
                 <div className={styles.intervals}>
-                    <span className={`${activeSection === 'pending' ? styles.activeInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('pending') }}>Pending</span>
-                    <span className={`${activeSection === 'paid' ? styles.activeInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('paid') }}>Paid</span>
+                    <span className={`${activeSection === 'pending' ? styles.activePendingInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('pending') }}>Pending</span>
+                    <span className={`${activeSection === 'paid' ? styles.activePaidInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('paid') }}>Paid</span>
                 </div>
                 {reversedItems &&
                     reversedItems.slice(0, pointer).map((item, i) => {
+
+                        if (item.type !== 'VOUCHER') return;
+                        if (activeSection === 'pending' && item.paymentStatus !== 'pending') return;
+                        if (activeSection === 'paid' && item.paymentStatus !== 'paid') return;
+
                         const current = new Date(item.dateTime);
                         const prev = i > 0 && new Date(reversedItems[i - 1].dateTime);
                         const isSame = i > 0 && moment(prev).isSame(moment(current), "day");
                         const date = item.dateTime;
+                        visibleCount++;
 
                         return (
                             <Fragment key={`sales_${i}`}>
-                                {!isSame && date && props.auth.isOwner && (
+                                {(!isSame || visibleCount === 1) && date && (
                                     <div className={styles.dateHeader} >{moment(date).format("dddd D MMM")}</div>
                                 )}
                                 <ListItem
                                     {...item}
                                     history={props.history}
                                     onDelete={deleteItem}
+                                    setPaymentStatus={setPaymentStatus}
                                     setActive={() =>
                                         i === activeItem ? setActiveItem(null) : setActiveItem(i)
                                     }

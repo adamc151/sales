@@ -60,11 +60,11 @@
   .multiselectWrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
   
   .optionWrapper {
-    width: 25%;
+    width: 100%;
     height: 60px;
     border: 1px lightgray solid;
     margin: 8px;
@@ -126,4 +126,8 @@
     left: 20px;
     width: calc(100% - 40px) !important;
     margin: 20px;
+  }
+
+  .voucherType {
+    margin-top: 8px;
   }

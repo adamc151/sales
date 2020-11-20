@@ -11,6 +11,7 @@ import Loading from "../UI/Loading";
 import { Switch, Route } from "react-router-dom";
 import { Button } from '../UI/Button';
 import Swal from "sweetalert2";
+import { TermsAndConditions } from './TermsAndConditions';
 
 function openInNewTab(url) {
   var win = window.open(url, '_blank');
@@ -101,11 +102,13 @@ const Login = ({ history, actions }) => {
     return isOwner ? <Redirect to="/dashboard" /> : <Redirect to="/add-item" />;
   }
 
+  const policyWrapper = window.location.pathname === "/termsandconditions";
+
   return (
     <div className={styles.background}>
       <Image className={styles.mobileImage} src={"/images/splash3_1.png"} />
       <Image className={styles.desktopImage} src={"/images/desktopsplash2.jpg"} />
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${policyWrapper ? styles.policyWrapper : ''}`}>
 
         <Switch>
           <Route path="/login" render={() => {
@@ -207,10 +210,7 @@ const Login = ({ history, actions }) => {
 
 
           <Route path="/termsandconditions" render={() => {
-            return <div>
-              <div className={styles.register}>Terms & Conditions</div>
-              <div>Terms and conditions go here</div>
-            </div>
+            return <TermsAndConditions />
           }} />
 
         </Switch>
