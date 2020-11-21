@@ -68,6 +68,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, getVouchersLoading: false, vouchers: action.payload };
 
 
+    case "GET_VERSION_REQUEST":
+      return { ...state, getVouchersLoading: true, error: false };
+    case "GET_VERSION_FAILED":
+      return { ...state, getVouchersLoading: false, error: true };
+    case "GET_VERSION_SUCCESS":
+      return { ...state, getVouchersLoading: false, version: action.payload };
+
+
     case "GET_NOTIFICATIONS_REQUEST":
       return { ...state, getNotifictionsLoading: true, error: false };
     case "GET_NOTIFICATIONS_FAILED":

@@ -4,6 +4,7 @@ import Loading from "../UI/Loading";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/authActions";
+import { versionNotification } from '../Utils/utils';
 
 export const AuthContext = React.createContext();
 
@@ -26,7 +27,9 @@ export const AuthProvider = connect(
                 try {
                     //set current User AFTER token and isOwner  
                     await actions.updateAuth({ token, displayName: user.displayName });
+
                     const userSummary = await actions.getUser();
+
                     console.log('yoooo userSummary', userSummary);
                     setOwner(userSummary && userSummary.isOwner);
                     setShopName(userSummary && userSummary.shopName);

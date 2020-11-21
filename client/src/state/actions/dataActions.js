@@ -669,3 +669,32 @@ export const getVouchers = () => {
     }
   };
 };
+
+
+
+/***** Version *****/
+export const getVersion = () => {
+  return async (dispatch, getState) => {
+    dispatch({ type: "GET_VERSION_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/vouchers", {
+        headers: {
+          "X-Firebase-ID-Token": getState().auth.token,
+        },
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "GET_VERSION_SUCCESS", payload: json });
+        return json;
+      } else {
+        error(json.error);
+        dispatch({ type: "GET_VERSION_FAILED", payload: null });
+      }
+    } catch (e) {
+      error(e);
+      dispatch({ type: "GET_VERSION_FAILED", payload: null });
+    }
+  };
+};

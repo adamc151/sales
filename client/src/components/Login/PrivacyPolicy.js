@@ -8,11 +8,9 @@ export const PrivacyPolicy = () => {
 
         <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 
-        <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Venti. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info">Privacy Policy Generator</a> and the <a href="https://www.privacypolicies.com/privacy-policy-generator/">Free Privacy Policy Generator</a>.</p>
-
         <h2>Consent</h2>
 
-        <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms. For our Terms and Conditions, please visit the <a href="https://www.privacypolicyonline.com/terms-conditions-generator/">Terms & Conditions Generator</a>.</p>
+        <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms. For our Terms and Conditions, please visit the <a href="/termsandconditions">Terms & Conditions</a>.</p>
 
         <h2>Information we collect</h2>
 
@@ -45,10 +43,9 @@ export const PrivacyPolicy = () => {
         <p>For more general information on cookies, please read <a href="https://www.cookieconsent.com/what-are-cookies/">"What Are Cookies" from Cookie Consent</a>.</p>
 
 
-
         <h2>Advertising Partners Privacy Policies</h2>
 
-        <P>You may consult this list to find the Privacy Policy for each of the advertising partners of Venti.</p>
+        <p>You may consult this list to find the Privacy Policy for each of the advertising partners of Venti.</p>
 
         <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on Venti, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
 
@@ -83,5 +80,7 @@ export const PrivacyPolicy = () => {
 
         <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
 
-        <p>Venti does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p></div>);
+        <p>Venti does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+    </div>);
+
 }

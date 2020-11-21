@@ -159,6 +159,16 @@ let voucherSchema = new mongoose.Schema(
   },
   { collection: "vouchers" });
 
+
+let versionSchema = new mongoose.Schema(
+  {
+    version: {
+      type: String,
+      require: true,
+    }
+  },
+  { collection: "version" });
+
 module.exports = {
   items: mongoose.model("Item", itemSchema),
   tillFloat: mongoose.model("TillFloat", tillFloatSchema),
@@ -166,4 +176,5 @@ module.exports = {
   teamMembers: mongoose.model("TeamMembers", teamMembersSchema),
   users: mongoose.model("Users", userSchema),
   vouchers: mongoose.model("Vouchers", voucherSchema),
+  version: mongoose.model("Version", versionSchema),
 };

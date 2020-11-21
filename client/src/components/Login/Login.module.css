@@ -79,7 +79,7 @@
   object-fit: cover;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 500px) {
   .desktopImage {
     display: block;
   }
@@ -103,6 +103,7 @@
   display: block;
   text-decoration: underline;
   color: grey;
+  cursor: pointer;
 }
 
 .register {
@@ -155,6 +156,7 @@
   border: 1px solid red;
   padding: 8px;
   margin-top: 8px;
+  text-align: left;
 }
 
 .policyWrapper {
@@ -165,4 +167,22 @@
   display: block;
   text-align: left;
   overflow: scroll;
+}
+
+.acceptTextWrapper {
+  text-align: left;
+  line-height: 22px;
+}
+
+
+.tcAccepted {
+  border-color: green;
+}
+
+.inputError {
+  border: 1px solid red;
+}
+
+.tcInputError {
+  border: 1px solid red;
 }

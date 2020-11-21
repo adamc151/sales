@@ -160,3 +160,13 @@ export const accountSettingsPopup = (value, message, successMessage, action) => 
     },
   ]);
 };
+
+
+export const versionNotification = () => {
+  Swal.fire({
+    icon: "warning",
+    text: `You are using an older version of the app. Please reload to update`,
+    showConfirmButton: true,
+    allowOutsideClick: false,
+  });
+}

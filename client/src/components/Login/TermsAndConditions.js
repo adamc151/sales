@@ -50,7 +50,7 @@ export const TermsAndConditions = () => {
 
         <h3><strong>Your Privacy</strong></h3>
 
-        <p>Please read Privacy Policy</p>
+        <p>Please read our <a href="/termsandconditions">Privacy Policy</a></p>
 
         <h3><strong>Reservation of Rights</strong></h3>
 
