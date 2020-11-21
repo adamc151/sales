@@ -351,6 +351,7 @@ const AddItemNew = (props) => {
 
                         setAddButtonActive(false);
                         const myPaymentType = paymentType === 'OTHER' ? otherPaymentType : paymentType;
+
                         if (price1 + price2 + price3 > 0 || type === 'VOUCHER') {
                             const myAction = props.isEdit ? props.actions.updateItem : props.actions.postItem;
                             await myAction({
@@ -358,7 +359,7 @@ const AddItemNew = (props) => {
                                 dateTime: date.toISOString(),
                                 value: (price1 + price2 + price3).toFixed(2),
                                 ...(details && { details }),
-                                ...(type === 'SALE' || type === 'REFUND' || type === 'EXPENSE' && { paymentMethod: myPaymentType }),
+                                ...((type === 'SALE' || type === 'REFUND' || type === 'EXPENSE') && { paymentMethod: myPaymentType }),
                                 ...(type === 'SALE' && {
                                     breakdown: {
                                         ...(price1.toFixed(2) > 0 && { lenses: price1.toFixed(2) }),
