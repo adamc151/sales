@@ -39,6 +39,14 @@ let itemSchema = new mongoose.Schema(
       type: String,
       require: false
     },
+    voucherType: {
+      type: String,
+      require: false
+    },
+    paymentStatus: {
+      type: String,
+      require: false
+    },
     breakdown: {
       lenses: {
         type: Number,
@@ -138,10 +146,35 @@ let userSchema = new mongoose.Schema(
   { collection: "users" }
 );
 
+let voucherSchema = new mongoose.Schema(
+  {
+    voucherType: {
+      type: String,
+      require: true,
+    },
+    value: {
+      type: Number,
+      require: true,
+    }
+  },
+  { collection: "vouchers" });
+
+
+let versionSchema = new mongoose.Schema(
+  {
+    version: {
+      type: String,
+      require: true,
+    }
+  },
+  { collection: "version" });
+
 module.exports = {
   items: mongoose.model("Item", itemSchema),
   tillFloat: mongoose.model("TillFloat", tillFloatSchema),
   notifications: mongoose.model("Notifications", notificationsSchema),
   teamMembers: mongoose.model("TeamMembers", teamMembersSchema),
   users: mongoose.model("Users", userSchema),
+  vouchers: mongoose.model("Vouchers", voucherSchema),
+  version: mongoose.model("Version", versionSchema),
 };

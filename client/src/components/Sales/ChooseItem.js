@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
 import { withRouter } from "react-router";
-import { FaAngleLeft, FaGlasses, FaCashRegister, FaUser, FaUndo } from "react-icons/fa";
-import { GiHospitalCross } from "react-icons/gi";
+import { FaAngleLeft, FaGlasses, FaCashRegister, FaUser, FaUndo, FaHistory } from "react-icons/fa";
 import { MdLocalHospital } from "react-icons/md";
 import queryString from 'query-string'
 import Swal from "sweetalert2";
@@ -15,6 +14,10 @@ const itemTypes = [
   { name: "Refund", link: "/add-refund", icon: <FaUndo /> },
   { name: "Petty Cash", link: "/add-expense", icon: <FaCashRegister /> },
   { name: "NHS Voucher", link: "/add-voucher", icon: <MdLocalHospital /> },
+];
+
+const ownerItemTypes = [
+  { name: "Daily - add previous daily totals", link: "/add-daily", icon: <FaHistory /> },
 ];
 
 const TopRight = ({ user, history }) => {
@@ -67,6 +70,8 @@ const ChooseItem = (props) => {
     props.setRightComponent(<TopRight user={values.user} history={props.history} />)
   }, []);
 
+  console.log('yooo props.state.auth', props);
+
   return (
     <div className={styles.listDesktopWrapper}>
       <div className={styles.listWrapper}>
@@ -79,6 +84,19 @@ const ChooseItem = (props) => {
             />
           );
         })}
+        {props.auth.isOwner ?
+          <>
+            <div className={styles.divider}></div>
+            {ownerItemTypes.map((item, i) => {
+              return (
+                <ListItem
+                  key={`ownerItemType_${i}`}
+                  {...item}
+                  onClick={() => props.history.push({ pathname: item.link, search: props.location.search })}
+                />
+              );
+            })}
+          </> : null}
       </div>
     </div>
   );

@@ -4,10 +4,13 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/dataActions";
-import { FaCashRegister, FaBell, FaAngleLeft } from "react-icons/fa";
+import { FaBell, FaAngleLeft } from "react-icons/fa";
 import Loading from "../UI/Loading";
-import { tillFloatPopup } from '../Utils/utils';
 import moment from "moment";
+import Swal from "sweetalert2";
+
+
+
 
 const Notification = ({ message, dateTime, onClick }) => {
     return <div className={styles.listItemWrapper} onClick={onClick}>
@@ -37,6 +40,37 @@ const Landing = (props) => {
         props.auth.isOwner && !props.data.getNotifictionsLoading && props.actions.getNotifications();
     }, []);
 
+    const clearNotifications = () => {
+        Swal.queue([
+            {
+                icon: "warning",
+                text: "Are you sure you want to clear all notifications?",
+                showCancelButton: true,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return props.actions
+                        .clearNotifications()
+                        .then(() => {
+                            props.actions.getNotifications();
+                            Swal.insertQueueStep({
+                                icon: "success",
+                                text: "Notifications successfully deleted",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                showClass: {
+                                    popup: "",
+                                },
+                                allowOutsideClick: false,
+                            });
+                        })
+                        .catch(() => {
+                            Swal.showValidationMessage(`Something went wrong`);
+                        });
+                },
+            },
+        ]);
+    };
+
     useEffect(() => {
         window.scroll(0, 0);
     }, [props.data.notifications]);
@@ -65,8 +99,7 @@ const Landing = (props) => {
                     <div
                         className={styles.eod}
                         onClick={async () => {
-                            await props.actions.clearNotifications();
-                            props.actions.getNotifications();
+                            clearNotifications();
                         }}
                     >
                         Clear Notifications

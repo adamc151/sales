@@ -202,20 +202,25 @@ const Sales = (props) => {
 
   const reversedItems = props.data.items && props.data.items.slice(0).reverse();
   const pointer = currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
+  let visibleCount = 0;
 
   return (
     <div className={styles.listDesktopWrapper}>
       <div className={styles.listWrapper}>
         {reversedItems &&
           reversedItems.slice(0, pointer).map((item, i) => {
+
+            if (item.type === 'VOUCHER') return;
+
             const current = new Date(item.dateTime);
             const prev = i > 0 && new Date(reversedItems[i - 1].dateTime);
             const isSame = i > 0 && moment(prev).isSame(moment(current), "day");
             const date = item.dateTime;
+            visibleCount++;
 
             return (
               <Fragment key={`sales_${i}`}>
-                {!isSame && date && props.auth.isOwner && (
+                {(!isSame || visibleCount === 1) && date && (
                   <div className={styles.dateHeader} >{moment(date).format("dddd D MMM")}</div>
                 )}
                 <ListItem

@@ -114,6 +114,9 @@ const Settings = (props) => {
 
                 <div className={styles.sectionText}>Owner Details</div>
                 <div className={styles.text}>{props.auth.email}</div>
+                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '0px' }} onClick={() => { handleResetPassword() }}>
+                    Reset Password
+                </Button>
 
                 <div className={styles.sectionText}>Staff Account</div>
                 {props.auth.staffEmail ?
@@ -124,12 +127,12 @@ const Settings = (props) => {
                 <div className={styles.sectionText}>Team Management</div>
                 <div className={styles.text}>Team members here...</div>
             </div>
-            <div className={styles.listWrapper}>
+            {/* <div className={styles.listWrapper}>
                 <div className={styles.sectionText}>Account Management</div>
                 <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
                     Reset Password
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };

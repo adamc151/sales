@@ -169,7 +169,12 @@
     cursor: pointer;
   }
   
-  .activeInterval {
+  .activePendingInterval {
     color: black;
-    border-bottom: 2px solid #004990;
+    border-bottom: 2px solid orange;
+  }
+
+  .activePaidInterval {
+    color: black;
+    border-bottom: 2px solid green;
   }

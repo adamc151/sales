@@ -79,6 +79,7 @@ const AddItemNew = (props) => {
     const [price3, setPrice3] = useState(0);
     const [details, setDetails] = useState("");
     const [paymentType, setPaymentType] = useState(props.defaultPaymentType || "CARD");
+    const [voucherType, setVoucherType] = useState("Voucher 1");
     const [otherPaymentType, setOtherPaymentType] = useState("OTHER");
     const [redirect, setRedirect] = useState(false);
     const [addButtonActive, setAddButtonActive] = useState(true);
@@ -91,7 +92,25 @@ const AddItemNew = (props) => {
         if (props.isEdit && !props.data.items) {
             props.actions.loadItems();
         }
+        if (type === 'VOUCHER') {
+            props.actions.getVouchers();
+        }
     }, []);
+
+    const setVoucherPrice = (argVoucherType) => {
+        const currentVoucher = props.data.vouchers && props.data.vouchers.length && props.data.vouchers.find((voucher) => {
+            return voucher.voucherType === argVoucherType;
+        });
+        if (currentVoucher) {
+            setPrice1(currentVoucher.value);
+        }
+    }
+
+    useEffect(() => {
+        setVoucherPrice(voucherType);
+    }, [props.data.vouchers]);
+
+    console.log('yooo props.data.vouchers', props);
 
     useEffect(() => {
         const values = queryString.parse(props.location.search);
@@ -113,7 +132,7 @@ const AddItemNew = (props) => {
             if (!props.data.error) {
                 Swal.fire({
                     icon: "success",
-                    title: `£${(price1 + price2 + price3).toFixed(2)}`,
+                    title: `${type !== 'VOUCHER' ? `£${(price1 + price2 + price3).toFixed(2)}` : ''}`,
                     text: `Item ${props.isEdit ? 'updated' : 'added'} successfully`,
                     timer: 2000,
                     showConfirmButton: false,
@@ -132,6 +151,7 @@ const AddItemNew = (props) => {
                 const url = window.location.pathname.split("/");
                 const id = url[3];
                 const myItem = props.data.items.find(item => item._id === id);
+
                 if (!myItem) {
                     setLoadingEdit(false);
                     setRedirect(true);
@@ -149,7 +169,9 @@ const AddItemNew = (props) => {
                 } else {
                     setPaymentType(paymentMethod);
                 }
+
                 setDate(new Date(dateTime));
+
                 if (breakdown) {
                     const { lenses, accessories, fees } = breakdown;
                     setPrice1(lenses || 0);
@@ -185,10 +207,7 @@ const AddItemNew = (props) => {
         <div className={styles.wrapper}>
             <div className={styles.dateWrapper}>
                 <span className={styles.date}>{moment(date).format("LLL")}</span>
-                <span
-                    className={styles.changeDate}
-                    onClick={() => setShowDatePicker(!showDatePicker)}
-                >
+                <span className={styles.changeDate} onClick={() => setShowDatePicker(!showDatePicker)} >
                     {showDatePicker ? "Done" : "Change"}
                 </span>
             </div>
@@ -198,17 +217,35 @@ const AddItemNew = (props) => {
                 </div>
             )}
 
+            {type === 'VOUCHER' &&
+                <div className={`${styles.multiselectWrapper} ${styles.voucherType}`} >
+                    {props.data.vouchers && props.data.vouchers.map((voucher) => {
+
+                        return <div className={`${styles.optionWrapper} ${voucherType === voucher.voucherType ? styles.isSelected : ""} `}
+                            onClick={() => {
+                                setVoucherType(voucher.voucherType);
+                                setVoucherPrice(voucher.voucherType);
+                            }} >
+                            <div>{voucher.voucherType}</div>
+                        </div>
+
+                    })}
+                </div>}
+
             <div>
+                {type === 'DAILY' && <div className={styles.sectionText}>Daily Total (£)</div>}
                 {type === 'EXPENSE' && <div className={styles.sectionText}>Expense (£)</div>}
                 {type === 'REFUND' && <div className={styles.sectionText}>Refund Amount (£)</div>}
                 {type === 'SALE' && <div className={styles.sectionText}>Spectacles/Contact Lenses (£)</div>}
-                {type !== 'VOUCHER' && <div className={styles.priceWrapper}>
+                {type === 'VOUCHER' && <div className={styles.sectionText}>Voucher Value (£)</div>}
+
+                {<div className={styles.priceWrapper}>
                     <form style={{ width: "100%" }} onSubmit={handleSumbit}>
                         <input
                             className={`${styles.longInput}`}
                             type="number"
                             placeholder="0.00"
-                            {...(props.isEdit && { value: price1 })}
+                            {...(props.isEdit || type === 'VOUCHER' && { value: price1 })}
                             onChange={(e) => {
                                 setPrice1(Number(e.target.value));
                             }}
@@ -266,50 +303,29 @@ const AddItemNew = (props) => {
                     />
                 </form>
             </div>
-            {type !== 'VOUCHER' && <div className={styles.sectionText}>Payment Method</div>}
+            {(type !== 'VOUCHER' && type !== 'DAILY') && <div className={styles.sectionText}>Payment Method</div>}
 
             {type === 'EXPENSE' &&
-                <div
-                    className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""
-                        } `}
-                    onClick={() => setPaymentType("CASH")}
-                >
+                <div className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""} `} onClick={() => setPaymentType("CASH")}>
                     <div>{paymentMethodIcons.CASH}</div>
                     <div>CASH</div>
                 </div>}
 
             {(type === 'SALE' || type === 'REFUND') &&
                 <div className={styles.multiselectWrapper}>
-                    <div
-                        className={`${styles.optionWrapper} ${paymentType === "CARD" ? styles.isSelected : ""
-                            } `}
-                        onClick={() => setPaymentType("CARD")}
-                    >
+                    <div className={`${styles.optionWrapper} ${paymentType === "CARD" ? styles.isSelected : ""} `} onClick={() => setPaymentType("CARD")}>
                         <div>{paymentMethodIcons.CARD}</div>
                         <div>CARD</div>
                     </div>
-                    <div
-                        className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""
-                            } `}
-                        onClick={() => setPaymentType("CASH")}
-                    >
+                    <div className={`${styles.optionWrapper} ${paymentType === "CASH" ? styles.isSelected : ""} `} onClick={() => setPaymentType("CASH")}>
                         <div>{paymentMethodIcons.CASH}</div>
                         <div>CASH</div>
                     </div>
-                    <div
-                        className={`${styles.optionWrapper} ${paymentType === "AMEX" ? styles.isSelected : ""
-                            } `}
-                        onClick={() => setPaymentType("AMEX")}
-                    >
+                    <div className={`${styles.optionWrapper} ${paymentType === "AMEX" ? styles.isSelected : ""} `} onClick={() => setPaymentType("AMEX")}>
                         <div>{paymentMethodIcons.AMEX}</div>
                         <div>AMEX</div>
                     </div>
-                    <div
-                        className={`${styles.optionWrapper} ${paymentType === "OTHER" ? styles.isSelected : ""
-                            } `}
-                        onClick={() => setPaymentType("OTHER")}
-                        style={{ marginRight: "0px" }}
-                    >
+                    <div className={`${styles.optionWrapper} ${paymentType === "OTHER" ? styles.isSelected : ""} `} onClick={() => setPaymentType("OTHER")} style={{ marginRight: "0px" }}>
                         {"Other"}
                     </div>
                 </div>}
@@ -335,15 +351,14 @@ const AddItemNew = (props) => {
 
                         setAddButtonActive(false);
                         const myPaymentType = paymentType === 'OTHER' ? otherPaymentType : paymentType;
-                        if (price1 + price2 + price3 > 0) {
+                        if (price1 + price2 + price3 > 0 || type === 'VOUCHER') {
                             const myAction = props.isEdit ? props.actions.updateItem : props.actions.postItem;
                             await myAction({
                                 type,
                                 dateTime: date.toISOString(),
                                 value: (price1 + price2 + price3).toFixed(2),
-                                paymentMethod: myPaymentType,
                                 ...(details && { details }),
-                                ...(!props.isEdit && { user: user ? team.find(item => item.name === user).id : "" }),
+                                ...(type === 'SALE' || type === 'REFUND' || type === 'EXPENSE' && { paymentMethod: myPaymentType }),
                                 ...(type === 'SALE' && {
                                     breakdown: {
                                         ...(price1.toFixed(2) > 0 && { lenses: price1.toFixed(2) }),
@@ -351,7 +366,9 @@ const AddItemNew = (props) => {
                                         ...(price3.toFixed(2) > 0 && { fees: price3.toFixed(2) })
                                     }
                                 }),
-                                ...(id && { _id: id }),
+                                ...(type === 'VOUCHER' && { voucherType, paymentStatus: 'pending' }),
+                                ...(!props.isEdit && { user: user ? team.find(item => item.name === user).id : "" }),
+                                ...(id && { _id: id })
                             });
                         } else {
                             Swal.fire({
@@ -365,7 +382,7 @@ const AddItemNew = (props) => {
                     }
                 }}
             >
-                {`${props.isEdit ? "Update" : "Add"} £${(price1 + price2 + price3).toFixed(2)} `}
+                {`${props.isEdit ? "Update" : "Add"} ${type === 'VOUCHER' ? 'Voucher' : `£${(price1 + price2 + price3).toFixed(2)}`}`}
             </Button>
         </div >
     );

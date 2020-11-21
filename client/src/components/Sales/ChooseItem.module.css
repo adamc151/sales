@@ -145,3 +145,10 @@
 .topRightUser {
   margin-left: 8px;
 }
+
+.divider {
+  width: calc(100% - 32px);
+  height: 1px;
+  margin: 32px 16px;
+  border-bottom: 1px lightgray solid;
+}

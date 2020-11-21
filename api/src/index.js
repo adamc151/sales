@@ -5,6 +5,7 @@ let userRoute = require("./routes/users");
 let teamMembersRoute = require("./routes/teamMembers");
 let notificationsRoute = require("./routes/notifications");
 let tillFloatRoute = require("./routes/tillFloat");
+let vouchersRoute = require("./routes/vouchers");
 
 let path = require("path");
 let bodyParser = require("body-parser");
@@ -80,6 +81,7 @@ app.use(itemRoute);
 app.use(teamMembersRoute);
 app.use(notificationsRoute);
 app.use(tillFloatRoute);
+app.use(vouchersRoute);
 
 app.use(express.static("public"));
 

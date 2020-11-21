@@ -34,74 +34,27 @@ const PrivateRoutes = () => {
 
             {isOwner && (<Route exact path="/notifications" render={() => <Notifications {...props} />} />)}
 
-            <Route
-              exact
-              path="/add-item"
-              render={() => <Landing {...props} />}
-            />
-            <Route
-              exact
-              path="/add"
-              render={() => <ChooseItem {...props} />}
-            />
-            <Route
-              exact
-              path="/add-voucher"
-              render={() => <ChooseVoucher {...props} />}
-            />
+            <Route exact path="/add-item" render={() => <Landing {...props} />} />
+            <Route exact path="/add" render={() => <ChooseItem {...props} />} />
+
+            {/* <Route exact path="/add-voucher" render={() => <ChooseVoucher {...props} />} /> */}
+
             <Route exact path="/eod" render={() => <EOD {...props} />} />
             <Route exact path="/sales" render={() => <Sales {...props} />} />
             <Route exact path="/vouchers" render={() => <Vouchers {...props} />} />
-            <Route
-              exact
-              path="/add-sale"
-              render={() => <AddItem type={"SALE"} title={"Add Sale"} {...props} />}
-            />
-            <Route
-              exact
-              path="/add-refund"
-              render={() => <AddItem type={"REFUND"} title={"Add Refund"} {...props} />}
-            />
-            <Route
-              exact
-              path="/sales/edit/:id"
-              render={() => <AddItem isEdit={true} title={"Edit Item"} {...props} />} />
-            <Route
-              exact
-              path="/add-expense"
-              render={() => <AddItem type={"EXPENSE"} title={"Add Expense"} defaultPaymentType={"CASH"} {...props} />}
-            />
-            <Route
-              exact
-              path="/add-gos1"
-              render={() => <AddItem type={"VOUCHER"} title={"Add GOS1"} {...props} />}
-            />
-            <Route
-              exact
-              path="/add-gos3"
-              render={() => <AddItem type={"VOUCHER"} title={"Add GOS3"} {...props} />}
-            />
-            {isOwner && (
-              <Route
-                exact
-                path="/graph"
-                render={() => <Dashboard {...props} />}
-              />
-            )}
-            {isOwner && (
-              <Route
-                exact
-                path="/upload"
-                render={() => <Upload {...props} />}
-              />
-            )}
-            {isOwner && (
-              <Route
-                exact
-                path="/settings"
-                render={() => <Settings {...props} />}
-              />
-            )}
+            <Route exact path="/add-sale" render={() => <AddItem type={"SALE"} title={"Add Sale"} {...props} />} />
+            <Route exact path="/add-refund" render={() => <AddItem type={"REFUND"} title={"Add Refund"} {...props} />} />
+            <Route exact path="/sales/edit/:id" render={() => <AddItem isEdit={true} title={"Edit Item"} {...props} />} />
+            <Route exact path="/add-expense" render={() => <AddItem type={"EXPENSE"} title={"Add Expense"} defaultPaymentType={"CASH"} {...props} />} />
+            <Route exact path="/add-voucher" render={() => <AddItem type={"VOUCHER"} title={"Add NHS Voucher"} {...props} />} />
+
+            {/* <Route exact path="/add-gos1" render={() => <AddItem type={"VOUCHER"} title={"Add GOS1"} {...props} />} />
+            <Route exact path="/add-gos3" render={() => <AddItem type={"VOUCHER"} title={"Add GOS3"} {...props} />} /> */}
+
+            {isOwner && <Route exact path="/add-daily" render={() => <AddItem type={"DAILY"} title={"Add Daily"} {...props} />} />}
+            {isOwner && <Route exact path="/graph" render={() => <Dashboard {...props} />} />}
+            {isOwner && <Route exact path="/upload" render={() => <Upload {...props} />} />}
+            {isOwner && <Route exact path="/settings" render={() => <Settings {...props} />} />}
           </>
         );
       }}
@@ -115,7 +68,7 @@ function App() {
       <div className="App">
         <AuthProvider>
           <Switch>
-            <Route path="/(login|signup|reset-password|termsandconditions)" render={() => <Login />} />
+            <Route path="/(login|signup|reset-password|termsandconditions|privacypolicy)" render={() => <Login />} />
             <PrivateRoute component={PrivateRoutes} />
           </Switch>
         </AuthProvider>
