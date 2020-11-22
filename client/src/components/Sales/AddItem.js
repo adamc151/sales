@@ -79,7 +79,9 @@ const AddItemNew = (props) => {
     const [price3, setPrice3] = useState(0);
     const [details, setDetails] = useState("");
     const [paymentType, setPaymentType] = useState(props.defaultPaymentType || "CARD");
-    const [voucherType, setVoucherType] = useState("Voucher 1");
+    const [voucherType, setVoucherType] = useState("GOS 1");
+    const [subVoucherType, setSubVoucherType] = useState("");
+    const [subSubVoucherType, setSubSubVoucherType] = useState("");
     const [otherPaymentType, setOtherPaymentType] = useState("OTHER");
     const [redirect, setRedirect] = useState(false);
     const [addButtonActive, setAddButtonActive] = useState(true);
@@ -97,20 +99,49 @@ const AddItemNew = (props) => {
         }
     }, []);
 
-    const setVoucherPrice = (argVoucherType) => {
-        const currentVoucher = props.data.vouchers && props.data.vouchers.length && props.data.vouchers.find((voucher) => {
-            return voucher.voucherType === argVoucherType;
+    const setVoucherPrice = () => {
+
+        if (type !== 'VOUCHER') return;
+
+        let selectedVouchersValue = 0;
+
+        props.data.vouchers && props.data.vouchers.length && props.data.vouchers.map((voucher, i) => {
+
+            if (voucher.type === voucherType) {
+
+                if (voucher.vouchers.length) {
+
+                    voucher.vouchers.map((subVoucher, x) => {
+                        if (subVoucher.type === subVoucherType) {
+
+                            if (subVoucher.vouchers.length) {
+                                subVoucher.vouchers.map((subSubVoucher, y) => {
+                                    if (subSubVoucherType.includes(subSubVoucher.type)) {
+                                        selectedVouchersValue += subVoucher.vouchers[y].value;
+                                    }
+                                })
+                            } else {
+                                selectedVouchersValue += voucher.vouchers[x].value;
+                            }
+                        }
+                    });
+
+                } else {
+                    selectedVouchersValue += props.data.vouchers[i].value;
+                }
+
+            }
         });
-        if (currentVoucher) {
-            setPrice1(currentVoucher.value);
-        }
+        setPrice1(Number(selectedVouchersValue).toFixed(2));
     }
+
+    useEffect(() => {
+        setVoucherPrice();
+    }, [voucherType, subVoucherType, subSubVoucherType]);
 
     useEffect(() => {
         setVoucherPrice(voucherType);
     }, [props.data.vouchers]);
-
-    console.log('yooo props.data.vouchers', props);
 
     useEffect(() => {
         const values = queryString.parse(props.location.search);
@@ -218,19 +249,58 @@ const AddItemNew = (props) => {
             )}
 
             {type === 'VOUCHER' &&
-                <div className={`${styles.multiselectWrapper} ${styles.voucherType}`} >
+                <>
+                    <div className={`${styles.multiselectWrapper} ${styles.voucherType} ${styles.voucherTypeSkeleton}`} >
+                        {props.data.vouchers && props.data.vouchers.map((voucher) => {
+                            return <div className={`${styles.optionWrapper} ${voucherType === voucher.type ? styles.isSelected : ""} `}
+                                onClick={() => {
+                                    setVoucherType(voucher.type);
+                                    setSubVoucherType('');
+                                }} >
+                                <div>{voucher.type}</div>
+                            </div>
+                        })}
+                    </div>
                     {props.data.vouchers && props.data.vouchers.map((voucher) => {
+                        return voucherType === voucher.type &&
+                            <>
+                                <div className={`${styles.multiselectWrapper} ${styles.voucherType}`} >
+                                    {voucher.vouchers.map((voucher) => {
+                                        return <div className={`${styles.optionWrapper} ${subVoucherType === voucher.type ? styles.isSelected : ""} `}
+                                            onClick={() => {
+                                                setSubVoucherType(voucher.type);
+                                                setSubSubVoucherType([]);
+                                            }} >
+                                            <div>{voucher.type}</div>
+                                        </div>
+                                    })}
+                                </div>
+                                {voucher.vouchers.length ? <div className={styles.sectionText}>Select all that apply</div> : null}
+                                {voucher.vouchers && voucher.vouchers.map((voucher) => {
+                                    return subVoucherType === voucher.type &&
+                                        <div className={`${styles.multiselectWrapper} ${styles.voucherType}`} >
+                                            {voucher.vouchers.map((voucher) => {
+                                                return <div className={`${styles.optionWrapper} ${subSubVoucherType.includes(voucher.type) ? styles.isSelected : ""} `}
+                                                    onClick={() => {
 
-                        return <div className={`${styles.optionWrapper} ${voucherType === voucher.voucherType ? styles.isSelected : ""} `}
-                            onClick={() => {
-                                setVoucherType(voucher.voucherType);
-                                setVoucherPrice(voucher.voucherType);
-                            }} >
-                            <div>{voucher.voucherType}</div>
-                        </div>
+                                                        let ssVTypes = [...subSubVoucherType];
+                                                        if (ssVTypes.includes(voucher.type)) {
+                                                            ssVTypes = ssVTypes.filter(v => v !== voucher.type);
+                                                        } else {
+                                                            ssVTypes = [...ssVTypes, voucher.type];
+                                                        }
 
+                                                        setSubSubVoucherType(ssVTypes);
+                                                    }} >
+                                                    <div>{voucher.type}</div>
+                                                </div>
+                                            })}
+                                        </div>
+                                })}
+                            </>
                     })}
-                </div>}
+
+                </>}
 
             <div>
                 {type === 'DAILY' && <div className={styles.sectionText}>Daily Total (£)</div>}
@@ -291,7 +361,7 @@ const AddItemNew = (props) => {
                 </div>}
 
             <div>
-                <div className={styles.sectionText}>Details</div>
+                <div className={styles.sectionText}>{"Details "}<i>*please avoid entering any patient/sensitive information</i></div>
                 <form style={{ width: "100%" }} onSubmit={handleSumbit}>
                     <input
                         className={styles.longInput}
@@ -354,10 +424,15 @@ const AddItemNew = (props) => {
 
                         if (price1 + price2 + price3 > 0 || type === 'VOUCHER') {
                             const myAction = props.isEdit ? props.actions.updateItem : props.actions.postItem;
+
+                            let myVoucherType = `${voucherType}`;
+                            if (subVoucherType) myVoucherType = myVoucherType + ` - ${subVoucherType}`;
+                            if (subSubVoucherType.length) myVoucherType = myVoucherType + ` - ${subSubVoucherType.join(' - ')}`;
+
                             await myAction({
                                 type,
                                 dateTime: date.toISOString(),
-                                value: (price1 + price2 + price3).toFixed(2),
+                                value: Number(price1 + price2 + price3).toFixed(2),
                                 ...(details && { details }),
                                 ...((type === 'SALE' || type === 'REFUND' || type === 'EXPENSE') && { paymentMethod: myPaymentType }),
                                 ...(type === 'SALE' && {
@@ -367,7 +442,7 @@ const AddItemNew = (props) => {
                                         ...(price3.toFixed(2) > 0 && { fees: price3.toFixed(2) })
                                     }
                                 }),
-                                ...(type === 'VOUCHER' && { voucherType, paymentStatus: 'pending' }),
+                                ...(type === 'VOUCHER' && { voucherType: myVoucherType, paymentStatus: 'pending' }),
                                 ...(!props.isEdit && { user: user ? team.find(item => item.name === user).id : "" }),
                                 ...(id && { _id: id })
                             });

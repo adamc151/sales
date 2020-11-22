@@ -131,3 +131,7 @@
   .voucherType {
     margin-top: 8px;
   }
+
+  .voucherTypeSkeleton {
+    height: 78px;
+  }

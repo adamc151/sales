@@ -4,7 +4,6 @@ import Loading from "../UI/Loading";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../../state/actions/authActions";
-import { versionNotification } from '../Utils/utils';
 
 export const AuthContext = React.createContext();
 

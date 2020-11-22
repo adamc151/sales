@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useContext } from "react";
 import styles from "./Login.module.css";
 import { withRouter, Redirect } from "react-router";
-import app from "../Authentication/firebase.js";
+import app, { detachedApp } from "../Authentication/firebase.js";
 import { AuthContext } from "../Authentication/Auth";
 import Image from "../UI/Image";
 import { connect } from "react-redux";
@@ -61,17 +61,21 @@ const Login = ({ history, actions }) => {
       event.preventDefault();
       try {
         setRedirect(false);
-        await app.auth().createUserWithEmailAndPassword(email, password);
 
-        const idToken = await app.auth().currentUser.getIdToken();
+        await detachedApp.auth().createUserWithEmailAndPassword(email, password);
+
+        const idToken = await detachedApp.auth().currentUser.getIdToken();
 
         console.log('yooo idToken', idToken);
 
         //Add User to users db
         await actions.addUser({ shopName }, idToken);
-        //Update isOwner in Auth Context
-        const userSummary = await actions.getUser();
-        setOwner(userSummary && userSummary.isOwner);
+
+        await app.auth().signInWithEmailAndPassword(email, password);
+
+        // //Update isOwner in Auth Context
+        // const userSummary = await actions.getUser();
+        // setOwner(userSummary && userSummary.isOwner);
         setRedirect(true);
 
       } catch (error) {
@@ -165,7 +169,7 @@ const Login = ({ history, actions }) => {
           <Route path="/signup" render={() => {
             return <form
               onSubmit={(e) => {
-                if (shopName && emailRegister && passwordRegister && tcAccepted && false) {
+                if (shopName && emailRegister && passwordRegister && tcAccepted) {
                   handleRegister(e, shopName, emailRegister, passwordRegister)
                 } else {
                   const inputErrors = [];

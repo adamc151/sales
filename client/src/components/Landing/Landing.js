@@ -85,8 +85,10 @@ const Landing = (props) => {
         >
           End of Day
             </div>}
-        {!teamMembers || teamMembers.length == 0 && <div>
-          No team members found.
+        {!teamMembers || teamMembers.length == 0 && <div style={{ 'padding': '20px' }}>
+          <p>No team members found</p>
+          <p>Team members are required in order to add 'items'</p>
+          <p>To add team members go to 'Account Settings'</p>
         </div>}
       </div>
     </div>

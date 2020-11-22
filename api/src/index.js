@@ -62,7 +62,7 @@ app.use(async (req, res, next) => {
       console.log('yooooo req.email', req.email);
 
 
-      if ((req.url === '/addUser' || req.url === '/user' || req.shop_id) && req.email) {
+      if ((req.url === '/addUser' || req.shop_id) && req.email) {
         next();
       } else {
         console.log('yooo err 1', (req.url === '/addUser' || req.shop_id) && req.email);

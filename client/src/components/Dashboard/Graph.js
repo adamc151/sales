@@ -54,6 +54,7 @@ const Graph = (props) => {
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
+          alignItems: "center"
         }}
       >
         {props.data.data && props.data.data.length ? (
