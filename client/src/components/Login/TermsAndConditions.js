@@ -16,7 +16,7 @@ export const TermsAndConditions = () => {
 
         <h3><strong>Client Account</strong></h3>
 
-        <p>You are responsible for maintaining the security of your client area account, and you are fully responsible for all activities that occur under the account and any other actions taken in connection with the account. You must immediately notify the Operator of any unauthorised uses of your account or any other breaches of security. The Operator will not be liable for any acts or omissions by You, including any damages of any kind incurred as a result of such acts or omissions.</p>
+        <p>You are responsible for maintaining the security of your client area account, and you are fully responsible for all activities that occur under the account and any other actions taken in connection with the account. You must immediately notify us of any unauthorised uses of your account or any other breaches of security. We will not be liable for any acts or omissions by You, including any damages of any kind incurred as a result of such acts or omissions.</p>
 
         <p>You are responsible for all Data posted and all activity that occurs under your Account (even when Data is posted by others who have accounts under your Account).</p>
 
@@ -28,14 +28,13 @@ export const TermsAndConditions = () => {
 
         <h3><strong>Data Maintenance and Backup Procedures</strong></h3>
 
-        <p>Provider will follow its internal archival procedures for Client Data and Authorised User Data, including daily backup. Notwithstanding the foregoing, Provider shall not be responsible for any loss, destruction, alteration, unauthorised disclosure or corruption of Client Data or Authorised User Data caused by any third-party and shall have no obligation of any kind to restore any lost of corrupted data.</p>
+        <p>We perform daily backups of all Data. Notwithstanding the foregoing, we shall not be responsible for any loss, destruction, alteration, unauthorised disclosure or corruption of Client Data or Authorised User Data caused by any third-party and shall have no obligation of any kind to restore any lost of corrupted data.</p>
 
+        <p>We also recommend that You perform daily backups yourself by using the 'export' feature available to You in the Dashboard area of your account.</p>
 
         <h3><strong>Termination</strong></h3>
 
-        <p>Provider may terminate your access to all or any part of the Site at any time, with or without cause, with or without notice, effective immediately.</p>
-
-
+        <p>We may terminate your access to all or any part of the Site at any time, with or without cause, with or without notice, effective immediately.</p>
 
         <h3><strong>Cookies</strong></h3>
 
@@ -47,20 +46,18 @@ export const TermsAndConditions = () => {
 
         <p>Unless otherwise stated, Venti and/or its licensors own the intellectual property rights for all material on Venti.</p>
 
-
         <h3><strong>Your Privacy</strong></h3>
 
-        <p>Please read our <a href="/termsandconditions">Privacy Policy</a></p>
+        <p>Please read our <a href="/privacypolicy">Privacy Policy</a></p>
 
         <h3><strong>Reservation of Rights</strong></h3>
 
-        <p>We reserve the right to amen these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
+        <p>We reserve the right to amend these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
 
         <h3><strong>Disclaimer</strong></h3>
 
         <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
 
-
-
+        <p>Last Updated: 22 November 2020</p>
     </div>);
 }

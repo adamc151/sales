@@ -234,10 +234,11 @@ const Vouchers = (props) => {
         ]);
     };
 
-    const reversedItems = props.data.items && props.data.items.slice(0).reverse();
-    const pointer = currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
+    const reversedItems = props.data.items && props.data.items.length && props.data.items.slice(0).reverse();
+    const pointer = props.data.items && currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
 
     let visibleCount = 0;
+    let prev;
 
     return (
         <div className={styles.listDesktopWrapper}>
@@ -246,7 +247,7 @@ const Vouchers = (props) => {
                     <span className={`${activeSection === 'pending' ? styles.activePendingInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('pending') }}>Pending</span>
                     <span className={`${activeSection === 'paid' ? styles.activePaidInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('paid') }}>Paid</span>
                 </div>
-                {reversedItems &&
+                {reversedItems ?
                     reversedItems.slice(0, pointer).map((item, i) => {
 
                         if (item.type !== 'VOUCHER') return;
@@ -254,9 +255,10 @@ const Vouchers = (props) => {
                         if (activeSection === 'paid' && item.paymentStatus !== 'paid') return;
 
                         const current = new Date(item.dateTime);
-                        const prev = i > 0 && new Date(reversedItems[i - 1].dateTime);
-                        const isSame = i > 0 && moment(prev).isSame(moment(current), "day");
+                        const isSame = i > 0 && prev && moment(prev).isSame(moment(current), "day");
                         const date = item.dateTime;
+
+                        prev = current;
                         visibleCount++;
 
                         return (
@@ -276,7 +278,7 @@ const Vouchers = (props) => {
                                 />
                             </Fragment>
                         );
-                    })}
+                    }) : null}
                 {props.data.items && pointer !== props.data.items.length && <ViewportObserver key={pointer} onIntersect={() => {
                     setTimeout(() => { setCurrentPointer(currentPointer + 50); }, 500);
                 }}>{() => <div style={{ margin: '16px 0' }}>...loading</div>}</ViewportObserver>}

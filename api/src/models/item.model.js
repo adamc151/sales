@@ -148,14 +148,34 @@ let userSchema = new mongoose.Schema(
 
 let voucherSchema = new mongoose.Schema(
   {
-    voucherType: {
+    type: {
       type: String,
       require: true,
     },
     value: {
       type: Number,
       require: true,
-    }
+    },
+    vouchers: [{
+      type: {
+        type: String,
+        require: true,
+      },
+      value: {
+        type: Number,
+        require: true,
+      },
+      vouchers: [{
+        type: {
+          type: String,
+          require: true,
+        },
+        value: {
+          type: Number,
+          require: true,
+        }
+      }]
+    }]
   },
   { collection: "vouchers" });
 

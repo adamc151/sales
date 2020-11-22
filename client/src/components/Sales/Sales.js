@@ -200,8 +200,8 @@ const Sales = (props) => {
     ]);
   };
 
-  const reversedItems = props.data.items && props.data.items.slice(0).reverse();
-  const pointer = currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
+  const reversedItems = props.data.items && props.data.items && props.data.items.slice(0).reverse();
+  const pointer = props.data.items && currentPointer > props.data.items.length ? props.data.items.length : currentPointer;
   let visibleCount = 0;
 
   return (
