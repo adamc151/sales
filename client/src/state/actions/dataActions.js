@@ -532,6 +532,7 @@ export function postTillFloat(value) {
 export const getTeam = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_TEAM_REQUEST", payload: null });
+    console.log('GETTINBG TEA');
 
     try {
       const response = await fetch("/api/team", {
@@ -539,6 +540,7 @@ export const getTeam = () => {
           "X-Firebase-ID-Token": getState().auth.token,
         },
       });
+
 
       const json = await response.json();
       if (response.ok) {

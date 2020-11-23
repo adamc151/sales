@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import styles from "./Settings.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as actions from "../../state/actions/authActions";
+import * as actions from "../../state/actions/index";
 import Loading from "../UI/Loading";
 import { withRouter } from "react-router";
 import { detachedApp as app } from "../Authentication/firebase.js";
@@ -19,7 +19,6 @@ function usePrevious(value) {
     }, [value]);
     return ref.current;
 }
-
 
 const AddStaffAccount = (props) => {
     const [emailRegister, setEmailRegister] = useState("");
@@ -70,6 +69,32 @@ const AddStaffAccount = (props) => {
     </form>
 }
 
+const TeamMembers = (props) => {
+    // const [teamMembers, setTeamMembers] = useState([]);
+
+    const handleGetTeam = async () => {
+        try {
+            await props.actions.getTeam();
+            // props.data.team && setTeamMembers(props.data.team);
+        } catch (error) {
+            console.log('yooo error', error);
+        }
+    }
+
+    useEffect(() => {
+        handleGetTeam();
+    }, []);
+
+    return <div>
+        <div className={styles.listWrapper}>
+            <div className={styles.sectionText}>Team Management</div>
+            {props.data.team && props.data.team.map(member => {
+                return <div className={styles.text}>{member.name}</div>
+            })}
+        </div>
+    </div>
+}
+
 const Settings = (props) => {
     const prevLoading = usePrevious(props.data.getItemsLoading);
 
@@ -114,7 +139,7 @@ const Settings = (props) => {
 
                 <div className={styles.sectionText}>Owner Details</div>
                 <div className={styles.text}>{props.auth.email}</div>
-                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '0px' }} onClick={() => { handleResetPassword() }}>
+                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
                     Reset Password
                 </Button>
 
@@ -123,10 +148,8 @@ const Settings = (props) => {
                     <div className={styles.text}>{props.auth.staffEmail}</div> :
                     <AddStaffAccount {...props} />}
             </div>
-            <div className={styles.listWrapper}>
-                <div className={styles.sectionText}>Team Management</div>
-                <div className={styles.text}>Team members here...</div>
-            </div>
+            <TeamMembers {...props} />
+
             {/* <div className={styles.listWrapper}>
                 <div className={styles.sectionText}>Account Management</div>
                 <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>

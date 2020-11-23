@@ -2,6 +2,7 @@ const initialState = {
   data: null,
   error: null,
   loading: false,
+  team: null,
 };
 
 const reducer = (state = initialState, action) => {
