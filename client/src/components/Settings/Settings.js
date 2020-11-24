@@ -70,7 +70,8 @@ const AddStaffAccount = (props) => {
 }
 
 const TeamMembers = (props) => {
-    // const [teamMembers, setTeamMembers] = useState([]);
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [newTeamMember, setNewTeamMember] = useState('Add Team Member...');
 
     const handleGetTeam = async () => {
         try {
@@ -81,16 +82,46 @@ const TeamMembers = (props) => {
         }
     }
 
+    const handleAddTeamMember = async (event) => {
+        event.preventDefault();
+        try {
+            // await props.actions.getTeam();
+            console.log(newTeamMember);
+            setTeamMembers([...teamMembers, {id: 'xxx', name: newTeamMember}]);
+        } catch (error) {
+            console.log('yooo error', error);
+        }
+    }
+
     useEffect(() => {
         handleGetTeam();
     }, []);
 
+    useEffect(() => {
+        setTeamMembers(props.data.team);
+    }, [props.data.team]);
+
     return <div>
         <div className={styles.listWrapper}>
             <div className={styles.sectionText}>Team Management</div>
-            {props.data.team && props.data.team.map(member => {
-                return <div className={styles.text}>{member.name}</div>
+            {teamMembers && teamMembers.map(member => {
+                return <div>
+                    <div className={styles.text}>{member.name}</div>
+                    <button>x</button>
+                    <FaEdit />
+                </div>
             })}
+            <form onSubmit={(e) => handleAddTeamMember(e)} style={{ 'width': '100%' }}>
+                <input
+                    className={styles.input}
+                    type="text"
+                    value={newTeamMember}
+                    onChange={(e) => setNewTeamMember(e.target.value)}
+                />
+                <Button className={styles.signIn} type="submit" isLoading={false}>
+                    Add Team Member
+                </Button>
+            </form>
         </div>
     </div>
 }
