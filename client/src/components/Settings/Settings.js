@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 import { detachedApp as app } from "../Authentication/firebase.js";
 import { Button } from '../UI/Button';
 import Swal from "sweetalert2";
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaWindowClose } from 'react-icons/fa';
 import { accountSettingsPopup } from '../Utils/utils';
 
 
@@ -71,23 +71,60 @@ const AddStaffAccount = (props) => {
 
 const TeamMembers = (props) => {
     const [teamMembers, setTeamMembers] = useState([]);
-    const [newTeamMember, setNewTeamMember] = useState('Add Team Member...');
+    const [newTeamMember, setNewTeamMember] = useState('Add...');
 
     const handleGetTeam = async () => {
         try {
             await props.actions.getTeam();
-            // props.data.team && setTeamMembers(props.data.team);
         } catch (error) {
             console.log('yooo error', error);
         }
     }
 
-    const handleAddTeamMember = async (event) => {
+    const handleAddTeamMember = (event) => {
         event.preventDefault();
         try {
-            // await props.actions.getTeam();
-            console.log(newTeamMember);
-            setTeamMembers([...teamMembers, {id: 'xxx', name: newTeamMember}]);
+            Swal.fire({
+                text: "Do you want to add " + newTeamMember + "?",
+                showConfirmButton: true,
+                confirmButtonText: "Yes",
+                showCancelButton: true,
+                cancelButtonText: "No, Oops"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await props.actions.addTeamMember(newTeamMember, null);
+                    console.log(newTeamMember);
+                    setTeamMembers([...teamMembers, { id: '', name: newTeamMember }]);
+                    await props.actions.getTeam();
+                } else if (result.isDenied) {
+                    Swal.close();
+                }
+            });
+        } catch (error) {
+            console.log('yooo error', error);
+        }
+    }
+
+    const handleTeamMemberDelete = async (id) => {
+        try {
+
+            console.log('Delete: ' + id);
+            Swal.fire({
+                text: "Are you sure?",
+                showConfirmButton: true,
+                confirmButtonText: "Yes, Delete",
+                showCancelButton: true,
+                cancelButtonText: "No, Oops"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await props.actions.deleteTeamMember(id, null);
+                    const tmp = teamMembers.filter(member => member.id != id);
+                    setTeamMembers(tmp);
+                    await props.actions.getTeam();
+                } else if (result.isDenied) {
+                    Swal.close();
+                }
+            });
         } catch (error) {
             console.log('yooo error', error);
         }
@@ -104,11 +141,11 @@ const TeamMembers = (props) => {
     return <div>
         <div className={styles.listWrapper}>
             <div className={styles.sectionText}>Team Management</div>
-            {teamMembers && teamMembers.map(member => {
-                return <div>
+            {teamMembers && teamMembers.map((member, index) => {
+                return <div className={styles.editWrapper}>
                     <div className={styles.text}>{member.name}</div>
-                    <button>x</button>
-                    <FaEdit />
+                    <FaWindowClose onClick={() => handleTeamMemberDelete(member.id)} />
+                    {/* <FaEdit /> */}
                 </div>
             })}
             <form onSubmit={(e) => handleAddTeamMember(e)} style={{ 'width': '100%' }}>
@@ -117,6 +154,7 @@ const TeamMembers = (props) => {
                     type="text"
                     value={newTeamMember}
                     onChange={(e) => setNewTeamMember(e.target.value)}
+                    style={{ 'margin-top': '20px' }}
                 />
                 <Button className={styles.signIn} type="submit" isLoading={false}>
                     Add Team Member

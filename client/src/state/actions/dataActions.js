@@ -532,15 +532,13 @@ export function postTillFloat(value) {
 export const getTeam = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_TEAM_REQUEST", payload: null });
-    console.log('GETTINBG TEA');
 
     try {
-      const response = await fetch("/api/team", {
+      const response = await fetch("/api/getTeam", {
         headers: {
           "X-Firebase-ID-Token": getState().auth.token,
         },
       });
-
 
       const json = await response.json();
       if (response.ok) {
@@ -557,6 +555,58 @@ export const getTeam = () => {
   };
 };
 
+export function addTeamMember(name, token) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "ADD_TEAM_MEMBER_REQUEST", payload: null });
+
+    try {
+      const response = await fetch("/api/addTeamMember", {
+        method: "POST",
+        headers: {
+          "X-Firebase-ID-Token": token || getState().auth.token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name })
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "ADD_TEAM_MEMBER_SUCCESS", payload: null });
+      } else {
+        error(json.error)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "ADD_TEAM_MEMBER_FAILED", payload: null });
+    }
+  };
+}
+
+export function deleteTeamMember(id, token) {
+  return async (dispatch, getState) => {
+    dispatch({ type: "DELETE_TEAM_MEMBER_REQUEST", payload: null });
+
+    try {
+      const response = await fetch(`/api/deleteTeamMember?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "X-Firebase-ID-Token": token || getState().auth.token,
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      if (response.ok) {
+        dispatch({ type: "DELETE_TEAM_MEMBER_SUCCESS", payload: null });
+      } else {
+        error(json.error)
+      }
+      return response.ok;
+    } catch (e) {
+      error(e);
+      dispatch({ type: "DELETE_TEAM_MEMBER_FAILED", payload: null });
+    }
+  };
+}
 
 
 /***** Notifications *****/
