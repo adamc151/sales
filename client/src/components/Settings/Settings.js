@@ -71,7 +71,7 @@ const AddStaffAccount = (props) => {
 
 const TeamMembers = (props) => {
     const [teamMembers, setTeamMembers] = useState([]);
-    const [newTeamMember, setNewTeamMember] = useState('Add...');
+    const [newTeamMember, setNewTeamMember] = useState('');
 
     const handleGetTeam = async () => {
         try {
@@ -83,6 +83,9 @@ const TeamMembers = (props) => {
 
     const handleAddTeamMember = (event) => {
         event.preventDefault();
+        if(!newTeamMember || newTeamMember == '' ){
+            return;
+        }
         try {
             Swal.fire({
                 text: "Do you want to add " + newTeamMember + "?",
@@ -95,6 +98,7 @@ const TeamMembers = (props) => {
                     await props.actions.addTeamMember(newTeamMember, null);
                     console.log(newTeamMember);
                     setTeamMembers([...teamMembers, { id: '', name: newTeamMember }]);
+                    setNewTeamMember('');
                     await props.actions.getTeam();
                 } else if (result.isDenied) {
                     Swal.close();
@@ -107,7 +111,6 @@ const TeamMembers = (props) => {
 
     const handleTeamMemberDelete = async (id) => {
         try {
-
             console.log('Delete: ' + id);
             Swal.fire({
                 text: "Are you sure?",
@@ -144,7 +147,7 @@ const TeamMembers = (props) => {
             {teamMembers && teamMembers.map((member, index) => {
                 return <div className={styles.editWrapper}>
                     <div className={styles.text}>{member.name}</div>
-                    <FaWindowClose onClick={() => handleTeamMemberDelete(member.id)} />
+                    <FaWindowClose onClick={() => handleTeamMemberDelete(member.id)} style={{ 'padding-top': '5px' }} />
                     {/* <FaEdit /> */}
                 </div>
             })}
