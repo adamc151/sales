@@ -46,9 +46,10 @@ router.delete("/deleteTeamMember", (req, res) => {
     if (!req.query.id) {
         return res.status(400).send("missing URL param: id");
     }
-    TeamMembersModel.findOneAndRemove({
+
+    TeamMembersModel.findOneAndUpdate({
         _id: req.query.id,
-    })
+    }, { shop_id: '' }, { new: true })
         .then((doc) => {
             res.json(doc);
         })

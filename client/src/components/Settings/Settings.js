@@ -48,7 +48,8 @@ const AddStaffAccount = (props) => {
     }
 
     return <form onSubmit={(e) => handleRegister(e, emailRegister, passwordRegister)} style={{ 'width': '100%' }}>
-        <div className={styles.sectionText}>Please enter your email address:</div>
+        <div className={styles.staffAccountExplanation}>Add 'Staff Account' log in details so your staff can log in and add sales data for this shop. *Staff will only see sales data for the current day</div>
+        <div className={styles.sectionText}>Choose an email address (sorry this cannot be the same as Owner email):</div>
         <input
             className={styles.input}
             type="text"
@@ -83,7 +84,7 @@ const TeamMembers = (props) => {
 
     const handleAddTeamMember = (event) => {
         event.preventDefault();
-        if(!newTeamMember || newTeamMember == '' ){
+        if (!newTeamMember || newTeamMember == '') {
             return;
         }
         try {
@@ -113,7 +114,7 @@ const TeamMembers = (props) => {
         try {
             console.log('Delete: ' + id);
             Swal.fire({
-                text: "Are you sure?",
+                text: "Are you sure? Once deleted, this can't be restored",
                 showConfirmButton: true,
                 confirmButtonText: "Yes, Delete",
                 showCancelButton: true,
@@ -142,7 +143,7 @@ const TeamMembers = (props) => {
     }, [props.data.team]);
 
     return <div>
-        <div className={styles.listWrapper}>
+        <div>
             <div className={styles.sectionText}>Team Management</div>
             {teamMembers && teamMembers.map((member, index) => {
                 return <div className={styles.editWrapper}>
@@ -151,6 +152,7 @@ const TeamMembers = (props) => {
                     {/* <FaEdit /> */}
                 </div>
             })}
+            {teamMembers && !teamMembers.length ? <div className={styles.staffAccountExplanation}>Add 'Team Members' so your staff can add sales items by selecting their name on the 'Add Item' page</div> : null}
             <form onSubmit={(e) => handleAddTeamMember(e)} style={{ 'width': '100%' }}>
                 <input
                     className={styles.input}
@@ -209,18 +211,32 @@ const Settings = (props) => {
                     </div>
                 </div>
 
+                <div className={styles.divider}></div>
+
                 <div className={styles.sectionText}>Owner Details</div>
-                <div className={styles.text}>{props.auth.email}</div>
-                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
+                <div className={styles.editWrapper}>
+                    <div className={styles.text}>{props.auth.email}</div>
+                    <div className={styles.resetPassword} onClick={() => { handleResetPassword() }}>Reset Password</div>
+                </div>
+
+                {/* <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
                     Reset Password
-                </Button>
+                </Button> */}
+
+                <div className={styles.divider}></div>
+
 
                 <div className={styles.sectionText}>Staff Account</div>
                 {props.auth.staffEmail ?
                     <div className={styles.text}>{props.auth.staffEmail}</div> :
                     <AddStaffAccount {...props} />}
+
+                <div className={styles.divider}></div>
+
+
+                <TeamMembers {...props} />
             </div>
-            <TeamMembers {...props} />
+
 
             {/* <div className={styles.listWrapper}>
                 <div className={styles.sectionText}>Account Management</div>
