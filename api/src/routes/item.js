@@ -38,6 +38,14 @@ router.post("/additem", async (req, res) => {
       if (!doc || doc.length === 0) {
         return res.status(500).send(doc);
       }
+
+      //double check shop_id!!!
+      doc.map((item) => {
+        if (item.shop_id !== req.shop_id || true) {
+          res.status(500).json({ error: "Something went wrong" });
+        }
+      });
+
       res.status(201).send(doc);
     })
     .catch((err) => {

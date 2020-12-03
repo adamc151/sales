@@ -11,6 +11,13 @@ router.get("/getTeam", (req, res) => {
                     name: member.name, id: member.id, shop_id: member.shop_id,
                 });
             });
+
+            teamMembers.map((item) => {
+                if (item.shop_id !== req.shop_id) {
+                    res.status(500).json({ error: "Something went wrong" });
+                }
+            });
+
             res.json(myTeam);
         })
         .catch((err) => {

@@ -117,10 +117,7 @@ const generate1 = (items, date, interval = "day") => {
   let acc = 0;
   let dayAcc = 0;
   let accBreakdowns = {
-    CASH: {
-      total: 0,
-      percentage: 0,
-    },
+    CASH: { total: 0, percentage: 0 },
     CARD: { total: 0, percentage: 0 },
     AMEX: { total: 0, percentage: 0 },
     OTHER: { total: 0, percentage: 0 },
@@ -128,24 +125,21 @@ const generate1 = (items, date, interval = "day") => {
     DAILY: { total: 0, percentage: 0 }
   };
   let accSaleBreakdowns = {
-    lenses: {
-      total: 0,
-      percentage: 0,
-    },
+    lenses: { total: 0, percentage: 0, },
     accessories: { total: 0, percentage: 0 },
     fees: { total: 0, percentage: 0 },
   };
   let itemTypeBreakdowns = {
-    SALE: {
-      total: 0,
-      tally: 0,
-      percentage: 0,
-    },
+    SALE: { total: 0, tally: 0, percentage: 0 },
     REFUND: { total: 0, tally: 0, percentage: 0 },
     EXPENSE: { total: 0, tally: 0, percentage: 0 },
-    VOUCHER: { total: 0, tally: 0, percentage: 0 },
+    VOUCHER: { total: 0, tally: 0, percentage: 0, breakdown: {} },
     DAILY: { total: 0, tally: 0, percentage: 0 }
   };
+  let vouchersTotal = {
+    pending: {},
+    paid: {}
+  }
 
   for (let i = 0; i < items.length; i++) {
     const currentDate = new Date(items[i].dateTime);
@@ -160,6 +154,23 @@ const generate1 = (items, date, interval = "day") => {
 
     const validPaymentMethod = items[i].paymentMethod === "CARD" || items[i].paymentMethod === "CASH" || items[i].paymentMethod === "AMEX" || !items[i].paymentMethod;
     const isPendingVoucher = items[i].type === 'VOUCHER' && items[i].paymentStatus === 'pending';
+
+    if (items[i].type === 'VOUCHER') {
+      const gos = items[i].voucherType.split(' - ')[0];
+      if (gos && items[i].paymentStatus === 'pending') {
+        if (vouchersTotal.pending[gos]) {
+          vouchersTotal.pending[gos].total = Number(vouchersTotal.pending[gos].total.toFixed(2)) + Number(items[i].value.toFixed(2));
+        } else {
+          vouchersTotal.pending[gos] = { total: Number(items[i].value.toFixed(2)) };
+        }
+      } else if (gos && items[i].paymentStatus === 'paid') {
+        if (vouchersTotal.paid[gos]) {
+          vouchersTotal.paid[gos].total = Number(vouchersTotal.paid[gos].total.toFixed(2)) + Number(items[i].value.toFixed(2));
+        } else {
+          vouchersTotal.paid[gos] = { total: Number(items[i].value.toFixed(2)) };
+        }
+      }
+    }
 
     if (isDate) {
       tempItemsInRange.push(items[i]);
@@ -198,9 +209,17 @@ const generate1 = (items, date, interval = "day") => {
         itemTypeBreakdowns.DAILY.total = itemTypeBreakdowns.DAILY.total + items[i].value;
         itemTypeBreakdowns.DAILY.tally++;
       } else if (items[i].type === 'VOUCHER') {
+        const gos = items[i].voucherType.split(' - ')[0];
         accBreakdowns['VOUCHER'].total = accBreakdowns['VOUCHER'].total + items[i].value;
+        if (itemTypeBreakdowns['VOUCHER'].breakdown[gos]) {
+          itemTypeBreakdowns['VOUCHER'].breakdown[gos].total = Number(itemTypeBreakdowns['VOUCHER'].breakdown[gos].total.toFixed(2)) + Number(items[i].value.toFixed(2));
+        } else {
+          itemTypeBreakdowns['VOUCHER'].breakdown[gos] = { total: Number(items[i].value.toFixed(2)) };
+        }
         itemTypeBreakdowns.VOUCHER.total = itemTypeBreakdowns.VOUCHER.total + items[i].value;
-        itemTypeBreakdowns.DAILY.tally++;
+        itemTypeBreakdowns.VOUCHER.tally++;
+
+
       }
     }
 
@@ -288,7 +307,7 @@ const generate1 = (items, date, interval = "day") => {
     }
   });
 
-  return { data: tempData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns, itemsInRange: tempItemsInRange, itemTypeBreakdowns };
+  return { data: tempData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns, itemsInRange: tempItemsInRange, itemTypeBreakdowns, vouchersTotal };
 };
 
 export function parseData(date, interval) {
@@ -302,7 +321,7 @@ export function parseData(date, interval) {
 
     const myDates = getDates(items, interval);
     const myDate = date || myDates[myDates.length - 1];
-    const { data, breakdowns, saleBreakdowns, itemsInRange, itemTypeBreakdowns } = generate1(items, myDate, interval);
+    const { data, breakdowns, saleBreakdowns, itemsInRange, itemTypeBreakdowns, vouchersTotal } = generate1(items, myDate, interval);
 
     return dispatch({
       type: "CHANGE_DATA",
@@ -312,6 +331,7 @@ export function parseData(date, interval) {
         saleBreakdowns,
         itemsInRange,
         itemTypeBreakdowns,
+        vouchersTotal,
         date: myDate,
         intervals: myDates,
         intervalUnit: interval,
