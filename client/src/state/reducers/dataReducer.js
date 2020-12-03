@@ -2,6 +2,7 @@ const initialState = {
   data: null,
   error: null,
   loading: false,
+  team: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -58,6 +59,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, getTeamLoading: false, error: true };
     case "GET_TEAM_SUCCESS":
       return { ...state, getTeamLoading: false, team: action.payload };
+    case "ADD_TEAM_MEMBER_REQUEST":
+      return { ...state, getTeamLoading: true, error: false };
+    case "ADD_TEAM_MEMBER_FAILED":
+      return { ...state, getTeamLoading: false, error: true };
+    case "ADD_TEAM_MEMBER_SUCCESS":
+      return { ...state, getTeamLoading: false };
+    case "DELETE_TEAM_MEMBER_REQUEST":
+      return { ...state, getTeamLoading: true, error: false };
+    case "DELETE_TEAM_MEMBER_FAILED":
+      return { ...state, getTeamLoading: false, error: true };
+    case "DELETE_TEAM_MEMBER_SUCCESS":
+      return { ...state, getTeamLoading: false };
 
 
     case "GET_VOUCHERS_REQUEST":

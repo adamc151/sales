@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import styles from "./Settings.module.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as actions from "../../state/actions/authActions";
+import * as actions from "../../state/actions/index";
 import Loading from "../UI/Loading";
 import { withRouter } from "react-router";
 import { detachedApp as app } from "../Authentication/firebase.js";
 import { Button } from '../UI/Button';
 import Swal from "sweetalert2";
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaWindowClose } from 'react-icons/fa';
 import { accountSettingsPopup } from '../Utils/utils';
 
 
@@ -19,7 +19,6 @@ function usePrevious(value) {
     }, [value]);
     return ref.current;
 }
-
 
 const AddStaffAccount = (props) => {
     const [emailRegister, setEmailRegister] = useState("");
@@ -70,6 +69,104 @@ const AddStaffAccount = (props) => {
     </form>
 }
 
+const TeamMembers = (props) => {
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [newTeamMember, setNewTeamMember] = useState('');
+
+    const handleGetTeam = async () => {
+        try {
+            await props.actions.getTeam();
+        } catch (error) {
+            console.log('yooo error', error);
+        }
+    }
+
+    const handleAddTeamMember = (event) => {
+        event.preventDefault();
+        if(!newTeamMember || newTeamMember == '' ){
+            return;
+        }
+        try {
+            Swal.fire({
+                text: "Do you want to add " + newTeamMember + "?",
+                showConfirmButton: true,
+                confirmButtonText: "Yes",
+                showCancelButton: true,
+                cancelButtonText: "No, Oops"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await props.actions.addTeamMember(newTeamMember, null);
+                    console.log(newTeamMember);
+                    setTeamMembers([...teamMembers, { id: '', name: newTeamMember }]);
+                    setNewTeamMember('');
+                    await props.actions.getTeam();
+                } else if (result.isDenied) {
+                    Swal.close();
+                }
+            });
+        } catch (error) {
+            console.log('yooo error', error);
+        }
+    }
+
+    const handleTeamMemberDelete = async (id) => {
+        try {
+            console.log('Delete: ' + id);
+            Swal.fire({
+                text: "Are you sure?",
+                showConfirmButton: true,
+                confirmButtonText: "Yes, Delete",
+                showCancelButton: true,
+                cancelButtonText: "No, Oops"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await props.actions.deleteTeamMember(id, null);
+                    const tmp = teamMembers.filter(member => member.id != id);
+                    setTeamMembers(tmp);
+                    await props.actions.getTeam();
+                } else if (result.isDenied) {
+                    Swal.close();
+                }
+            });
+        } catch (error) {
+            console.log('yooo error', error);
+        }
+    }
+
+    useEffect(() => {
+        handleGetTeam();
+    }, []);
+
+    useEffect(() => {
+        setTeamMembers(props.data.team);
+    }, [props.data.team]);
+
+    return <div>
+        <div className={styles.listWrapper}>
+            <div className={styles.sectionText}>Team Management</div>
+            {teamMembers && teamMembers.map((member, index) => {
+                return <div className={styles.editWrapper}>
+                    <div className={styles.text}>{member.name}</div>
+                    <FaWindowClose onClick={() => handleTeamMemberDelete(member.id)} style={{ 'padding-top': '5px' }} />
+                    {/* <FaEdit /> */}
+                </div>
+            })}
+            <form onSubmit={(e) => handleAddTeamMember(e)} style={{ 'width': '100%' }}>
+                <input
+                    className={styles.input}
+                    type="text"
+                    value={newTeamMember}
+                    onChange={(e) => setNewTeamMember(e.target.value)}
+                    style={{ 'margin-top': '20px' }}
+                />
+                <Button className={styles.signIn} type="submit" isLoading={false}>
+                    Add Team Member
+                </Button>
+            </form>
+        </div>
+    </div>
+}
+
 const Settings = (props) => {
     const prevLoading = usePrevious(props.data.getItemsLoading);
 
@@ -114,7 +211,7 @@ const Settings = (props) => {
 
                 <div className={styles.sectionText}>Owner Details</div>
                 <div className={styles.text}>{props.auth.email}</div>
-                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '0px' }} onClick={() => { handleResetPassword() }}>
+                <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
                     Reset Password
                 </Button>
 
@@ -123,10 +220,8 @@ const Settings = (props) => {
                     <div className={styles.text}>{props.auth.staffEmail}</div> :
                     <AddStaffAccount {...props} />}
             </div>
-            <div className={styles.listWrapper}>
-                <div className={styles.sectionText}>Team Management</div>
-                <div className={styles.text}>Team members here...</div>
-            </div>
+            <TeamMembers {...props} />
+
             {/* <div className={styles.listWrapper}>
                 <div className={styles.sectionText}>Account Management</div>
                 <Button className={styles.signIn} style={{ 'width': '100%', 'margin-top': '20px' }} onClick={() => { handleResetPassword() }}>
