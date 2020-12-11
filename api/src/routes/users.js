@@ -19,8 +19,9 @@ router.post("/addUser", (req, res) => {
     }
 
     const shops = [{ shopName: req.body.shopName, shop_id: uniqid() }];
+    const currentDate = new Date();
 
-    let model = new UserModel({ email: req.email, shops, isOwner: true });
+    let model = new UserModel({ email: req.email, joined: currentDate.toISOString(), shops, isOwner: true });
     model.save().then((doc) => {
         if (!doc || doc.length === 0) {
             return res.status(500).send(doc);

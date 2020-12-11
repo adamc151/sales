@@ -78,7 +78,12 @@ const List = (props) => {
                         <div className={`${styles.breakdownType} ${styles.breakdownType2}`}><span className={styles.saleBreakdown}>- Fees</span><span>{`£${props.data.saleBreakdowns.fees.total}`}</span></div>
                         <div className={styles.breakdownType}><span>Refunds</span><span>{`${props.data.itemTypeBreakdowns.REFUND.total >= 0 ? '' : '-'} £${Math.abs(props.data.itemTypeBreakdowns.REFUND.total)}`}</span></div>
                         <div className={styles.breakdownType}><span>Expenses</span><span>{`${props.data.itemTypeBreakdowns.EXPENSE.total >= 0 ? '' : '-'} £${Math.abs(props.data.itemTypeBreakdowns.EXPENSE.total)}`}</span></div>
-                        {props.data.itemTypeBreakdowns.VOUCHER.total ? <div className={styles.breakdownType}><span>NHS VOUCHERS</span><span>{`${props.data.itemTypeBreakdowns.VOUCHER.total >= 0 ? '' : '-'} £${Math.abs(props.data.itemTypeBreakdowns.VOUCHER.total)}`}</span></div> : null}
+                        {props.data.itemTypeBreakdowns.VOUCHER.total ? <>
+                            <div className={styles.breakdownType}><span>NHS VOUCHERS</span><span>{`${props.data.itemTypeBreakdowns.VOUCHER.total >= 0 ? '' : '-'} £${Math.abs(props.data.itemTypeBreakdowns.VOUCHER.total)}`}</span></div>
+                            {Object.keys(props.data.itemTypeBreakdowns.VOUCHER.breakdown).map((voucher) => {
+                                return props.data.itemTypeBreakdowns.VOUCHER.breakdown[voucher].total > 0 ? <div className={`${styles.breakdownType} ${styles.breakdownType2}`}><span className={styles.saleBreakdown}>{`- ${voucher}`}</span><span>{`£${props.data.itemTypeBreakdowns.VOUCHER.breakdown[voucher].total}`}</span></div> : null;
+                            })}
+                        </> : null}
                         {props.data.itemTypeBreakdowns.DAILY.total ? <div className={styles.breakdownType}><span>DAILY</span><span>{`${props.data.itemTypeBreakdowns.DAILY.total >= 0 ? '' : '-'} £${Math.abs(props.data.itemTypeBreakdowns.DAILY.total)}`}</span></div> : null}
 
                     </div>}

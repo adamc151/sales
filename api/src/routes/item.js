@@ -9,7 +9,22 @@ router.get("/items", async (req, res) => {
     d.setHours(0, 0, 0, 0);
     ItemModel.find({ dateTime: { $gt: d }, shop_id: req.shop_id })
       .then((doc) => {
-        res.json(doc);
+
+        let error = false;
+
+        doc.map((item) => {
+          if (item.shop_id !== req.shop_id) {
+            error = true;
+            return;
+          }
+        })
+
+        if (error) {
+          res.json([]);
+        } else {
+          res.json(doc);
+        }
+
       })
       .catch((err) => {
         res.status(500).json(err);
@@ -18,7 +33,23 @@ router.get("/items", async (req, res) => {
     ItemModel.find({ shop_id: req.shop_id })
       .sort({ dateTime: 1 })
       .then((doc) => {
-        res.json(doc);
+
+        let error = false;
+
+        doc.map((item) => {
+          if (item.shop_id !== req.shop_id) {
+            error = true;
+            return;
+          }
+        })
+
+        if (error) {
+          res.json([]);
+        } else {
+          res.json(doc);
+        }
+
+
       })
       .catch((err) => {
         res.status(500).json(err);
@@ -30,6 +61,9 @@ router.post("/additem", async (req, res) => {
   if (!req.body) {
     return res.status(400).send("Request body is missing");
   }
+  if (req.body.value <= 0) {
+    return res.status(400).send("Cannot have value zero or negative");
+  }
 
   let model = new ItemModel({ ...req.body, shop_id: req.shop_id });
   model
@@ -38,6 +72,7 @@ router.post("/additem", async (req, res) => {
       if (!doc || doc.length === 0) {
         return res.status(500).send(doc);
       }
+
       res.status(201).send(doc);
     })
     .catch((err) => {

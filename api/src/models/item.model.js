@@ -137,6 +137,10 @@ let userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    joined: {
+      type: Date,
+      require: true,
+    },
     shops: [{
       shop_id: String,
       shopName: String,

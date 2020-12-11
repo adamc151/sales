@@ -88,3 +88,21 @@
   display: flex;
   align-items: center;
 }
+
+.resetPassword {
+  text-decoration: underline;
+    width: 100%;
+    text-align: right;
+    margin: 16px 0px 8px 0px;
+    color: gray;
+}
+
+.staffAccountExplanation {
+  text-align: left;
+  font-size: 12px;
+}
+
+.divider {
+  margin: 20px 0px;
+  border-bottom: 1px solid lightgray;
+}

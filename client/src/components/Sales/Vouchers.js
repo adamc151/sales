@@ -176,9 +176,10 @@ const Vouchers = (props) => {
                 preConfirm: () => {
                     return props.actions
                         .deleteItem(id)
-                        .then(() => {
+                        .then(async () => {
                             setActiveItem(null);
-                            props.actions.loadItems();
+                            await props.actions.loadItems();
+                            await props.actions.parseData();
                             Swal.insertQueueStep({
                                 icon: "success",
                                 text: "Item successfully deleted",
@@ -248,6 +249,14 @@ const Vouchers = (props) => {
                     <span className={`${activeSection === 'paid' ? styles.activePaidInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('paid') }}>Paid</span>
                 </div>
                 {reversedItems ?
+                    activeSection === 'pending' && props.data.vouchersTotal && props.data.vouchersTotal.pending &&
+                    <div className={styles.pendingTotalsWrapper}>
+                        <div className={styles.sectionText}>Pending Totals</div>
+                        {Object.keys(props.data.vouchersTotal.pending).map((voucher) => {
+                            return <div className={styles.pendindVoucher}><div>{voucher}</div><div>{props.data.vouchersTotal.pending[voucher].total}</div></div>
+                        })}
+                    </div> : null}
+                {reversedItems ?
                     reversedItems.slice(0, pointer).map((item, i) => {
 
                         if (item.type !== 'VOUCHER') return;
@@ -256,6 +265,7 @@ const Vouchers = (props) => {
 
                         const current = new Date(item.dateTime);
                         const isSame = i > 0 && prev && moment(prev).isSame(moment(current), "day");
+                        const isSameMonth = i > 0 && prev && moment(prev).isSame(moment(current), "month");
                         const date = item.dateTime;
 
                         prev = current;

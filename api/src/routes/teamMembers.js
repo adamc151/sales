@@ -11,6 +11,13 @@ router.get("/getTeam", (req, res) => {
                     name: member.name, id: member.id, shop_id: member.shop_id,
                 });
             });
+
+            teamMembers.map((item) => {
+                if (item.shop_id !== req.shop_id) {
+                    res.status(500).json({ error: "Something went wrong" });
+                }
+            });
+
             res.json(myTeam);
         })
         .catch((err) => {
@@ -39,9 +46,10 @@ router.delete("/deleteTeamMember", (req, res) => {
     if (!req.query.id) {
         return res.status(400).send("missing URL param: id");
     }
-    TeamMembersModel.findOneAndRemove({
+
+    TeamMembersModel.findOneAndUpdate({
         _id: req.query.id,
-    })
+    }, { shop_id: '' }, { new: true })
         .then((doc) => {
             res.json(doc);
         })
