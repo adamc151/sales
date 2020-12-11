@@ -205,6 +205,7 @@ const AddItemNew = (props) => {
 
                 if (breakdown) {
                     const { lenses, accessories, fees } = breakdown;
+                    console.log('yooo breakdown', breakdown);
                     setPrice1(lenses || 0);
                     setPrice2(accessories || 0);
                     setPrice3(fees || 0);
@@ -315,7 +316,7 @@ const AddItemNew = (props) => {
                             className={`${styles.longInput}`}
                             type="number"
                             placeholder="0.00"
-                            {...(props.isEdit || type === 'VOUCHER' && { value: price1 })}
+                            {...((props.isEdit || type === 'VOUCHER') && { value: price1 })}
                             onChange={(e) => {
                                 setPrice1(Number(e.target.value));
                             }}

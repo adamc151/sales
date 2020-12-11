@@ -224,16 +224,23 @@ const generate1 = (items, date, interval = "day") => {
     }
 
     if (interval === "day" && isDate && validPaymentMethod && !isPendingVoucher) {
+
+      let myValue;
+
       if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
         acc = acc - items[i].value;
+        myValue = items[i].value * -1;
       } else {
         acc = acc + items[i].value;
+        myValue = items[i].value
       }
 
       tempData.push({
         ...items[i],
+        value: myValue,
         accumulative: Number(acc.toFixed(2)),
       });
+
     } else if (interval !== "day" && isDate && validPaymentMethod && !isPendingVoucher) {
 
       const previous =
@@ -244,6 +251,9 @@ const generate1 = (items, date, interval = "day") => {
         if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
           dayAcc = dayAcc - items[i].value;
           acc = acc - items[i].value;
+
+          console.log('yooo dayAcc', dayAcc);
+          console.log('yooo acc', acc);
         } else {
           dayAcc = dayAcc + items[i].value;
           acc = acc + items[i].value;
@@ -253,18 +263,12 @@ const generate1 = (items, date, interval = "day") => {
         tempData[tempData.length - 1].accumulative = Number(acc.toFixed(2));
 
       } else {
-        tempData.push({
-          dateTime: currentDate,
-          value: items[i].value,
-          accumulative: Number((acc + items[i].value).toFixed(2)),
-        });
 
         if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
           dayAcc = items[i].value * -1;
         } else {
           dayAcc = items[i].value;
         }
-
 
         if (acc === 0) {
           if (items[i].type === 'EXPENSE' || items[i].type === 'REFUND') {
@@ -280,6 +284,12 @@ const generate1 = (items, date, interval = "day") => {
           }
 
         }
+
+        tempData.push({
+          dateTime: currentDate,
+          value: Number(dayAcc.toFixed(2)),
+          accumulative: Number((acc).toFixed(2)),
+        });
       }
     }
   }

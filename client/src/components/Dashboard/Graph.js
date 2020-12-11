@@ -26,14 +26,15 @@ const CustomTooltip = ({ active, payload, label, data, intervalUnit }) => {
   ];
 
   const format = intervalUnit === 'day' ? 'LLL' : 'LL';
+  const displayValue = active ? payload[0].value : myPayload[0].value;
 
   return (
     <div>
       <div
         style={{ fontSize: "42px", textAlign: "left" }}
-      >{`£${data[myLabel].accumulative}`}</div>
-      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }}>{`${data[myLabel].type === 'EXPENSE' || data[myLabel].type === 'REFUND' ? "-" : "+"
-        } £${active ? payload[0].value : myPayload[0].value}`}</div>
+      >{data[myLabel].accumulative < 0 ? '- ' : ''}{`£${Math.abs(data[myLabel].accumulative)}`}</div>
+      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }}>{`${displayValue < 0 ? "-" : "+"
+        } £${Math.abs(displayValue)}`}</div>
       <div
         style={{ fontSize: "14px", color: "grey", textAlign: "left" }}
       >{`${moment(data[myLabel].dateTime).format(format)}`}</div>
