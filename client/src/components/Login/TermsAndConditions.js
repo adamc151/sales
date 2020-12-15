@@ -58,6 +58,6 @@ export const TermsAndConditions = () => {
 
         <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
 
-        <p>Last Updated: 22 November 2020</p>
+        <p>Last Updated: 15 December 2020</p>
     </div>);
 }

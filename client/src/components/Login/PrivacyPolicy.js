@@ -14,7 +14,7 @@ export const PrivacyPolicy = () => {
 
         <h2>Information we collect</h2>
 
-        <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+        <p>We require an email address and password set by you to create your account. A separate email address and password will also be required for you to add a staff login for your account.</p>
         <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
         <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
 
@@ -57,14 +57,6 @@ export const PrivacyPolicy = () => {
 
         <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
 
-        <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
-
-        <p>Under the CCPA, among other rights, California consumers have the right to:</p>
-        <p>Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.</p>
-        <p>Request that a business delete any personal data about the consumer that a business has collected.</p>
-        <p>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</p>
-        <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
-
         <h2>GDPR Data Protection Rights</h2>
 
         <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
@@ -76,7 +68,7 @@ export const PrivacyPolicy = () => {
         <p>The right to data portability – You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</p>
         <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
 
-        <p>Last Updated: 22 November 2020</p>
+        <p>Last Updated: 15 December 2020</p>
     </div>);
 
 }

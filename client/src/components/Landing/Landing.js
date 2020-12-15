@@ -7,7 +7,8 @@ import * as actions from "../../state/actions/dataActions";
 import { FaCashRegister, FaUser } from "react-icons/fa";
 import Loading from "../UI/Loading";
 import { getGreeting, tillFloatPopup } from '../Utils/utils';
-import moment from "moment";
+import { Button } from "../UI/Button";
+
 
 const TopRight = (props) => {
   return (
@@ -77,14 +78,14 @@ const Landing = (props) => {
             />
           );
         })}
-        {teamMembers && teamMembers.length > 0 && <div // A button with styling might be better here?
+        {teamMembers && teamMembers.length > 0 && <Button // A button with styling might be better here?
           className={styles.eod}
           onClick={() => {
             props.history.push("/eod");
           }}
         >
           End of Day
-            </div>}
+            </Button>}
         {!teamMembers || teamMembers.length == 0 && <div style={{ 'padding': '20px' }}>
           <p>No team members found</p>
           <p>Team members are required in order to add 'items'</p>
