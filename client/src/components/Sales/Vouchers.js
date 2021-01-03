@@ -21,7 +21,6 @@ const paymentMethodIcons = {
     AMEX: <FaCcAmex color={"#016fcf"} />,
 };
 
-
 const ListItem = ({
     type,
     details,
@@ -35,7 +34,8 @@ const ListItem = ({
     dateTime,
     _id,
     onDelete,
-    history
+    history,
+    isOwner
 }) => {
     return <div className={styles.listItemWrapper} onClick={() => setActive()} >
         <div>{paymentMethodIcons[paymentMethod]}</div>
@@ -107,10 +107,10 @@ const ListItem = ({
                             }
                         });
                     }} >Edit</span>
-                    <span onClick={(e) => {
+                    {isOwner ? <span onClick={(e) => {
                         e.stopPropagation();
                         paymentStatus === 'paid' ? setPaymentStatus(_id, 'pending') : setPaymentStatus(_id, 'paid');
-                    }} >{paymentStatus === 'paid' ? "SET AS PENDING" : "SET AS PAID"}</span>
+                    }} >{paymentStatus === 'paid' ? "SET AS PENDING" : "SET AS PAID"}</span> : null}
                 </div>
             )}
         </div>
@@ -163,7 +163,7 @@ const Vouchers = (props) => {
     }
 
     if (props.data.getItemsLoading || !isReady) {
-        return <Loading />;
+        return <Loading withSidebar={true} />;
     }
 
     const deleteItem = async (id) => {
@@ -244,16 +244,16 @@ const Vouchers = (props) => {
     return (
         <div className={styles.listDesktopWrapper}>
             <div className={styles.listWrapper}>
-                <div className={styles.intervals}>
+                {props.auth.isOwner ? <div className={styles.intervals}>
                     <span className={`${activeSection === 'pending' ? styles.activePendingInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('pending') }}>Pending</span>
                     <span className={`${activeSection === 'paid' ? styles.activePaidInterval : ''} ${styles.interval}`} onClick={() => { setActiveSection('paid') }}>Paid</span>
-                </div>
+                </div> : null}
                 {reversedItems ?
                     activeSection === 'pending' && props.data.vouchersTotal && props.data.vouchersTotal.pending &&
                     <div className={styles.pendingTotalsWrapper}>
-                        <div className={styles.sectionText}>Pending Totals</div>
+                        <div className={styles.sectionTextGrey}>Pending Totals</div>
                         {Object.keys(props.data.vouchersTotal.pending).map((voucher) => {
-                            return <div className={styles.pendindVoucher}><div>{voucher}</div><div>{props.data.vouchersTotal.pending[voucher].total}</div></div>
+                            return <div className={styles.pendindVoucher}><div>{voucher}</div><div>£{props.data.vouchersTotal.pending[voucher].total}</div></div>
                         })}
                     </div> : null}
                 {reversedItems ?
@@ -285,11 +285,12 @@ const Vouchers = (props) => {
                                         i === activeItem ? setActiveItem(null) : setActiveItem(i)
                                     }
                                     isActive={i === activeItem}
+                                    isOwner={props.auth.isOwner}
                                 />
                             </Fragment>
                         );
                     }) : null}
-                {props.data.items && pointer !== props.data.items.length && <ViewportObserver key={pointer} onIntersect={() => {
+                {visibleCount > 20 && pointer !== props.data.items.length && <ViewportObserver key={pointer} onIntersect={() => {
                     setTimeout(() => { setCurrentPointer(currentPointer + 50); }, 500);
                 }}>{() => <div style={{ margin: '16px 0' }}>...loading</div>}</ViewportObserver>}
             </div>

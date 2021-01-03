@@ -75,11 +75,11 @@ const Landing = (props) => {
         window.scroll(0, 0);
     }, [props.data.notifications]);
 
-    if (!props.data.data && props.data.getItemsLoading) {
+    if (!props.data.graphData && props.data.getItemsLoading) {
         return <Loading />;
     }
 
-    if (!props.data.data) {
+    if (!props.data.graphData) {
         return null;
     }
 

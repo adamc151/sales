@@ -113,8 +113,6 @@ const Login = ({ history, actions }) => {
 
   const policyWrapper = window.location.pathname === "/termsandconditions" || window.location.pathname === "/privacypolicy";
 
-  console.log('yooo inputErrors', inputErrors);
-
   return (
     <div className={styles.background}>
       <Image className={styles.mobileImage} src={"/images/splash3_1.png"} />

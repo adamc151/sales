@@ -31,7 +31,7 @@ const TopRight = ({ user, history }) => {
         cancelButtonText: "No"
       }).then((result) => {
         if (result.isConfirmed) {
-          history.push('/home');
+          history.push('/add-item');
         } else if (result.isDenied) {
           Swal.close();
         }

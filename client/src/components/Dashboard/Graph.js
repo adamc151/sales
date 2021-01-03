@@ -14,41 +14,36 @@ import moment from "moment";
 
 const CustomTooltip = ({ active, payload, label, data, intervalUnit }) => {
   const myLabel = active ? label : data.length - 1;
-  const myPayload = [
-    {
-      color: "#f2f0ff",
-      dataKey: "value",
-      fill: "#f2f0ff",
-      name: "value",
-      stroke: "#f2f0ff",
-      value: data.length && data[data.length - 1].value,
-    },
-  ];
 
   const format = intervalUnit === 'day' ? 'LLL' : 'LL';
-  const displayValue = active ? payload[0].value : myPayload[0].value;
+  let displayValue = '';
+
+  if (data.length) {
+    displayValue = data[data.length - 1].negative ? data[data.length - 1].value * -1 : data[data.length - 1].value;
+  }
+
+  if (active) {
+    displayValue = payload[0].payload.negative ? payload[0].value * -1 : payload[0].value;
+  }
 
   return (
     <div>
-      <div
-        style={{ fontSize: "42px", textAlign: "left" }}
-      >{data[myLabel].accumulative < 0 ? '- ' : ''}{`£${Math.abs(data[myLabel].accumulative)}`}</div>
-      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }}>{`${displayValue < 0 ? "-" : "+"
-        } £${Math.abs(displayValue)}`}</div>
-      <div
-        style={{ fontSize: "14px", color: "grey", textAlign: "left" }}
-      >{`${moment(data[myLabel].dateTime).format(format)}`}</div>
+      <div style={{ fontSize: "42px", textAlign: "left" }}>{data[myLabel].accumulative < 0 ? '- ' : ''}{`£${Math.abs(data[myLabel].accumulative)}`}</div>
+      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }}>{`${displayValue < 0 ? "-" : "+"} £${Math.abs(displayValue)}`}</div>
+      <div style={{ fontSize: "14px", color: "grey", textAlign: "left" }} >{`${moment(data[myLabel].dateTime).format(format)}`}</div>
     </div>
   );
 };
 
 const Graph = (props) => {
 
-  if (!props.data.data) return null;
+  if (!props.data.graphData) return null;
+
+  console.log('yoooo props.data.graphData', props.data.graphData);
 
   return (
     <div className={styles.graphsWrapper}>
-      {props.data.data ? <div
+      {props.data.graphData ? <div
         style={{
           height: "100%",
           position: "relative",
@@ -58,7 +53,7 @@ const Graph = (props) => {
           alignItems: "center"
         }}
       >
-        {props.data.data && props.data.data.length ? (
+        {props.data.graphData && props.data.graphData.length ? (
           <div className={styles.graphWrapper}>
             <ResponsiveContainer
               width="100%"
@@ -67,7 +62,7 @@ const Graph = (props) => {
               stackOffset={"expand"}
             >
               <ComposedChart
-                data={props.data.data}
+                data={props.data.graphData}
                 margin={{
                   top: 0,
                   right: 0,
@@ -88,10 +83,10 @@ const Graph = (props) => {
                     bottom: 0,
                   }}
                 >
-                  {props.data.data.map((entry, index) => (
+                  {props.data.graphData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={entry.type === 'EXPENSE' || entry.type === 'REFUND' ? "#f2f2f2" : "#f0f6ff"}
+                      fill={entry.negative ? "#f2f2f2" : "#f0f6ff"}
                     />
                   ))}
                 </Bar>
@@ -99,7 +94,7 @@ const Graph = (props) => {
                 <Tooltip
                   wrapperStyle={{ visibility: "visible", position: 'absolute', top: '-110px', left: '0px' }}
                   content={
-                    <CustomTooltip data={props.data.data} active={true} allowEscapeViewBox={{ x: true, y: true }} intervalUnit={props.data.intervalUnit} />
+                    <CustomTooltip data={props.data.graphData} active={true} allowEscapeViewBox={{ x: true, y: true }} intervalUnit={props.data.intervalUnit} />
                   }
                   position={{ x: 20, y: 80 }}
                 />
@@ -108,11 +103,11 @@ const Graph = (props) => {
           </div>
         ) : null}
 
-        {props.data.data && props.data.data.length > 1 ? (
+        {props.data.graphData && props.data.graphData.length > 1 ? (
           <div className={styles.graphWrapper2}>
             <ResponsiveContainer width="100%" height="100%" className={styles.responsiveContainer}>
               <LineChart
-                data={props.data.data}
+                data={props.data.graphData}
                 margin={{
                   top: 0,
                   right: 0,

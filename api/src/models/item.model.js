@@ -29,7 +29,7 @@ let itemSchema = new mongoose.Schema(
   {
     value: {
       type: Number,
-      require: false,
+      require: true,
     },
     paymentMethod: {
       type: String,
@@ -37,7 +37,7 @@ let itemSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      require: false
+      require: true
     },
     voucherType: {
       type: String,
@@ -75,7 +75,7 @@ let itemSchema = new mongoose.Schema(
     },
     shop_id: {
       type: String,
-      require: false,
+      require: true,
     }
   },
   { collection: "items" }

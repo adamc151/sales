@@ -61,7 +61,7 @@ router.post("/additem", async (req, res) => {
   if (!req.body) {
     return res.status(400).send("Request body is missing");
   }
-  if (req.body.value <= 0) {
+  if (!req.body.value || req.body.value <= 0) {
     return res.status(400).send("Cannot have value zero or negative");
   }
 

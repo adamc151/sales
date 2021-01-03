@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     case "CHANGE_DATA":
       return {
         ...state,
-        data: action.payload.data,
+        graphData: action.payload.graphData,
         date: action.payload.date,
         intervals: action.payload.intervals,
         intervalUnit: action.payload.intervalUnit,

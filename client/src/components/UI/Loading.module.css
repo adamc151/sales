@@ -14,6 +14,12 @@
     width: 100%;
     text-align: center;
   }
+
+  @media (min-width: 769px) {
+    .withSidebar {
+      padding-left: 270px;
+    }
+  }
   
   .spinner > div {
     width: 18px;

@@ -60,7 +60,7 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     props.setRightComponent(<TopRight {...props} />);
-  }, [props.data.data]);
+  }, [props.data.graphData]);
 
   useEffect(() => {
     props.setTitle(getDateLabel(props.data.date, props.data.intervalUnit));
