@@ -30,7 +30,7 @@ const TopRight = ({ user, history }) => {
                 cancelButtonText: "No"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    history.push('/home');
+                    history.push('/add-item');
                 } else if (result.isDenied) {
                     Swal.close();
                 }
@@ -189,12 +189,20 @@ const AddItemNew = (props) => {
                     return;
                 }
 
-                const { type, paymentMethod, details, breakdown, value, dateTime, _id } = myItem;
+                const { type, voucherType, paymentMethod, details, breakdown, value, dateTime, _id } = myItem;
                 setType(type);
                 setDetails(details);
                 setId(_id);
 
-                if (paymentMethod !== 'CASH' && paymentMethod !== 'CARD' && paymentMethod !== 'AMEX') {
+                if (type === 'VOUCHER') {
+                    props.actions.getVouchers();
+                    const [voucherType1, voucherType2, ...rest] = voucherType.split(' - ');
+                    setVoucherType(voucherType1);
+                    setSubVoucherType(voucherType2)
+                    setSubSubVoucherType(rest)
+                }
+
+                if (paymentMethod !== 'CASH' && paymentMethod !== 'CARD' && paymentMethod !== 'AMEX' && type !== 'VOUCHER') {
                     setPaymentType('OTHER');
                     setOtherPaymentType(paymentMethod);
                 } else {
@@ -205,7 +213,6 @@ const AddItemNew = (props) => {
 
                 if (breakdown) {
                     const { lenses, accessories, fees } = breakdown;
-                    console.log('yooo breakdown', breakdown);
                     setPrice1(lenses || 0);
                     setPrice2(accessories || 0);
                     setPrice3(fees || 0);

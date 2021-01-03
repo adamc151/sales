@@ -60,15 +60,15 @@ const ListItem = ({
                 </tr>
                 {type === 'SALE' && <tr>
                   <td className={styles.sectionHeader} >Lenses</td>
-                  <td className={styles.sectionText} >{`£${breakdown.lenses || 0}`}</td>
+                  <td className={styles.sectionText} >{`£${(breakdown && breakdown.lenses) || 0}`}</td>
                 </tr>}
                 {type === 'SALE' && <tr>
                   <td className={styles.sectionHeader} >Accessories</td>
-                  <td className={styles.sectionText} >{`£${breakdown.accessories || 0}`}</td>
+                  <td className={styles.sectionText} >{`£${(breakdown && breakdown.accessories) || 0}`}</td>
                 </tr>}
                 {type === 'SALE' && <tr>
                   <td className={styles.sectionHeader} >Fees</td>
-                  <td className={styles.sectionText} >{`£${breakdown.fees || 0}`}</td>
+                  <td className={styles.sectionText} >{`£${(breakdown && breakdown.fees) || 0}`}</td>
                 </tr>}
               </tbody>
             </table>
@@ -165,7 +165,7 @@ const Sales = (props) => {
   }
 
   if (props.data.getItemsLoading || !isReady) {
-    return <Loading />;
+    return <Loading withSidebar={true} />;
   }
 
   const deleteItem = async (id) => {

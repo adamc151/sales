@@ -109,7 +109,7 @@ export const exportData = (props) => {
           const cardTotal = `${props.data.breakdowns.CARD.total >= 0 ? '' : '- '} ${Math.abs(props.data.breakdowns.CARD.total)}`;
           const cashTotal = `${props.data.breakdowns.CASH.total >= 0 ? '' : '- '} ${Math.abs(props.data.breakdowns.CASH.total)}`;
           const amexTotal = `${props.data.breakdowns.AMEX.total >= 0 ? '' : '- '} ${Math.abs(props.data.breakdowns.AMEX.total)}`;
-          const dayTotal = props.data.data[props.data.data.length - 1].accumulative;
+          const dayTotal = props.data.graphData[props.data.graphData.length - 1].accumulative;
 
           csv = csv + `,,${getDateLabel(props.data.date, props.data.intervalUnit)},${cardTotal},${cashTotal},${amexTotal},${dayTotal}\r\n`
         } else {

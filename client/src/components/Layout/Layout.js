@@ -4,12 +4,14 @@ import {
   ProSidebar,
   Menu,
   MenuItem,
+  SubMenu,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { FaList, FaHome, FaUserCog, FaPlus } from "react-icons/fa";
+import { AiFillShop } from "react-icons/ai";
 import { MdLocalHospital } from "react-icons/md";
 import { GoGraph } from "react-icons/go";
 import { HiMenuAlt1 } from "react-icons/hi";
@@ -78,6 +80,16 @@ const Aside = connect(mapStateToProps, mapDispatchToProps)(({ collapsed, toggled
           ) : (
               <></>
             )}
+
+          {false ? <SubMenu title="Switch Shop" icon={<AiFillShop />}>
+            <MenuItem>Shop 1</MenuItem>
+            <MenuItem>Shop 2</MenuItem>
+            <MenuItem>Shop 3</MenuItem>
+            <MenuItem>Shop 4</MenuItem>
+            <MenuItem>Shop 5</MenuItem>
+            <MenuItem>Shop 6</MenuItem>
+            <MenuItem>Add New Shop</MenuItem>
+          </SubMenu> : <></>}
         </Menu>
       </SidebarContent>
       <SidebarFooter style={{ padding: "16px 24px" }}>
