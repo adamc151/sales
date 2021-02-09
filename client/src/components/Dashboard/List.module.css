@@ -125,6 +125,7 @@
 
   .staffTotalsAndTally {
     width: 25%;
+    max-width: 150px;
     display: flex;
     justify-content: space-between;
   }
