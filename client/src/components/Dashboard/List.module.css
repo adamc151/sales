@@ -108,6 +108,27 @@
     border-top: 1px lightgray solid;
   }
 
+  .staffBreakdownType {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0px;
+  }
+
+  .staffBreakdownTypeHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0px;
+    color: gray;
+  }
+
+  .staffTotalsAndTally {
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .breakdownType:nth-child(1) {
     border-top: none;
   }
