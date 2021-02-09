@@ -104,7 +104,7 @@ const List = (props) => {
                 }} >
                     <div className={styles.itemHeader}><div>Staff Sales</div><div>{activeStaff ? '-' : '+'}</div></div>
                     {activeStaff && <div className={styles.breakdownDetails}>
-                        <div className={styles.staffBreakdownTypeHeader}><span><i>*not including refunds/expenses</i></span><span className={styles.staffTotalsAndTally}><span>value</span><span>sales</span></span></div>
+                        <div className={styles.staffBreakdownTypeHeader}><span style={{ fontSize: '10px' }}><i>*not including refunds/expenses</i></span><span className={styles.staffTotalsAndTally}><span>value</span><span>sales</span></span></div>
                         {sortedStaff.map((staff, i) => {
                             return <div key={"staff" + i} className={styles.staffBreakdownType}><span>{staff.name}</span><span className={styles.staffTotalsAndTally}><span>{`£${staff.total}`}</span><span>{staff.tally}</span></span></div>;
                         })}
