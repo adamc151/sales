@@ -18,6 +18,7 @@ const reducer = (state = initialState, action) => {
         saleBreakdowns: action.payload.saleBreakdowns,
         itemsInRange: action.payload.itemsInRange,
         itemTypeBreakdowns: action.payload.itemTypeBreakdowns,
+        staffBreakdowns: action.payload.staffBreakdowns,
         vouchersTotal: action.payload.vouchersTotal,
         loading: false,
       };

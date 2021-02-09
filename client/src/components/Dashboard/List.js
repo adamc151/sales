@@ -20,6 +20,15 @@ const paymentMethodIcons = {
 const List = (props) => {
     const [activePaymentTypes, setActivePaymentTypes] = useState(false);
     const [activeBreakdowns, setActiveBreakdowns] = useState(false);
+    const [activeStaff, setActiveStaff] = useState(false);
+
+    var sortedStaff = [];
+    props.data.staffBreakdowns && Object.keys(props.data.staffBreakdowns).map((key) => {
+        sortedStaff.push({ ...props.data.staffBreakdowns[key], name: key });
+    })
+    sortedStaff.sort(function (a, b) {
+        return b.total - a.total;
+    });
 
     return (
         props.data.breakdowns ? <div className={styles.listDesktopWrapper}>
@@ -86,6 +95,19 @@ const List = (props) => {
                         </> : null}
                         {props.data.itemTypeBreakdowns.DAILY.total ? <div className={styles.breakdownType}><span>DAILY</span><span>{`${props.data.itemTypeBreakdowns.DAILY.total >= 0 ? '' : '-'} £${Math.abs(props.data.itemTypeBreakdowns.DAILY.total)}`}</span></div> : null}
 
+                    </div>}
+                </div>
+
+                {/* Staff breakdowns */}
+                <div className={styles.newListItemWrapper} onClick={() => {
+                    setActiveStaff(!activeStaff);
+                }} >
+                    <div className={styles.itemHeader}><div>Staff Sales</div><div>{activeStaff ? '-' : '+'}</div></div>
+                    {activeStaff && <div className={styles.breakdownDetails}>
+                        <div className={styles.staffBreakdownTypeHeader}><span><i>*not including refunds/expenses</i></span><span className={styles.staffTotalsAndTally}><span>value</span><span>sales</span></span></div>
+                        {sortedStaff.map((staff, i) => {
+                            return <div key={"staff" + i} className={styles.staffBreakdownType}><span>{staff.name}</span><span className={styles.staffTotalsAndTally}><span>{`£${staff.total}`}</span><span>{staff.tally}</span></span></div>;
+                        })}
                     </div>}
                 </div>
             </div>

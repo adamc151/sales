@@ -111,7 +111,7 @@ const getDates = (items, unit) => {
   return temp;
 };
 
-const generate1 = (items, date, interval = "day") => {
+const generate1 = (items, date, interval = "day", team) => {
   const tempData = [];
   const tempItemsInRange = [];
   let acc = 0;
@@ -136,10 +136,17 @@ const generate1 = (items, date, interval = "day") => {
     VOUCHER: { total: 0, tally: 0, percentage: 0, breakdown: {} },
     DAILY: { total: 0, tally: 0, percentage: 0 }
   };
+  let staffBreakdowns = {};
   let vouchersTotal = {
     pending: {},
     paid: {}
   }
+
+  const teamMap = (team || []).reduce((acc, member) => {
+    staffBreakdowns[member.name] = { total: 0, tally: 0 };
+    return { ...acc, [`${member.id}`]: member.name };
+  }, {});
+
 
   for (let i = 0; i < items.length; i++) {
     const currentDate = new Date(items[i].dateTime);
@@ -187,14 +194,20 @@ const generate1 = (items, date, interval = "day") => {
         if (items[i].type === 'REFUND') {
           itemTypeBreakdowns.REFUND.total = itemTypeBreakdowns.REFUND.total - currentValue;
           itemTypeBreakdowns.REFUND.tally++;
+          // if (teamMap[items[i].user]) {
+          //   staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total - currentValue;
+          //   staffBreakdowns[teamMap[items[i].user]].tally++;
+          // }
         } else if (items[i].type === 'EXPENSE') {
           itemTypeBreakdowns.EXPENSE.total = itemTypeBreakdowns.EXPENSE.total - currentValue;
           itemTypeBreakdowns.EXPENSE.tally++;
+          // if (teamMap[items[i].user]) {
+          //   staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total - currentValue;
+          //   staffBreakdowns[teamMap[items[i].user]].tally++;
+          // }
         }
       } else if (items[i].type === 'SALE') {
-        (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total =
-          (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total +
-          currentValue;
+        (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total = (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total + currentValue;
 
         if (items[i].breakdown) {
           accSaleBreakdowns.lenses.total = accSaleBreakdowns.lenses.total + (items[i].breakdown.lenses || 0);
@@ -204,6 +217,12 @@ const generate1 = (items, date, interval = "day") => {
 
         itemTypeBreakdowns.SALE.total = itemTypeBreakdowns.SALE.total + currentValue;
         itemTypeBreakdowns.SALE.tally++;
+
+        if (teamMap[items[i].user]) {
+          staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total + currentValue;
+          staffBreakdowns[teamMap[items[i].user]].tally++;
+        }
+
 
       } else if (items[i].type === 'DAILY') {
         accBreakdowns['DAILY'].total = accBreakdowns['DAILY'].total + currentValue;
@@ -219,6 +238,11 @@ const generate1 = (items, date, interval = "day") => {
         }
         itemTypeBreakdowns.VOUCHER.total = itemTypeBreakdowns.VOUCHER.total + currentValue;
         itemTypeBreakdowns.VOUCHER.tally++;
+
+        if (teamMap[items[i].user]) {
+          staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total + currentValue;
+          staffBreakdowns[teamMap[items[i].user]].tally++;
+        }
 
 
       }
@@ -318,11 +342,17 @@ const generate1 = (items, date, interval = "day") => {
     }
   });
 
+  Object.keys(staffBreakdowns).map((key) => {
+    if (staffBreakdowns[key].total && tempData.length) {
+      staffBreakdowns[key].total = Number(staffBreakdowns[key].total.toFixed(2));
+    }
+  });
+
   const graphData = tempData.reduce((acc, item) => {
     return [...acc, { ...item, value: Math.abs(item.value), negative: item.value < 0 }];
   }, []);
 
-  return { graphData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns, itemsInRange: tempItemsInRange, itemTypeBreakdowns, vouchersTotal, graphData };
+  return { graphData, breakdowns: accBreakdowns, saleBreakdowns: accSaleBreakdowns, staffBreakdowns, itemsInRange: tempItemsInRange, itemTypeBreakdowns, vouchersTotal, graphData };
 };
 
 export function parseData(date, interval) {
@@ -330,13 +360,17 @@ export function parseData(date, interval) {
     if (!getState().data.items) {
       await dispatch(loadItems());
     }
+    if (!getState().data.team) {
+      await dispatch(getTeam());
+    }
     const items = getState().data.items;
+    const team = getState().data.team;
 
     if (!items) return null;
 
     const myDates = getDates(items, interval);
     const myDate = date || myDates[myDates.length - 1];
-    const { graphData, breakdowns, saleBreakdowns, itemsInRange, itemTypeBreakdowns, vouchersTotal } = generate1(items, myDate, interval);
+    const { graphData, breakdowns, saleBreakdowns, itemsInRange, itemTypeBreakdowns, staffBreakdowns, vouchersTotal } = generate1(items, myDate, interval, team);
 
     return dispatch({
       type: "CHANGE_DATA",
@@ -346,6 +380,7 @@ export function parseData(date, interval) {
         saleBreakdowns,
         itemsInRange,
         itemTypeBreakdowns,
+        staffBreakdowns,
         vouchersTotal,
         date: myDate,
         intervals: myDates,
