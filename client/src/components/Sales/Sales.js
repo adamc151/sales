@@ -33,7 +33,8 @@ const ListItem = ({
   dateTime,
   _id,
   onDelete,
-  history
+  history,
+  user
 }) => {
   return <div className={styles.listItemWrapper} onClick={() => setActive()} >
     <div>{paymentMethodIcons[paymentMethod]}</div>
@@ -70,6 +71,10 @@ const ListItem = ({
                   <td className={styles.sectionHeader} >Fees</td>
                   <td className={styles.sectionText} >{`£${(breakdown && breakdown.fees) || 0}`}</td>
                 </tr>}
+                <tr>
+                  <td className={styles.sectionHeader} >User</td>
+                  <td className={styles.sectionText} >{user}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -84,8 +89,13 @@ const ListItem = ({
             </div>
           )}
       </div>
-      <div className={styles.productPrice}>
-        {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
+      <div className={styles.userAndPrice}>
+        <span style={{ color: 'grey' }}>
+          {!isActive ? user : ''}
+        </span>
+        <span className={styles.productPrice}>
+          {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
+        </span>
       </div>
       {isActive && (
         <div className={styles.actions}>

@@ -35,7 +35,8 @@ const ListItem = ({
     _id,
     onDelete,
     history,
-    isOwner
+    isOwner,
+    user
 }) => {
     return <div className={styles.listItemWrapper} onClick={() => setActive()} >
         <div>{paymentMethodIcons[paymentMethod]}</div>
@@ -62,6 +63,10 @@ const ListItem = ({
                                     <td className={styles.sectionHeader}>Details</td>
                                     <td className={styles.sectionText} >{details}</td>
                                 </tr>
+                                <tr>
+                                    <td className={styles.sectionHeader} >User</td>
+                                    <td className={styles.sectionText} >{user}</td>
+                                </tr>
 
                             </tbody>
                         </table>
@@ -77,8 +82,13 @@ const ListItem = ({
                         </div>
                     )}
             </div>
-            <div className={styles.productPrice}>
-                {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
+            <div className={styles.userAndPrice}>
+                <span style={{ color: 'grey' }}>
+                    {!isActive ? user : ''}
+                </span>
+                <div className={styles.productPrice}>
+                    {type === 'EXPENSE' || type === 'REFUND' ? "- " : ""}£{value}
+                </div>
             </div>
             {isActive && (
                 <div className={styles.actions}>
@@ -139,10 +149,11 @@ function usePrevious(value) {
 }
 
 const Vouchers = (props) => {
+    const INCREMENT = 50;
     const [activeItem, setActiveItem] = useState(null);
     const prevLoading = usePrevious(props.data.getItemsLoading);
     const [isReady, setIsReady] = useState(false);
-    const [currentPointer, setCurrentPointer] = useState(50);
+    const [currentPointer, setCurrentPointer] = useState(INCREMENT);
     const [activeSection, setActiveSection] = useState('pending');
 
     useEffect(() => {
@@ -258,7 +269,6 @@ const Vouchers = (props) => {
                     </div> : null}
                 {reversedItems ?
                     reversedItems.slice(0, pointer).map((item, i) => {
-
                         if (item.type !== 'VOUCHER') return;
                         if (activeSection === 'pending' && item.paymentStatus !== 'pending') return;
                         if (activeSection === 'paid' && item.paymentStatus !== 'paid') return;
@@ -290,8 +300,8 @@ const Vouchers = (props) => {
                             </Fragment>
                         );
                     }) : null}
-                {visibleCount > 20 && pointer !== props.data.items.length && <ViewportObserver key={pointer} onIntersect={() => {
-                    setTimeout(() => { setCurrentPointer(currentPointer + 50); }, 500);
+                {pointer !== props.data.items.length && <ViewportObserver key={pointer} onIntersect={() => {
+                    setTimeout(() => { setCurrentPointer(currentPointer + INCREMENT); }, 500);
                 }}>{() => <div style={{ margin: '16px 0' }}>...loading</div>}</ViewportObserver>}
             </div>
         </div>

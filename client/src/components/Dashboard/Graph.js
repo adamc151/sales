@@ -39,8 +39,6 @@ const Graph = (props) => {
 
   if (!props.data.graphData) return null;
 
-  console.log('yoooo props.data.graphData', props.data.graphData);
-
   return (
     <div className={styles.graphsWrapper}>
       {props.data.graphData ? <div

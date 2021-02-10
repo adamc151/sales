@@ -208,3 +208,8 @@
     margin: 20px 12px;
   }
   
+  .userAndPrice {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }

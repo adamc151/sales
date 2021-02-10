@@ -30,7 +30,6 @@
 
 .productPrice {
   text-align: right;
-  margin-top: 8px;
   font-size: 16px;
 }
 
@@ -148,4 +147,10 @@
 
 .dateTime {
   margin-bottom: 8px;
+}
+
+.userAndPrice {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
 }

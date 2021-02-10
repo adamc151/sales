@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
     case "GET_ITEMS_FAILED":
       return { ...state, getItemsLoading: false, error: true };
     case "GET_ITEMS_SUCCESS":
-      return { ...state, getItemsLoading: false, items: action.payload };
+      return { ...state, getItemsLoading: false, items: action.payload.items };
     case "ADD_ITEM_REQUEST":
       return { ...state, addItemLoading: true, error: false };
     case "ADD_ITEM_FAILED":

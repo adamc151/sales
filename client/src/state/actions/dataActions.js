@@ -136,17 +136,13 @@ const generate1 = (items, date, interval = "day", team) => {
     VOUCHER: { total: 0, tally: 0, percentage: 0, breakdown: {} },
     DAILY: { total: 0, tally: 0, percentage: 0 }
   };
-  let staffBreakdowns = {};
+  let staffBreakdowns = team && team.length && team.reduce((acc, member) => {
+    return { ...acc, [`${member.name}`]: { total: 0, tally: 0 } };
+  }, {});
   let vouchersTotal = {
     pending: {},
     paid: {}
   }
-
-  const teamMap = (team || []).reduce((acc, member) => {
-    staffBreakdowns[member.name] = { total: 0, tally: 0 };
-    return { ...acc, [`${member.id}`]: member.name };
-  }, {});
-
 
   for (let i = 0; i < items.length; i++) {
     const currentDate = new Date(items[i].dateTime);
@@ -194,17 +190,9 @@ const generate1 = (items, date, interval = "day", team) => {
         if (items[i].type === 'REFUND') {
           itemTypeBreakdowns.REFUND.total = itemTypeBreakdowns.REFUND.total - currentValue;
           itemTypeBreakdowns.REFUND.tally++;
-          // if (teamMap[items[i].user]) {
-          //   staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total - currentValue;
-          //   staffBreakdowns[teamMap[items[i].user]].tally++;
-          // }
         } else if (items[i].type === 'EXPENSE') {
           itemTypeBreakdowns.EXPENSE.total = itemTypeBreakdowns.EXPENSE.total - currentValue;
           itemTypeBreakdowns.EXPENSE.tally++;
-          // if (teamMap[items[i].user]) {
-          //   staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total - currentValue;
-          //   staffBreakdowns[teamMap[items[i].user]].tally++;
-          // }
         }
       } else if (items[i].type === 'SALE') {
         (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total = (accBreakdowns[items[i].paymentMethod] || accBreakdowns['OTHER']).total + currentValue;
@@ -218,9 +206,9 @@ const generate1 = (items, date, interval = "day", team) => {
         itemTypeBreakdowns.SALE.total = itemTypeBreakdowns.SALE.total + currentValue;
         itemTypeBreakdowns.SALE.tally++;
 
-        if (teamMap[items[i].user]) {
-          staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total + currentValue;
-          staffBreakdowns[teamMap[items[i].user]].tally++;
+        if (items[i].user) {
+          staffBreakdowns[items[i].user].total = staffBreakdowns[items[i].user].total + currentValue;
+          staffBreakdowns[items[i].user].tally++;
         }
 
 
@@ -238,12 +226,6 @@ const generate1 = (items, date, interval = "day", team) => {
         }
         itemTypeBreakdowns.VOUCHER.total = itemTypeBreakdowns.VOUCHER.total + currentValue;
         itemTypeBreakdowns.VOUCHER.tally++;
-
-        if (teamMap[items[i].user]) {
-          staffBreakdowns[teamMap[items[i].user]].total = staffBreakdowns[teamMap[items[i].user]].total + currentValue;
-          staffBreakdowns[teamMap[items[i].user]].tally++;
-        }
-
 
       }
     }
@@ -395,6 +377,14 @@ export const loadItems = () => {
   return async (dispatch, getState) => {
     dispatch({ type: "GET_ITEMS_REQUEST", payload: null });
 
+    if (!getState().data.team) {
+      await dispatch(getTeam());
+    }
+    const team = getState().data.team;
+    const teamMap = (team || []).reduce((acc, member) => {
+      return { ...acc, [`${member.id}`]: member.name };
+    }, {});
+
     try {
       const response = await fetch("/api/items", {
         headers: {
@@ -404,8 +394,15 @@ export const loadItems = () => {
 
       const json = await response.json();
       if (response.ok) {
-        dispatch({ type: "GET_ITEMS_SUCCESS", payload: json });
-        return json;
+        // const vouchers = [];
+        const newItems = json.map((item) => {
+          const withUser = { ...item, user: teamMap[item.user] || '' };
+          // if (item.type === "VOUCHER") vouchers.push(withUser);
+          return withUser;
+        })
+
+        dispatch({ type: "GET_ITEMS_SUCCESS", payload: { items: newItems } });
+        return newItems;
       } else {
         console.log('yoooo error 1');
         error(json.error);
